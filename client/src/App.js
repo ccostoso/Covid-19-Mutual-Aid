@@ -1,15 +1,19 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Nav } from "./components/Nav";
+import Login from "./pages/Login";
 
 class App extends Component {
-  state = {}
+  state = {
+    hi: "hiloo"
+  }
 
   render() {
     return (
-      <BrowserRouter>
-        <Navbar />
+      <Router>
+        <Nav />
         <Route exact path="/" component={Login}/>
-      </BrowserRouter>
+      </Router>
     )
   }
 }

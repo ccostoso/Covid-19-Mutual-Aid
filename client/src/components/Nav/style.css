@@ -1,0 +1,11 @@
+nav {
+    background-color: #e00a0a;
+    font-family: "Helvetica";
+    font-size: 1.5rem;
+    color: rgb(196, 196, 196);
+}
+
+nav a {
+    text-decoration: none;
+    color: rgb(196, 196, 196);
+}
