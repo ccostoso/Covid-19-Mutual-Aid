@@ -3,7 +3,7 @@ import { Container, Row, Col } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
 import { Link } from "react-router-dom";
 
-class Login extends Component {
+class Register extends Component {
     state = {
 
     }
@@ -30,8 +30,8 @@ class Login extends Component {
                 <Row className="justify-content-center my-4">
                     <Col size="md-6" className="border rounded py-3">
                         <form>
-                            <p className="my-1 text-center">
-                                <strong>Login</strong>
+                            <p className="text-center">
+                                <strong>Register</strong>
                             </p>
                             <Input 
                                 value={this.state.username}
@@ -39,6 +39,14 @@ class Login extends Component {
                                 name="username"
                                 placeholder="required"
                                 label={"Username"}
+                            />
+                            <Input 
+                                value={this.state.email}
+                                onChange={this.handleChange}
+                                name="email"
+                                placeholder="required"
+                                type="email"
+                                label="Email"
                             />
                             <Input 
                                 value={this.state.password}
@@ -56,7 +64,7 @@ class Login extends Component {
                                 Login
                             </FormBtn>
                             <p className="my-1">
-                                <small>New user? Create an account <Link to="/register">here</Link>.</small>
+                                <small>We won't share your personal information with anyone.</small>
                             </p>
                         </form>
                     </Col>
@@ -66,4 +74,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default Register;
