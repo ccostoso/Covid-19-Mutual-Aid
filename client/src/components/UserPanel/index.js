@@ -1,15 +1,20 @@
 import React from "react";
-import { Col, Row } from "../Grid";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Col } from "../Grid";
 import { UserCommunities } from "../UserCommunities";
+import { UserPanelNav } from "../UserPanelNav";
 
 export const UserPanel = props => {
     return (
-        <Col size="md-10" className="border-left">
-            <div>
-                <p>HELLO</p>
-            </div>
-            <UserCommunities communities={props.communities} />
-        </Col>
+        // <Router>
+            <Col size="md-10" className="border-left">
+                <UserPanelNav />
+                {/* <Route
+                    path="/home"
+                    render={(props) => <UserCommunities {...props} communities={props.communities} />}
+                /> */}
+                <UserCommunities communities={props.communities} />
+            </Col>
+        //{/* </Router> */}
     )
 };
