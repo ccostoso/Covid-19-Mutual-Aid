@@ -4,17 +4,18 @@ import { Col } from "../Grid";
 import { UserCommunities } from "../UserCommunities";
 import { UserPanelNav } from "../UserPanelNav";
 
-export const UserPanel = props => {
+export const UserPanel = (props) => {
+    const { communities } = props;
     return (
         // <Router>
             <Col size="md-10" className="border-left">
                 <UserPanelNav />
                 {/* <Route
                     path="/home"
-                    render={(props) => <UserCommunities {...props} communities={props.communities} />}
+                    render={(communities) => <UserCommunities {...communities} />}
                 /> */}
                 <UserCommunities communities={props.communities} />
             </Col>
-        //{/* </Router> */}
+        // </Router>
     )
 };
