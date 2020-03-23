@@ -3,6 +3,7 @@ import { Container, Row } from "../../components/Grid";
 import { UserPanel } from "../../components/UserPanel";
 import { UserSidebar } from "../../components/UserSidebar";
 
+
 class Home extends Component {
     state = {
         user: {
@@ -41,7 +42,6 @@ class Home extends Component {
                 <Row className="my-4">
                     <UserSidebar user={this.state.user} />
                     <UserPanel communities={this.state.communities} />
-                    {/* <UserCommunities communities={this.state.communities} /> */}
                 </Row>
             </Container>
         )
