@@ -3,18 +3,15 @@ import React from "react";
 // Bootstrap grid layout elements for easy rendering in React
 
 // Bootsrap Container. Pass "fluid" as prop for "container-fluid"
-export const Container = ({ fluid, children }) => {
-    return <div className={`container${fluid ? '-fluid' : ''}`}>{children}</div>;
+export const Container = ({ fluid, children, className }) => {
+    return <div className={`container${fluid ? '-fluid' : ''} ${className}`}>{children}</div>;
 }
 
 // Bootsrap Row. Pass "fluid" as prop for "row-fluid"
 export const Row = ({ fluid, children, className }) => {
     return (
         <div
-            className={`
-                row${fluid ? '-fluid' : ''}
-                ${className ? className : ''}
-            `}
+            className={`row${fluid ? '-fluid' : ''} ${className ? className : ''}`}
         >
             {children}
         </div>

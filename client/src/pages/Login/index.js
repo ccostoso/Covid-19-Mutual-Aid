@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
+import { Jumbotron } from "../../components/Jumbotron";
 import { Link } from "react-router-dom";
 
 class Login extends Component {
@@ -26,8 +27,11 @@ class Login extends Component {
 
     render() {
         return (
-            <Container fluid>
-                <Row className="justify-content-center my-4">
+            <Container fluid className="p-0">
+                <Jumbotron>
+                    <h1 className="display-4">hi</h1>
+                </Jumbotron>
+                <Row className="justify-content-center m-0">
                     <Col size="md-6" className="border rounded py-3">
                         <form>
                             <p className="my-1 text-center">
