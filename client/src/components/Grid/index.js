@@ -23,13 +23,10 @@ export const Row = ({ fluid, children, className }) => {
 export const Col = ({ size, children, className }) => {
     return (
         <div
-            className={`
-                ${size && size
+            className={`${size && size
                     .split(" ")
                     .map(size => `col-${size}`)
-                    .join(" ")} 
-                ${className ? className : ''}
-                `}
+                    .join(" ")} ${className ? className : ''}`}
         >
             {children}
         </div>
