@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "../../components/Grid";
-// import { Input, FormBtn } from "../../components/Form";
-import { Link } from "react-router-dom";
-import { API } from "../../utils/API";
+import { MyCommunities } from "../../components/MyCommunities";
+import { UserSidebar } from "../../components/UserSidebar";
 
 class Home extends Component {
     state = {
-        username: "DemoUser",
+        user: {
+            displayName: "Dem O. User",
+            username: "DemoUser"
+        },
         communities: [
             {
                 title: "Middletown Mutual Aid",
@@ -37,34 +39,8 @@ class Home extends Component {
         return (
             <Container>
                 <Row className="my-4">
-                    <Col size="md-2">
-                        <p>{this.state.displayName}</p>
-                        <p>{this.state.username}</p>
-                        <p>{this.state.skills}</p>
-                        <p>{this.state.needs}</p>
-                    </Col>
-                    <Col size="md-10" className="border-left">
-                        <h4>My Communities</h4>
-                        <hr />
-                        <Row>
-                            {this.state.communities.map(community => {
-                                return (
-                                    <div className="col-md-6 mb-3" key={community.id}>
-                                        <section className="card">
-                                            <header className="card-header">
-                                                {community.title}
-                                            </header>
-                                            <div className="card-body">
-                                                <p>{community.memberCount}</p>
-                                                <p>{community.position}</p>
-                                                <Link to={`/community/${community.id}`} className="btn btn-success">Go to Community</Link>
-                                            </div>
-                                        </section>
-                                    </div>
-                                )
-                            })}
-                        </Row>
-                    </Col>
+                    <UserSidebar user={this.state.user} />
+                    <MyCommunities communities={this.state.communities} />
                 </Row>
             </Container>
         )
