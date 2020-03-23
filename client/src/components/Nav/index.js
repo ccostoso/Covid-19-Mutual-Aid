@@ -19,8 +19,14 @@ export const Nav = props => {
                     <li className="nav-item active">
                         <Link className="nav-link" to="/register">About <span className="sr-only">(current)</span></Link>
                     </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/home">Account</Link>
+                    <li className="nav-item dropdown">
+                        <Link className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Account
+                        </Link>
+                        <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <Link className="dropdown-item" to="/messages">Messages</Link>
+                            <Link className="dropdown-item" to="/settings">Settings</Link>
+                        </div>
                     </li>
                 </ul>
             </div>

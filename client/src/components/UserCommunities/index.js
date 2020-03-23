@@ -1,16 +1,16 @@
 import React from "react";
-import { Col, Row } from "../Grid";
+import { Row } from "../Grid";
 import { Link } from "react-router-dom";
 
-export const MyCommunities = props => {
+export const UserCommunities = props => {
     return (
-        <Col size="md-9" className="border-left">
+        <main>
             <h4>My Communities</h4>
             <hr />
             <Row>
                 {props.communities.map(community => {
                     return (
-                        <div className="col-md-6 mb-3" key={community.id}>
+                        <div className="col-md-6 mb-4" key={community.id}>
                             <section className="card">
                                 <header className="card-header">
                                     {community.title}
@@ -25,6 +25,6 @@ export const MyCommunities = props => {
                     )
                 })}
             </Row>
-        </Col>
+        </main>
     )
 };

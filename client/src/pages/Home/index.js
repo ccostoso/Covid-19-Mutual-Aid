@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "../../components/Grid";
-import { MyCommunities } from "../../components/MyCommunities";
+import { Container, Row } from "../../components/Grid";
+import { UserPanel } from "../../components/UserPanel";
 import { UserSidebar } from "../../components/UserSidebar";
 
 class Home extends Component {
@@ -23,7 +23,7 @@ class Home extends Component {
                 id: 2
             },
             {
-                title: "Apartment Mutual Aid",
+                title: "123 Fake Street Apt #45 Mutual Aid",
                 memberCount: 19,
                 position: "Moderator",
                 id: 3
@@ -40,7 +40,8 @@ class Home extends Component {
             <Container>
                 <Row className="my-4">
                     <UserSidebar user={this.state.user} />
-                    <MyCommunities communities={this.state.communities} />
+                    <UserPanel communities={this.state.communities} />
+                    {/* <UserCommunities communities={this.state.communities} /> */}
                 </Row>
             </Container>
         )

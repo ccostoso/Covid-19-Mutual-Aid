@@ -1,13 +1,13 @@
 import React from "react";
-import { Row, Col } from "../Grid";
+import { Col } from "../Grid";
 
-export const UserSidebar = props => {
+export const UserSidebar = ({ user }) => {
     return (
-        <Col size="md-3">
-            <p>{props.user.displayName}</p>
-            <p>{props.user.username}</p>
-            <p>{props.user.needs}</p>
-            <p>{props.user.skills}</p>
+        <Col size="md-2">
+            <p>{user.displayName}</p>
+            <p>@{user.username}</p>
+            <p>{user.needs}</p>
+            <p>{user.skills}</p>
         </Col>
     )
 }
