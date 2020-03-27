@@ -4,7 +4,11 @@ import { Nav } from "./components/Nav";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
+<<<<<<< HEAD
 import Community from ".pages/Community";
+=======
+import Community from "./pages/Community";
+>>>>>>> 7dda55e07a7b07ac48b8330d7f2291054d84eea9
 
 class App extends Component {
   state = {
