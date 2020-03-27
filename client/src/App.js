@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Nav } from "./components/Nav";
+import { Nav } from "./components/UniversalComponents/Nav";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
@@ -18,7 +18,7 @@ class App extends Component {
         <Route exact path="/" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route path="/home" component={Home} />
-        <Route path="/community" component={Community} />
+        <Route path="/community/:id" component={Community} />
       </Router>
     )
   }

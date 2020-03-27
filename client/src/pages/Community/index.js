@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Container, Row } from "../../components/Grid";
-import { UserSidebar } from "../../components/UserSidebar";
+import { Container, Row } from "../../components/UniversalComponents/Grid";
+import { UserSidebar } from "../../components/UniversalComponents/UserSidebar";
+import { CommunityPanel } from "../../components/CommunityComponents/CommunityPanel";
 
 class Community extends Component {
     state = {
@@ -22,9 +23,12 @@ class Community extends Component {
 
     render() {
         return (
-
-                    <h1>HIIIII</h1>
-
+            <Container>
+                <Row className="my-4">
+                    <UserSidebar user={this.state.user} />
+                    <CommunityPanel />
+                </Row>
+            </Container>
         )
     }
 }

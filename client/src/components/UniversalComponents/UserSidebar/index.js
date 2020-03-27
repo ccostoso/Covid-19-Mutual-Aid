@@ -1,5 +1,5 @@
 import React from "react";
-import { Col } from "../Grid";
+import { Col } from "../../UniversalComponents/Grid";
 
 export const UserSidebar = ({ user }) => {
     return (
