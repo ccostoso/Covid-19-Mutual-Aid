@@ -1,5 +1,5 @@
 import React from "react";
-import { Row } from "../Grid";
+import { Row } from "../../UniversalComponents/Grid";
 import { Link } from "react-router-dom";
 
 export const UserCommunities = props => {

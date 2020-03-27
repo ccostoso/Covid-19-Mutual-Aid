@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "../../components/Grid";
-import { Input, FormBtn } from "../../components/Form";
+import { Container, Row, Col } from "../../components/UniversalComponents/Grid";
+import { Input, FormBtn } from "../../components/UniversalComponents/Form";
 // import { Link } from "react-router-dom";
 
 class Register extends Component {

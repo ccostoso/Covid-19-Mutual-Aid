@@ -1,7 +1,7 @@
 import React from "react";
-import { Col } from "../Grid";
-import { UserCommunities } from "../UserCommunities";
+import { Col } from "../../UniversalComponents/Grid";
 import { UserPanelNav } from "../UserPanelNav";
+import { UserCommunities } from "../UserCommunities";
 
 export const UserPanel = props => {
     return (

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Container, Row } from "../../components/Grid";
-import { UserPanel } from "../../components/UserPanel";
-import { UserSidebar } from "../../components/UserSidebar";
+import { Container, Row } from "../../components/UniversalComponents/Grid";
+import { UserPanel } from "../../components/HomeComponents/UserPanel";
+import { UserSidebar } from "../../components/UniversalComponents/UserSidebar";
 
 
 class Home extends Component {
