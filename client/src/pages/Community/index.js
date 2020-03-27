@@ -13,7 +13,8 @@ class Community extends Component {
             title: "Middletown Mutual Aid",
             memberCount: 45,
             position: "Administrator",
-            id: 1
+            id: 1,
+            headerImage: "https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/weather/cloud/cumulus-cloud.jpg/",
         }
     }
 
@@ -26,7 +27,10 @@ class Community extends Component {
             <Container>
                 <Row className="my-4">
                     <UserSidebar user={this.state.user} />
-                    <CommunityPanel />
+                    <CommunityPanel 
+                        headerImage={this.state.community.headerImage}
+                        title={this.state.community.title} 
+                    />
                 </Row>
             </Container>
         )

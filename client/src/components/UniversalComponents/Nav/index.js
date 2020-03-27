@@ -20,7 +20,7 @@ export const Nav = props => {
                         <Link className="nav-link" to="/register">About <span className="sr-only">(current)</span></Link>
                     </li>
                     <li className="nav-item dropdown">
-                        <Link className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Account
                         </Link>
                         <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
