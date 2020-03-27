@@ -1,11 +1,4 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
-import { Container, Row, Col } from "../../components/Grid";
-
-class Community extends Component {
-    state = {
-
-=======
 import { Container, Row } from "../../components/Grid";
 import { UserSidebar } from "../../components/UserSidebar";
 
@@ -21,7 +14,6 @@ class Community extends Component {
             position: "Administrator",
             id: 1
         }
->>>>>>> 7dda55e07a7b07ac48b8330d7f2291054d84eea9
     }
 
     componentDidMount() {
@@ -30,13 +22,9 @@ class Community extends Component {
 
     render() {
         return (
-<<<<<<< HEAD
-            <div></div>
-=======
 
                     <h1>HIIIII</h1>
 
->>>>>>> 7dda55e07a7b07ac48b8330d7f2291054d84eea9
         )
     }
 }
