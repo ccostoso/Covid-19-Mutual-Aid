@@ -15,6 +15,8 @@ class Community extends Component {
             position: "Administrator",
             id: 1,
             headerImage: "https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/weather/cloud/cumulus-cloud.jpg/",
+            alerts: ["a", 2],
+            about: "This is our page for Middletown Mutual Aid! Love you xoxo"
         }
     }
 
@@ -29,7 +31,9 @@ class Community extends Component {
                     <UserSidebar user={this.state.user} />
                     <CommunityPanel 
                         headerImage={this.state.community.headerImage}
-                        title={this.state.community.title} 
+                        title={this.state.community.title}
+                        alerts={this.state.community.alerts} 
+                        about={this.state.community.about}
                     />
                 </Row>
             </Container>

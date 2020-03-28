@@ -11,7 +11,7 @@ export const CommunityPanelHeader = ({ headerImage, title }) => {
                     backgroundImage: `url(${headerImage})`
                 }
             }
-            className="d-flex justify-content-end align-items-end p-0"
+            className="d-flex justify-content-end align-items-end p-0 rounded"
         >
             <span className="display-4 ml-auto mt-auto p-0">{title}</span>
         </Jumbotron>
