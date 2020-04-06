@@ -1,19 +1,26 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "../../components/UniversalComponents/Grid";
 import { Input, FormBtn } from "../../components/UniversalComponents/Form";
+import API from "../../utils/API";
 // import { Link } from "react-router-dom";
 
 class Register extends Component {
     state = {
-
+        displayName: '',
+        email: '',
+        password: '',
     }
 
     componentDidMount() {
 
     }
 
+    createUser = user => {
+
+    }
+
     handleChange = e => {
-        const { name, value } = e;
+        const { name, value } = e.target;
 
         this.setState({
             [name]: value
@@ -22,6 +29,16 @@ class Register extends Component {
 
     handleClick = e => {
         e.preventDefault();
+
+        console.log(e);
+
+        const newUser = {
+            displayName: this.state.displayName,
+            email: this.state.email,
+            password: this.state.password,
+        }
+
+        API.postUser(newUser);
     }
 
     render() {
@@ -34,11 +51,11 @@ class Register extends Component {
                                 <strong>Register</strong>
                             </p>
                             <Input 
-                                value={this.state.username}
+                                value={this.state.displayName}
                                 onChange={this.handleChange}
-                                name="username"
+                                name="displayName"
                                 placeholder="required"
-                                label={"Username"}
+                                label={"Display Name"}
                             />
                             <Input 
                                 value={this.state.email}
@@ -61,7 +78,7 @@ class Register extends Component {
                                 btnsize="sm"
                                 onClick={this.handleClick}
                             >
-                                Login
+                                Register
                             </FormBtn>
                             <p className="my-1">
                                 <small>We won't share your personal information with anyone.</small>

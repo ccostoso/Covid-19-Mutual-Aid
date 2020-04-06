@@ -7,10 +7,10 @@ import { Link } from "react-router-dom";
 export const LoginComponent = props => {
     return (
         <Container fluid className="p-0">
-            <Jumbotron>
+            {/* <Jumbotron>
                 <h1 className="display-4">hi</h1>
-            </Jumbotron>
-            <Row className="justify-content-center m-0">
+            </Jumbotron> */}
+            <Row className="justify-content-center mx-0 my-4">
                 <Col size="md-6" className="border rounded py-3">
                     <form>
                         <p className="my-1 text-center">

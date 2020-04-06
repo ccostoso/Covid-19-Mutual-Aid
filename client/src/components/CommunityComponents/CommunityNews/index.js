@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Col, Row } from "../../UniversalComponents/Grid";
+import { Container } from "../../UniversalComponents/Grid";
 
 export const CommunityNews = ({newsPosts}) => {
     return (

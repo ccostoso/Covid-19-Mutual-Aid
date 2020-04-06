@@ -17,7 +17,8 @@ class Community extends Component {
             headerImage: "https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/weather/cloud/cumulus-cloud.jpg/",
             alerts: ["a", 2],
             about: "This is our page for Middletown Mutual Aid! Love you xoxo"
-        }
+        },
+        activePage: "NewsAndAlerts"
     }
 
     componentDidMount() {
@@ -34,6 +35,7 @@ class Community extends Component {
                         title={this.state.community.title}
                         alerts={this.state.community.alerts} 
                         about={this.state.community.about}
+                        active={this.state.activePage}
                     />
                 </Row>
             </Container>
