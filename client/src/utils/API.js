@@ -7,13 +7,16 @@ export default {
     // getUsers: function() {
     //     return axios.get("/api/user/");
     // },
-    postUser: function(newUser) {
-        return axios.post("/api/user/", newUser);
+    signUp: function(newUser) {
+        return axios.post("/api/account/signup/", newUser);
+    },
+    signIn: function(user) {
+        return axios.post("/api/account/signin", user)
     },
     putUser: function(id) {
-        return axios.put("/api/user/" + id);
+        return axios.put("/api/account/user/" + id);
     },
     deleteUser: function(id) {
-        return axios.delete("/api/user/" + id);
+        return axios.delete("/api/account/user/" + id);
     }
 }

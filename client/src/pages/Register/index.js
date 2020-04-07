@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "../../components/UniversalComponents/Grid";
 import { Input, FormBtn } from "../../components/UniversalComponents/Form";
+import { Alert } from "../../components/UniversalComponents/Alert";
 import API from "../../utils/API";
 // import { Link } from "react-router-dom";
 
@@ -9,13 +10,10 @@ class Register extends Component {
         displayName: '',
         email: '',
         password: '',
+        jsonMessage: ''
     }
 
     componentDidMount() {
-
-    }
-
-    createUser = user => {
 
     }
 
@@ -38,7 +36,14 @@ class Register extends Component {
             password: this.state.password,
         }
 
-        API.postUser(newUser);
+        API.signUp(newUser)
+            .then(res => {
+                if (!res.data.success) {
+                    this.setState({
+                        jsonMessage: res.data.message,
+                    })
+                }
+            });
     }
 
     render() {
@@ -84,6 +89,10 @@ class Register extends Component {
                                 <small>We won't share your personal information with anyone.</small>
                             </p>
                         </form>
+                        {this.state.jsonMessage && <Alert>
+                            {this.state.jsonMessage}
+                        </Alert>}
+                        
                     </Col>
                 </Row>
             </Container>
