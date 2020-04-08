@@ -3,7 +3,7 @@ const userSessionController = require("../../../controllers/userSessionControlle
 
 // Matches with "/"
 router.route("/")
-  .get(userSessionController.findById);
+  .get(userSessionController.signOut);
 
 // // Matches with "/:id"
 // router

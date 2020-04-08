@@ -10,7 +10,38 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-    findById: function (req, res) {
+    verify: function (req, res) {
+        // Get the token
+        const { query } = req;
+        const { token } = query;
+        // ?token=test
+        // Verify the token is one of a kind and it's not deleted.
+        UserSession.find({
+            _id: token,
+            isDeleted: false
+        }, (err, sessions) => {
+            if (err) {
+                console.log(err);
+                return res.send({
+                    success: false,
+                    message: 'Error: Server error'
+                });
+            }
+            if (sessions.length != 1) {
+                return res.send({
+                    success: false,
+                    message: 'Error: Invalid'
+                });
+            } else {
+                // DO ACTION
+                return res.send({
+                    success: true,
+                    message: 'Good'
+                });
+            }
+        });
+    },
+    signOut: function (req, res) {
         // Get the token
         const { query } = req;
         const { token } = query;
