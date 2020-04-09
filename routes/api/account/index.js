@@ -8,7 +8,7 @@ const verifyRoutes = require("./verify");
 // const logInRoutes = require("./login");
 // const registerRoutes = require("./register");
 
-// Use API Routes
+// Use API Routes 
 router.use("/signup", signUpRoutes);
 router.use("/signin", signInRoutes);
 router.use("/signout", signOutRoutes);

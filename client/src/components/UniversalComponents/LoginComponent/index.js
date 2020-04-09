@@ -34,7 +34,7 @@ export const LoginComponent = props => {
                             onClick={props.handleClick}
                         >
                             Login
-                    </FormBtn>
+                        </FormBtn>
                         <p className="my-1">
                             <small>New user? Create an account <Link to="/register">here</Link>.</small>
                         </p>
