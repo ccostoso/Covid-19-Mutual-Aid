@@ -37,6 +37,7 @@ class Community extends Component {
                         about={this.state.community.about}
                         active={this.state.activePage}
                     />
+                    <CommunityPanel />
                 </Row>
             </Container>
         )

@@ -1,11 +1,8 @@
 import React from "react";
 
-export const Jumbotron = ({fluid, children, className, styles}) => {
+export const Jumbotron = ({fluid, children, className}) => {
     return (
-        <div 
-            className={`jumbotron ${fluid ? "jumbotron-fluid" : ""} ${className ? className : ""}`}
-            style={styles}
-        >
+        <div className={`jumbotron jumbotron${fluid ? "-fluid" : ""} ${className ? className : ""}`}>
             {children}
         </div>
     )

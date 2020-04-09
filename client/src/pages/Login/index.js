@@ -38,6 +38,7 @@ class Login extends Component {
     render() {
         return <LoginComponent 
             email={this.state.email}
+            username={this.state.username}
             password={this.state.password}
             handleChange={this.handleChange}
             handleClick={this.handleClick}
