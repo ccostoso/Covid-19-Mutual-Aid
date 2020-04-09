@@ -13,8 +13,12 @@ class Community extends Component {
             title: "Middletown Mutual Aid",
             memberCount: 45,
             position: "Administrator",
-            id: 1
-        }
+            id: 1,
+            headerImage: "https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/weather/cloud/cumulus-cloud.jpg/",
+            alerts: ["a", 2],
+            about: "This is our page for Middletown Mutual Aid! Love you xoxo"
+        },
+        activePage: "NewsAndAlerts"
     }
 
     componentDidMount() {
@@ -26,6 +30,13 @@ class Community extends Component {
             <Container>
                 <Row className="my-4">
                     <UserSidebar user={this.state.user} />
+                    <CommunityPanel 
+                        headerImage={this.state.community.headerImage}
+                        title={this.state.community.title}
+                        alerts={this.state.community.alerts} 
+                        about={this.state.community.about}
+                        active={this.state.activePage}
+                    />
                     <CommunityPanel />
                 </Row>
             </Container>

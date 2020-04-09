@@ -1,11 +1,37 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  address: { type: String, required: true },
-  creator: { type: String, required: true },
-  date: { type: Date, default: Date.now }
+  displayName: {
+    type: String,
+    required: [true, 'Must provide display name.'],
+  },
+  email: {
+    type: String,
+    required: [true, 'Must provide email address.'],
+  },
+  password: {
+    type: String,
+    required: [true, 'Must provide password.'],
+  },
+  skills: {
+    type: [String],
+    default: [],
+  },
+  needs: {
+    type: [String],
+    default: [],
+  },
+  date: { type: Date, default: Date.now },
 });
+
+userSchema.methods.generateHash = function(password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+userSchema.methods.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.password);
+};
 
 const User = mongoose.model("User", userSchema);
 
