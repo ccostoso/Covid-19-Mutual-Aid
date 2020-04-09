@@ -38,6 +38,8 @@ class Register extends Component {
 
         API.signUp(newUser)
             .then(res => {
+                console.log(res);
+                
                 if (!res.data.success) {
                     this.setState({
                         jsonMessage: res.data.message,
