@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "../Grid";
 import { Input, FormBtn } from "../Form";
-import { Jumbotron } from "../Jumbotron";
+// import { Jumbotron } from "../Jumbotron";
 import { Link } from "react-router-dom";
 
 export const LoginComponent = props => {
