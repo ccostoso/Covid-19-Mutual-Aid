@@ -41,6 +41,9 @@ class Register extends Component {
                 if (!res.data.success) {
                     this.setState({
                         jsonMessage: res.data.message,
+                        displayName: '',
+                        email: '',
+                        password: ''
                     })
                 }
             });
