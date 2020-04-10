@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Community from "./pages/Community";
+import Settings from "./pages/Settings";
 
 class App extends Component {
   state = {
@@ -19,6 +20,7 @@ class App extends Component {
         <Route exact path="/register" component={Register} />
         <Route path="/home" component={Home} />
         <Route path="/community/:id" component={Community} />
+        <Route path="/settings" component={Settings} />
       </Router>
     )
   }

@@ -12,7 +12,8 @@ class Settings extends Component {
         password: '',
         datOfBirth: '',
         age: '',
-        jsonMessage: ''
+        jsonMessage: '',
+        languages: ["English", "Spanish", "French"]
     }
 
     componentDidMount() {
@@ -105,12 +106,42 @@ class Settings extends Component {
                                 type="number"
                                 label="Age"
                             />
+                            <div>
+                            <p className='languages'>Languages</p>
+                            <FormBtn
+                                btntype="outline-success"
+                                btnsize="md"
+                                onClick={this.handleClick}
+                            >English</FormBtn>
+                                  <FormBtn
+                                btntype="outline-success"
+                                btnsize="md"
+                                onClick={this.handleClick}
+                            >Français</FormBtn>
+                                <FormBtn
+                                btntype="outline-success"
+                                btnsize="md"
+                                onClick={this.handleClick}
+                            >Español</FormBtn>
+                            </div>
+                            <br></br>
+                            <div>
+                            <p className='fontSize'>Font Size</p>
+                            <input 
+                            type="range" 
+                            min="1" 
+                            max="100" 
+                            value="50" 
+                            class="slider" 
+                            id="myRange">
+                            </input></div>
+                            <br></br>
                             <FormBtn
                                 btntype="outline-success"
                                 btnsize="sm"
                                 onClick={this.handleClick}
                             >
-                                Register
+                                Save
                             </FormBtn>
                             <p className="my-1">
                                 <small>We won't share your personal information with anyone.</small>
