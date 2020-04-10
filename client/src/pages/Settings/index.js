@@ -11,7 +11,11 @@ class Settings extends Component {
         email: '',
         password: '',
         jsonMessage: '',
-        languages: ["English", "Spanish", "French"]
+        languages: ["English", "Spanish", "French"],
+        fontSize: [0-100],
+        brightness: [0-100],
+        status: ["Active", "Not-Active"]
+
     }
 
     componentDidMount() {
@@ -35,6 +39,10 @@ class Settings extends Component {
             displayName: this.state.displayName,
             email: this.state.email,
             password: this.state.password,
+            languages: this.state.languages,
+            fontSize: this.state.fontSize,
+            brightness: this.state.brightness,
+            status: this.state.status
         }
 
         API.signUp(newUser)
@@ -47,6 +55,10 @@ class Settings extends Component {
                         displayName: '',
                         email: '',
                         password: '',
+                        languages: ["English", "Spanish", "French"],
+                        fontSize: [0-100],
+                        brightness: [0-100],
+                        status: ["Active", "Not-Active"]
 
                     })
                 }
@@ -116,7 +128,7 @@ class Settings extends Component {
                             </input></div>
                             <br></br>
                             <div>
-                            <p className='fontSize'>Brightness</p>
+                            <p className='brightness'>Brightness</p>
                             <input 
                             type="range" 
                             min="1" 
@@ -125,6 +137,14 @@ class Settings extends Component {
                             class="slider" 
                             id="myRange">
                             </input></div>
+                            <br></br>
+                            <div>
+                            <p className='status'>Active Status</p>
+                                <label class="switch">
+                                <input type="checkbox" checked></input>
+                                <span class="slider round"></span>
+                                </label>
+                            </div>
                             <br></br>
                             <FormBtn
                                 btntype="outline-success"
