@@ -10,8 +10,6 @@ class Settings extends Component {
         displayName: '',
         email: '',
         password: '',
-        datOfBirth: '',
-        age: '',
         jsonMessage: '',
         languages: ["English", "Spanish", "French"]
     }
@@ -37,8 +35,6 @@ class Settings extends Component {
             displayName: this.state.displayName,
             email: this.state.email,
             password: this.state.password,
-            datOfBirth: this.state.dateOfBirth,
-            age: this.state.age
         }
 
         API.signUp(newUser)
@@ -51,8 +47,7 @@ class Settings extends Component {
                         displayName: '',
                         email: '',
                         password: '',
-                        datOfBirth: '',
-                        age: ''
+
                     })
                 }
             });
@@ -90,22 +85,6 @@ class Settings extends Component {
                                 type="password"
                                 label="Password"
                             />
-                            <Input 
-                                value={this.state.dateOfBirth}
-                                onChange={this.handleChange}
-                                name="dateOfBirth"
-                                placeholder="required"
-                                type= "date"
-                                label={"Date Of Birth"}
-                            />
-                            <Input 
-                                value={this.state.age}
-                                onChange={this.handleChange}
-                                name="age"
-                                placeholder="required"
-                                type="number"
-                                label="Age"
-                            />
                             <div>
                             <p className='languages'>Languages</p>
                             <FormBtn
@@ -127,6 +106,17 @@ class Settings extends Component {
                             <br></br>
                             <div>
                             <p className='fontSize'>Font Size</p>
+                            <input 
+                            type="range" 
+                            min="1" 
+                            max="100" 
+                            value="50" 
+                            class="slider" 
+                            id="myRange">
+                            </input></div>
+                            <br></br>
+                            <div>
+                            <p className='fontSize'>Brightness</p>
                             <input 
                             type="range" 
                             min="1" 

@@ -10,6 +10,8 @@ class Register extends Component {
         displayName: '',
         email: '',
         password: '',
+        datOfBirth: '',
+        age: '',
         jsonMessage: ''
     }
 
@@ -34,6 +36,8 @@ class Register extends Component {
             displayName: this.state.displayName,
             email: this.state.email,
             password: this.state.password,
+            datOfBirth: this.state.dateOfBirth,
+            age: this.state.age
         }
 
         API.signUp(newUser)
@@ -45,7 +49,9 @@ class Register extends Component {
                         jsonMessage: res.data.message,
                         displayName: '',
                         email: '',
-                        password: ''
+                        password: '',
+                        datOfBirth: '',
+                        age: ''
                     })
                 }
             });
@@ -82,6 +88,22 @@ class Register extends Component {
                                 placeholder="required"
                                 type="password"
                                 label="Password"
+                            />
+                            <Input 
+                                value={this.state.dateOfBirth}
+                                onChange={this.handleChange}
+                                name="dateOfBirth"
+                                placeholder="required"
+                                type= "date"
+                                label={"Date Of Birth"}
+                            />
+                            <Input 
+                                value={this.state.age}
+                                onChange={this.handleChange}
+                                name="age"
+                                placeholder="required"
+                                type="number"
+                                label="Age"
                             />
                             <FormBtn
                                 btntype="outline-success"
