@@ -6,11 +6,4 @@ router.route("/")
   .get(userSessionController.findAll)
   .post(userSessionController.signIn);
 
-// // Matches with "/:id"
-// router
-//   .route("/:id")
-//   .get(userSessionController.signOut)
-//   .put(userSessionController.update)
-//   .delete(userSessionController.remove);
-
 module.exports = router;

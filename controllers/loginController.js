@@ -1,10 +1,18 @@
 const express = require('express') // routes
 const router = express.Router() // routes
-const passport = require('../../../passport') // controller
+const passport = require('../passport') // controller
 
-// Matches with "/login"
+const UserSession = require("../models/usersessionpassport");
+const User = require("../models/userpassport");
+
+module.exports = {
+	signIn: function(req, res) {
+		
+	}
+}
+
 router.post(
-	'/',
+	'/login',
 	function(req, res, next) {
 		console.log(req.body)
 		console.log('================')
@@ -22,5 +30,3 @@ router.post(
 		res.json({ user: cleanUser })
 	}
 )
-
-module.exports = router;

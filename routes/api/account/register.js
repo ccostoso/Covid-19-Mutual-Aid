@@ -1,9 +1,8 @@
-// const router = require("express").Router();
-// const registerController = require("../../../controllers/registerController");
+const router = require("express").Router();
+const registerController = require("../../../controllers/registerController");
 
-// // Matches with "/"
-// router.route("/")
-//   .get(registerController.findAll)
-//   .post(registerController.create);
+// Matches with "/"
+router.route("/")
+  .post(registerController.create);
 
-// module.exports = router;
+module.exports = router;
