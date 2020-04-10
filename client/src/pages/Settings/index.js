@@ -8,13 +8,12 @@ import API from "../../utils/API";
 class Settings extends Component {
     state = {
         displayName: '',
-        email: '',
-        password: '',
         jsonMessage: '',
         languages: ["English", "Spanish", "French"],
         fontSize: [0-100],
         brightness: [0-100],
-        status: ["Active", "Not-Active"]
+        status: ["Active", "Not-Active"],
+        themes: []
 
     }
 
@@ -37,12 +36,11 @@ class Settings extends Component {
 
         const newUser = {
             displayName: this.state.displayName,
-            email: this.state.email,
-            password: this.state.password,
             languages: this.state.languages,
             fontSize: this.state.fontSize,
             brightness: this.state.brightness,
-            status: this.state.status
+            status: this.state.status,
+            themes: this.state.themes
         }
 
         API.signUp(newUser)
@@ -53,12 +51,11 @@ class Settings extends Component {
                     this.setState({
                         jsonMessage: res.data.message,
                         displayName: '',
-                        email: '',
-                        password: '',
                         languages: ["English", "Spanish", "French"],
                         fontSize: [0-100],
                         brightness: [0-100],
-                        status: ["Active", "Not-Active"]
+                        status: ["Active", "Not-Active"],
+                        themes: []
 
                     })
                 }
@@ -80,22 +77,6 @@ class Settings extends Component {
                                 name="displayName"
                                 placeholder="required"
                                 label={"Display Name"}
-                            />
-                            <Input 
-                                value={this.state.email}
-                                onChange={this.handleChange}
-                                name="email"
-                                placeholder="required"
-                                type="email"
-                                label="Email"
-                            />
-                            <Input 
-                                value={this.state.password}
-                                onChange={this.handleChange}
-                                name="password"
-                                placeholder="required"
-                                type="password"
-                                label="Password"
                             />
                             <div>
                             <p className='languages'>Languages</p>
@@ -144,6 +125,18 @@ class Settings extends Component {
                                 <input type="checkbox" checked></input>
                                 <span class="slider round"></span>
                                 </label>
+                            </div>
+                            <br></br>
+                            <div>
+                            <p className='theme'>Themes</p>
+                            <div class="dropdown">
+                                <button onclick="myFunction()" class="dropbtn">Choose</button>
+                                <div id="myDropdown" class="dropdown-content">
+                                    <a href="#">Option 1</a>
+                                    <a href="#">Option 2</a>
+                                    <a href="#">Option 3</a>
+                                </div>
+                            </div>
                             </div>
                             <br></br>
                             <FormBtn
