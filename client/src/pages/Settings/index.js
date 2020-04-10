@@ -4,6 +4,17 @@ import { Input, FormBtn } from "../../components/UniversalComponents/Form";
 import { Alert } from "../../components/UniversalComponents/Alert";
 import API from "../../utils/API";
 // import { Link } from "react-router-dom";
+import "./style.css";
+
+
+// var slider = document.getElementById("myRange");
+// var output = document.getElementById("demo");
+// output.innerHTML = slider.value; // Display the default slider value
+
+// // Update the current slider value (each time you drag the slider handle)
+// slider.oninput = function() {
+//   output.innerHTML = this.value;
+// }
 
 class Settings extends Component {
     state = {
