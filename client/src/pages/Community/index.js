@@ -18,7 +18,13 @@ class Community extends Component {
             alerts: ["a", 2],
             about: "This is our page for Middletown Mutual Aid! Love you xoxo"
         },
-        activePage: "NewsAndAlerts"
+        activePage: "NewsAndAlerts",
+        posts: [{
+            title: "Hello",
+            poster: "ThatGuy",
+            body: "Hey guys I need help. I'm bored",
+            replies: [],
+        }],
     }
 
     componentDidMount() {
@@ -36,6 +42,7 @@ class Community extends Component {
                         alerts={this.state.community.alerts} 
                         about={this.state.community.about}
                         active={this.state.activePage}
+                        posts={this.state.posts}
                     />
                 </Row>
             </Container>
