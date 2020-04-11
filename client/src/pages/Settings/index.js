@@ -5,25 +5,22 @@ import { Alert } from "../../components/UniversalComponents/Alert";
 import API from "../../utils/API";
 // import { Link } from "react-router-dom";
 import "./style.css";
-
-
-// var slider = document.getElementById("myRange");
-// var output = document.getElementById("demo");
-// output.innerHTML = slider.value; // Display the default slider value
-
-// // Update the current slider value (each time you drag the slider handle)
-// slider.oninput = function() {
-//   output.innerHTML = this.value;
-// }
+//objectives:  Built event handlers at the top level  component.(routes makes the most sense)
+//Learn how to pass props throught react routes. (hint: easier to passprops to compoenents you invoke in the route)
+//bind the handlers and values to the state of the container component
+//Set the values to match that of the sliders, buttons, and text inputs they are effecting.
+//Once values are passed around your app as props set them as the style values or as a function that adds or subtracts from the defaulte style values in your CSS
+//REemmber in React you can set variables as style values using JSX
+//  If you need help message me on slack, you got this, its gonan be a lot of small typing.  If you are confused by terminology reach out to any of us but show this to Anthony me or Anna
 
 class Settings extends Component {
     state = {
         displayName: '',
         jsonMessage: '',
         languages: ["English", "Spanish", "French"],
-        fontSize: [0-100],
-        brightness: [0-100],
-        status: ["Active", "Not-Active"],
+        fontSize: 50,
+        brightness: 50,
+        active: true,
         themes: []
 
     }
@@ -33,8 +30,9 @@ class Settings extends Component {
     }
 
     handleChange = e => {
+        e.persist();
         const { name, value } = e.target;
-
+        console.log(e.target);
         this.setState({
             [name]: value
         })
@@ -50,7 +48,7 @@ class Settings extends Component {
             languages: this.state.languages,
             fontSize: this.state.fontSize,
             brightness: this.state.brightness,
-            status: this.state.status,
+            active: this.state.active,
             themes: this.state.themes
         }
 
@@ -63,9 +61,9 @@ class Settings extends Component {
                         jsonMessage: res.data.message,
                         displayName: '',
                         languages: ["English", "Spanish", "French"],
-                        fontSize: [0-100],
-                        brightness: [0-100],
-                        status: ["Active", "Not-Active"],
+                        fontSize: 50,
+                        brightness: 50,
+                        active: true,
                         themes: []
 
                     })
@@ -89,6 +87,7 @@ class Settings extends Component {
                                 placeholder="required"
                                 label={"Display Name"}
                             />
+
                             <div>
                             <p className='languages'>Languages</p>
                             <FormBtn
@@ -96,60 +95,60 @@ class Settings extends Component {
                                 btnsize="md"
                                 onClick={this.handleClick}
                             >English</FormBtn>
-                                  <FormBtn
+                            <FormBtn
                                 btntype="outline-success"
                                 btnsize="md"
                                 onClick={this.handleClick}
                             >Français</FormBtn>
-                                <FormBtn
+                            <FormBtn
                                 btntype="outline-success"
                                 btnsize="md"
                                 onClick={this.handleClick}
                             >Español</FormBtn>
                             </div>
+
                             <br></br>
+
                             <div>
                             <p className='fontSize'>Font Size</p>
-                            <input 
-                            type="range" 
-                            min="1" 
-                            max="100" 
-                            value="50" 
-                            class="slider" 
-                            id="myRange">
-                            </input></div>
+                            <input id="typeinp"
+                             type="range"
+                              min="0" max="5" value={this.state.fontSize} onChange={this.handleChange} step="1"/>
+                            </div>
+
                             <br></br>
+
                             <div>
                             <p className='brightness'>Brightness</p>
-                            <input 
-                            type="range" 
-                            min="1" 
-                            max="100" 
-                            value="50" 
-                            class="slider" 
-                            id="myRange">
-                            </input></div>
+                            <input id="typeinp" type="range" min="0" max="5" defaultValue="3" step="1"/>
+                            </div>
+
                             <br></br>
+
                             <div>
                             <p className='status'>Active Status</p>
-                                <label class="switch">
+                                <label className="switch">
                                 <input type="checkbox" checked></input>
-                                <span class="slider round"></span>
+                                <span className="slider round"></span>
                                 </label>
                             </div>
+
                             <br></br>
+
                             <div>
                             <p className='theme'>Themes</p>
-                            <div class="dropdown">
-                                <button onclick="myFunction()" class="dropbtn">Choose</button>
-                                <div id="myDropdown" class="dropdown-content">
+                            <div className="dropdown">
+                                <button  className="dropbtn">Choose</button>
+                                <div id="myDropdown" className="dropdown-content">
                                     <a href="#">Option 1</a>
                                     <a href="#">Option 2</a>
                                     <a href="#">Option 3</a>
                                 </div>
                             </div>
                             </div>
+
                             <br></br>
+
                             <FormBtn
                                 btntype="outline-success"
                                 btnsize="sm"

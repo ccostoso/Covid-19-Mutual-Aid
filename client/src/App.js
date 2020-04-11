@@ -9,7 +9,9 @@ import Settings from "./pages/Settings";
 
 class App extends Component {
   state = {
-    hi: "hiloo"
+    hi: "hiloo",
+    fontSize: 30,
+    
   }
 
   render() {
