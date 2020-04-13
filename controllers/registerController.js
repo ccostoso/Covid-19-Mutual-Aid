@@ -1,21 +1,29 @@
-const UserPassport = require("../models/userpassport");
+const UserPassport = require("../db/models/userpassport");
 
 module.exports = {
     create: function(req, res) {
-        const { username, password } = req.body
+    
+        const { displayName, email, password } = req.body
         // ADD VALIDATION
-        User.findOne({ 'local.username': username }, (err, userMatch) => {
+        UserPassport.findOne({ 'email': email }, (err, userMatch) => {
+            console.log("USER MATCH", userMatch)
             if (userMatch) {
                 return res.json({
-                    error: `Sorry, already a user with the username: ${username}`
+                    error: `Sorry, already an account with the email address: ${email}`
                 })
             }
-            const newUser = new User({
-                'local.username': username,
-                'local.password': password
+            const newUser = new UserPassport({
+                'email': email,
+                'password': password,
+                'displayName': displayName,
             })
+            console.log("NEW USER RESPONSE",newUser)
             newUser.save((err, savedUser) => {
-                if (err) return res.json(err)
+                if (err)  {
+                    console.log('error!!!!', err)
+                    return res.json(err);
+                }
+                console.log("I MADE IT", savedUser)
                 return res.json(savedUser)
             })
         })

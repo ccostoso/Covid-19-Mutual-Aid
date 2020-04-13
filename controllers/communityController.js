@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../db/models");
 
 // Defining methods for the communityController
 module.exports = {

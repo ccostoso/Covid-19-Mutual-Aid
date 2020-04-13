@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, Row } from "../../components/UniversalComponents/Grid";
 import { UserPanel } from "../../components/HomeComponents/UserPanel";
 import { UserSidebar } from "../../components/UniversalComponents/UserSidebar";
+import API from "../../utils/API";
 
 
 
@@ -9,7 +10,7 @@ class Home extends Component {
     state = {
         user: {
             displayName: "Dem O. User",
-            username: "DemoUser"
+            email: "DemoUser"
         },
         communities: [
             {
@@ -34,7 +35,18 @@ class Home extends Component {
     }
 
     componentDidMount() {
-
+        const { id } = this.props.match.params;
+        console.log("id", id);
+        console.log("props.match", this.props.match.params);
+        
+        API.getUser(id)
+            .then(res => {
+                console.log(res.data);
+                this.setState({
+                    user: res.data
+                })
+            })
+            .catch(err => console.log(err));
     }
 
     render() {

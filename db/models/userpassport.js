@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
+mongoose.promise = Promise
 
 const userSchema = new Schema({
   displayName: {
@@ -23,6 +24,10 @@ const userSchema = new Schema({
     type: [String],
     default: [],
   },
+  communities: {
+    type: [String],
+    default: [],
+  },
   date: { type: Date, default: Date.now },
 });
 
@@ -33,6 +38,20 @@ userSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
 };
 
-const User = mongoose.model("User", userSchema);
+// Define hooks for pre-saving
+userSchema.pre('save', function(next) {
+  console.log("this is", this);
+	if (!this.password) {
+		console.log('=======NO PASSWORD PROVIDED=======')
+		next()
+	} else {
+		this.password = this.generateHash(this.password)
+		next()
+	}
+	// this.password = this.hashPassword(this.password)
+	// next()
+})
+
+const User = mongoose.model("UserPassport", userSchema);
 
 module.exports = User;

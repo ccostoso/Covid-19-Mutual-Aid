@@ -1,13 +1,22 @@
 const express = require('express') // routes
 const router = express.Router() // routes
+const UserPassport = require("../../../db/models/userpassport");
 
 // this route is just used to get the user basic info
-router.get('/', (req, res, next) => {
-	console.log('===== user!!======')
-	console.log(req.user)
-	if (req.user) {
-		return res.json({ user: req.user })
-	} else {
-		return res.json({ user: null })
-	}
+router.get('/:id', (req, res, next) => {
+	console.log('===== user!!======');
+	console.log(req.body);
+	
+	console.log("req.params.id", req.params.id);
+	const id = req.params.id;
+
+	UserPassport.findOne({ _id: id })
+		.then(response => {
+			console.log("UserPassport.findOne response", response);
+			return res.json(response);
+		}).catch(err => {
+			console.log("error:", err);
+		})
 })
+
+module.exports = router;

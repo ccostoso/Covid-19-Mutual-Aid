@@ -8,15 +8,19 @@ export default {
     //     return axios.get("/api/user/");
     // },
     signUp: function(newUser) {
-        return axios.post("/api/account/signup/", newUser);
+        return axios.post("/api/account/register", newUser);
     },
     signIn: function(user) {
-        return axios.post("/api/account/signin", user)
+        return axios.post("/api/account/login", user)
     },
-    putUser: function(id) {
-        return axios.put("/api/account/user/" + id);
+    getUser: function(id) {
+        console.log("API.js id", id);
+        return axios.get("/api/account/user/" + id);
     },
-    deleteUser: function(id) {
-        return axios.delete("/api/account/user/" + id);
-    }
+    // putUser: function(id) {
+    //     return axios.put("/api/account/user/" + id);
+    // },
+    // deleteUser: function(id) {
+    //     return axios.delete("/api/account/user/" + id);
+    // }
 }
