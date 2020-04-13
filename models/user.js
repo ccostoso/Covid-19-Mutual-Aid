@@ -24,6 +24,7 @@ const userSchema = new Schema({
     default: [],
   },
   date: { type: Date, default: Date.now },
+  
 });
 
 userSchema.methods.generateHash = function(password) {

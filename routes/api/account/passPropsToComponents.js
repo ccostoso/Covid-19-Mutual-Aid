@@ -10,3 +10,26 @@ const routes = [
         fetchInitialData: (id) => fetchSettings(id),
     }
 ]
+
+class App extends Component {
+    render() {
+        return (
+            <Router>
+                <div>
+                    <ul>
+                        <li><Link to='/settings'>Settings</Link></li>
+                    </ul>
+
+                    <hr />
+                    
+                    [routes.map(({ path, component: C, fetchInitialData }) => (
+                        <Route
+                            path={path}
+                            render={(props) => <C {...props} fetchInitialData={fetchInitialData} />}
+                        />
+                    ))]
+                </div>
+            </Router>
+        )
+    }
+}
