@@ -23,8 +23,24 @@ const userSchema = new Schema({
     type: [String],
     default: [],
   },
-  date: { type: Date, default: Date.now },
-  
+  date: { 
+    type: Date, 
+    default: Date.now 
+  },
+  settings: {
+    languages: {
+      type: String,
+      default: "English",
+    },
+    fontSize: {
+      type: Number,
+      default: 50,
+    },
+    brightness: {
+      type: Number,
+      default: 50,
+    }
+  }
 });
 
 userSchema.methods.generateHash = function(password) {
