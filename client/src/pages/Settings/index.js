@@ -19,8 +19,7 @@ class Settings extends Component {
         language: 'English',
         fontSize: 'medium',
         brightness: 50,
-        active: true,
-        theme: ''
+        jsonMessage: ''
 
     }
 
@@ -46,9 +45,7 @@ class Settings extends Component {
         const newUser = {
             language: this.state.languages,
             fontSize: this.state.fontSize,
-            brightness: this.state.brightness,
-            active: this.state.active,
-            themes: this.state.themes
+            brightness: this.state.brightness
         }
 
         API.signUp(newUser)
@@ -60,8 +57,7 @@ class Settings extends Component {
                         language: "English",
                         fontSize: 'medium',
                         brightness: 50,
-                        active: true,
-                        themes: []
+                        jsonMessage: ''
 
                     })
                 }
@@ -110,30 +106,6 @@ class Settings extends Component {
                             <div>
                             <p className='brightness'>Brightness</p>
                             <input id="typeinp" type="range" min="0" max="5" defaultValue="3" step="1"/>
-                            </div>
-
-                            <br></br>
-
-                            <div>
-                            <p className='status'>Active Status</p>
-                                <label className="switch">
-                                <input type="checkbox" checked></input>
-                                <span className="slider round"></span>
-                                </label>
-                            </div>
-
-                            <br></br>
-
-                            <div>
-                            <p className='theme'>Themes</p>
-                            <div className="dropdown">
-                                <button  className="dropbtn">Choose</button>
-                                <div id="myDropdown" className="dropdown-content">
-                                    <a href="#">Option 1</a>
-                                    <a href="#">Option 2</a>
-                                    <a href="#">Option 3</a>
-                                </div>
-                            </div>
                             </div>
 
                             <br></br>
