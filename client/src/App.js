@@ -98,14 +98,21 @@ import Settings from "./pages/Settings";
 import { I18nProvider, LOCALES } from './i18n';
 import translate from './i18n/translate';
 
+
 class App extends Component {
-  state = {
-    locale, setLocale: LOCALES.ENGLISH
+  constructor(props) {
+    super(props);
+    this.state = {
+      locale: LOCALES.ENGLISH
+    }
   }
+
+  
+  // const [locale, setLocale] = useState(LOCALES.ENGLISH);
 
   render() {
     return (
-      <I18nProvider locale={locale}>
+      <I18nProvider {...this.state.locale}>
         {translate("hello")}
         <Router>
           <Nav />
