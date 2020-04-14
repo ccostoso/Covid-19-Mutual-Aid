@@ -100,12 +100,12 @@ import translate from './i18n/translate';
 
 class App extends Component {
   state = {
-    hi: "hiloo"
+    locale, setLocale: LOCALES.ENGLISH
   }
 
   render() {
     return (
-      <I18nProvider locale={LOCALES.FRENCH}>
+      <I18nProvider locale={locale}>
         {translate("hello")}
         <Router>
           <Nav />

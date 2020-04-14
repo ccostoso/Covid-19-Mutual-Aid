@@ -6,6 +6,9 @@ import { Alert } from "../../components/UniversalComponents/Alert";
 import API from "../../utils/API";
 // import { Link } from "react-router-dom";
 import "./style.css";
+import { I18nProvider, LOCALES } from './i18n';
+
+
 //objectives:  Built event handlers at the top level  component.(routes makes the most sense)
 //Learn how to pass props throught react routes. (hint: easier to passprops to compoenents you invoke in the route)
 //bind the handlers and values to the state of the container component
@@ -75,21 +78,8 @@ class Settings extends Component {
                             </p>
                             <div>
                             <p className='languages'>Languages</p>
-                            <FormBtn
-                                btntype="outline-success"
-                                btnsize="md"
-                                onClick={this.handleClick}
-                            >English</FormBtn>
-                            <FormBtn
-                                btntype="outline-success"
-                                btnsize="md"
-                                onClick={this.handleClick}
-                            >Français</FormBtn>
-                            <FormBtn
-                                btntype="outline-success"
-                                btnsize="md"
-                                onClick={this.handleClick}
-                            >Español</FormBtn>
+                            <button onClick={() => setLocale(LOCALES.ENGLISH)}>English</button>
+                            <button onClick={() => setLocale(LOCALES.FRENCH)}>French</button>
                             </div>
 
                             <br></br>
