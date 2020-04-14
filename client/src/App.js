@@ -9,11 +9,9 @@ import Settings from "./pages/Settings";
 
 class App extends Component {
   state = {
-    languages: ["English", "Spanish", "French"],
-    fontSize: 50,
-    brightness: 50,
-    active: true,
-    themes: []
+    language: "English",
+    fontSize: "medium",
+    brightness: "light"
   }
 
 //1. write state for things you want to control in other components
@@ -41,36 +39,3 @@ class App extends Component {
 export default App;
 
 
-
-//in a componentDidMount fucntion that grabs user settings
-// then pass those settings to the child components 
-
-const FontSize = () => {
-  const small = {
-    fontSize: '',
-    fontWeight: 200
-  };
-  const medium = {
-    fontSize: '',
-    fontWeight: 400
-  };
-  const large = {
-    fontSize: '',
-    fontWeight: 600
-  };
-
-  // return (
-  //   <div style={FontSize}>
-  //     <h1 style={{color: '#0d1a26', fontWeight: 400}}>Font Size</h1>
-  //     <button style={button}>Click Me!</button>
-  //   </div>
-
- };
-
- const Brightness = () => {
-   const lightest = {
-
-   }
- }
- 
-//  export default ExampleInline;
