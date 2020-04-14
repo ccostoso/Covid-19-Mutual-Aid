@@ -45,49 +45,32 @@ export default App;
 //in a componentDidMount fucntion that grabs user settings
 // then pass those settings to the child components 
 
-const fontSize = () => {
+const FontSize = () => {
   const small = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    padding: '50px',
-    color: '#444',
-    border: '1px solid #1890ff',
+    fontSize: '',
+    fontWeight: 200
   };
   const medium = {
-    padding: '10px 20px',
-    border: 'none',
-    borderRadius: '4px',
-    background: '#1890ff',
-    color: '#fff',
-    fontSize: '14px',
-    cursor: 'pointer',
-    transition: '.3s background',
-    '&:hover': {
-      background: '#40a9ff'
-    }
+    fontSize: '',
+    fontWeight: 400
   };
   const large = {
-    padding: '10px 20px',
-    border: 'none',
-    borderRadius: '4px',
-    background: '#1890ff',
-    color: '#fff',
-    fontSize: '14px',
-    cursor: 'pointer',
-    transition: '.3s background',
-    '&:hover': {
-      background: '#40a9ff'
-    }
- 
-  return (
-    <div style={wrapper}>
-      <h1 style={{color: '#0d1a26', fontWeight: 400}}>Example Inline.</h1>
-      <button style={button}>Button</button>
-    </div>
-  );
+    fontSize: '',
+    fontWeight: 600
+  };
+
+  // return (
+  //   <div style={FontSize}>
+  //     <h1 style={{color: '#0d1a26', fontWeight: 400}}>Font Size</h1>
+  //     <button style={button}>Click Me!</button>
+  //   </div>
+
  };
+
+ const Brightness = () => {
+   const lightest = {
+
+   }
+ }
  
- export default ExampleInline;
+//  export default ExampleInline;
