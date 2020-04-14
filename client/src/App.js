@@ -95,6 +95,9 @@ import Home from "./pages/Home";
 import Community from "./pages/Community";
 import Settings from "./pages/Settings";
 
+import { I18nProvider, LOCALES } from './i18n';
+import translate from './i18n/translate';
+
 class App extends Component {
   state = {
     hi: "hiloo"
@@ -102,14 +105,17 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <Nav />
-        <Route exact path="/" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route path="/home" component={Home} />
-        <Route path="/community/:id" component={Community} />
-        <Route path="/settings" component={Settings} />
-      </Router>
+      <I18nProvider locale={LOCALES.FRENCH}>
+        {translate("hello")}
+        <Router>
+          <Nav />
+          <Route exact path="/" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route path="/home" component={Home} />
+          <Route path="/community/:id" component={Community} />
+          <Route path="/settings" component={Settings} />
+        </Router>
+      </I18nProvider>
     )
   }
 }
