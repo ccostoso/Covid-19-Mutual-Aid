@@ -71,18 +71,18 @@ class Settings extends Component {
                     <Col size="md-6" className="border rounded py-3">
                         <form>
                             <p className="text-center">
-                                <strong>Settings</strong>
+                                <strong>{translate("Settings")}</strong>
                             </p>
                             <div>
-                            <p className='languages'>Languages</p>
-                            <button onClick={() => this.setState(LOCALES.ENGLISH)}>English</button>
-                            <button onClick={() => this.setState(LOCALES.FRENCH)}>French</button>
+                            <p className='languages'>{translate("Languages")}</p>
+                            <button value={LOCALES.ENGLISH} onClick={this.props.setLanguage}>{translate("English")}</button>
+                            <button value={LOCALES.FRENCH}  onClick={this.props.setLanguage}>{translate("French")}</button>
                             </div>
 
                             <br></br>
 {/* 
                             <div>
-                            <p className='fontSize'>Font Size</p>
+                            <p className='fontSize'>{translate("Font Size")}</p>
                             <input id="typeinp"
                              type="range"
                               min="0" max="5" value={this.state.fontSize} onChange={this.handleChange} step="1"/>
@@ -91,7 +91,7 @@ class Settings extends Component {
                             <br></br>
 
                             <div>
-                            <p className='brightness'>Brightness</p>
+                            <p className='brightness'>{translate("Brightness")}</p>
                             <input id="typeinp" type="range" min="0" max="5" defaultValue="3" step="1"/>
                             </div>
 
@@ -102,10 +102,10 @@ class Settings extends Component {
                                 btnsize="sm"
                                 onClick={this.handleClick}
                             >
-                                Save
+                                {translate("Save")}
                             </FormBtn>
                             <p className="my-1">
-                                <small>We won't share your personal information with anyone.</small>
+                                <small>{translate("We won't share your personal information with anyone.")}</small>
                             </p>
                         </form>
                         {this.state.jsonMessage && <Alert>

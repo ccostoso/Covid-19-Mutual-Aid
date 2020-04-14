@@ -103,8 +103,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      locale: LOCALES.ENGLISH
+      locale: LOCALES.FRENCH
     }
+    this.handleSetLanguage=this.handleSetLanguage.bind(this)
   }
  // const [locale, setLocale] = useState(LOCALES.ENGLISH);
 
@@ -116,17 +117,14 @@ class App extends Component {
 //     /* switch lang code */
 //   }
 
-//   handleSetLanguage = event => {
-//     console.log(event.target.value);
+  handleSetLanguage = event => {
+    event.preventDefault()
+    console.log(event.target.value);
 
-//     const oldNotUsedLanguage = this.state.notUsedLanguage;
-//     const oldLanguage = this.state.language;
-
-//     this.setState({
-//       notUsedLanguage: oldLanguage,
-//       language: oldNotUsedLanguage,
-//     })
-//   };
+    this.setState({
+      locale: event.target.value
+    })
+  };
   
  
 
@@ -140,7 +138,7 @@ class App extends Component {
           <Route exact path="/register" component={Register} />
           <Route path="/home" component={Home} />
           <Route path="/community/:id" component={Community} />
-          <Route path="/settings" component={Settings} />
+          <Route path="/settings" component={()=> <Settings setLanguage={this.handleSetLanguage} />}/>
         </Router>
       </I18nProvider>
     )
