@@ -106,13 +106,33 @@ class App extends Component {
       locale: LOCALES.ENGLISH
     }
   }
+ // const [locale, setLocale] = useState(LOCALES.ENGLISH);
 
+
+  //   componentDidMount() {
+//     // Do this two lines only when setting up the application
+//     setTranslations({ en, fr });
+//     setDefaultLanguage('en');
+//     /* switch lang code */
+//   }
+
+//   handleSetLanguage = event => {
+//     console.log(event.target.value);
+
+//     const oldNotUsedLanguage = this.state.notUsedLanguage;
+//     const oldLanguage = this.state.language;
+
+//     this.setState({
+//       notUsedLanguage: oldLanguage,
+//       language: oldNotUsedLanguage,
+//     })
+//   };
   
-  // const [locale, setLocale] = useState(LOCALES.ENGLISH);
+ 
 
   render() {
     return (
-      <I18nProvider {...this.state.locale}>
+      <I18nProvider locale={this.state.locale}>
         {translate("hello")}
         <Router>
           <Nav />

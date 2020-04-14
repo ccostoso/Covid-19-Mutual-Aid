@@ -7,6 +7,7 @@ import API from "../../utils/API";
 // import { Link } from "react-router-dom";
 import "./style.css";
 import { LOCALES } from '../../i18n';
+import translate from '../../i18n/translate';
 
 
 
@@ -23,7 +24,7 @@ class Settings extends Component {
     }
 
     componentDidMount() {
-
+     
     }
 
 
@@ -41,13 +42,13 @@ class Settings extends Component {
 
         console.log(e);
 
-        const newUser = {
+        const settings = {
             locale: this.state.locale,
             // fontSize: this.state.fontSize,
             // brightness: this.state.brightness
         }
 
-        API.signUp(newUser)
+        API.update(settings)
             .then(res => {
                 console.log(res);
                 
