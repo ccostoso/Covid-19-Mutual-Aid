@@ -1,11 +1,12 @@
 import React from "react";
 import { Row } from "../../UniversalComponents/Grid";
 import { Link } from "react-router-dom";
+import translate from '../../../i18n/translate';
 
 export const UserCommunities = props => {
     return (
         <main>
-            <h4>My Communities</h4>
+            <h4>{translate("My Communities")}</h4>
             <hr />
             <Row>
                 {props.communities.map(community => {

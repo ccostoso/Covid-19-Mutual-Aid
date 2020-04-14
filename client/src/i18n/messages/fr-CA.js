@@ -17,5 +17,16 @@ export default {
         'Password': 'Mot de passe',
         'Date of Birth': 'Date de naissance',
         'Age': 'Âge',
+        'News': '',
+        "News and Alerts": "",
+        "Message Board": "",
+        "Alerts": "",
+        "My Communities": "",
+        "Communities": "",
+        "Messages": "",
+        "Login": "",
+        "New user? Create an account": "",
+        "About": "",
+        "Account": "",
     }
 }
