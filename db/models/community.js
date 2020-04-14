@@ -5,13 +5,22 @@ const communitySchema = new Schema({
   address: { type: String, required: true },
   creator: { type: String, required: true },
   date: { type: Date, default: Date.now },
+  memberCount: {
+    type: Number,
+    required: true,
+    default: 1,
+  },
+  membership: {
+    type: [String],
+    required: true,
+  },
   administrators: {
     type: Array, 
-    required: false
+    required: true
   },
   moderators: {
     type: Array,
-    required: true,
+    required: false,
     default: undefined
   }
 });

@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
 mongoose.promise = Promise
+const community = require("./community");
 
 const userSchema = new Schema({
   displayName: {
