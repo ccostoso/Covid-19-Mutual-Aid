@@ -16,11 +16,8 @@ import "./style.css";
 
 class Settings extends Component {
     state = {
-        displayName: '',
-        jsonMessage: '',
-        // languages: ["English", "Spanish", "French"],
         language: 'English',
-        fontSize: 50,
+        fontSize: 'medium',
         brightness: 50,
         active: true,
         theme: ''
@@ -47,7 +44,6 @@ class Settings extends Component {
         console.log(e);
 
         const newUser = {
-            displayName: this.state.displayName,
             language: this.state.languages,
             fontSize: this.state.fontSize,
             brightness: this.state.brightness,
@@ -61,10 +57,8 @@ class Settings extends Component {
                 
                 if (!res.data.success) {
                     this.setState({
-                        jsonMessage: res.data.message,
-                        displayName: '',
-                        languages: ["English", "Spanish", "French"],
-                        fontSize: 50,
+                        language: "English",
+                        fontSize: 'medium',
                         brightness: 50,
                         active: true,
                         themes: []
@@ -83,14 +77,6 @@ class Settings extends Component {
                             <p className="text-center">
                                 <strong>Settings</strong>
                             </p>
-                            <Input 
-                                value={this.state.displayName}
-                                onChange={this.handleChange}
-                                name="displayName"
-                                placeholder="required"
-                                label={"Display Name"}
-                            />
-
                             <div>
                             <p className='languages'>Languages</p>
                             <FormBtn
