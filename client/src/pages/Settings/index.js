@@ -18,17 +18,19 @@ class Settings extends Component {
     state = {
         displayName: '',
         jsonMessage: '',
-        languages: ["English", "Spanish", "French"],
+        // languages: ["English", "Spanish", "French"],
+        language: 'English',
         fontSize: 50,
         brightness: 50,
         active: true,
-        themes: []
+        theme: ''
 
     }
 
     componentDidMount() {
 
     }
+
 
     handleChange = e => {
         e.persist();
@@ -46,7 +48,7 @@ class Settings extends Component {
 
         const newUser = {
             displayName: this.state.displayName,
-            languages: this.state.languages,
+            language: this.state.languages,
             fontSize: this.state.fontSize,
             brightness: this.state.brightness,
             active: this.state.active,
