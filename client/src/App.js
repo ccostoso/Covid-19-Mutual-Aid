@@ -17,12 +17,9 @@ import {
   translate,
 } from 'react-switch-lang';
 import en from './en.json';
-// import fr from './fr.json';
+import fr from './fr.json';
 
-// Do this two lines only when setting up the application
-setTranslations({ en, th });
-setDefaultLanguage('th');
-/* switch lang code */
+
 
 
 class App extends Component {
@@ -31,6 +28,13 @@ class App extends Component {
     notUsedLanguage: "fr",
     fontSize: "medium",
     brightness: "light"
+  }
+
+  componentDidMount() {
+    // Do this two lines only when setting up the application
+    setTranslations({ en, fr });
+    setDefaultLanguage('en');
+    /* switch lang code */
   }
 
   handleSetLanguage = event => {
@@ -45,22 +49,23 @@ class App extends Component {
     })
   };
 
-  //1. write state for things you want to control in other components
-  //2. write functions to alter the state here and give settinsg access to those functions.
-  //3. Bind the functions to this component's this. Hint: research .bind() method.
-  //4. figured out where you want to put the props in the other components to alter their css.
+  //1. write state for things you want to control in other components DONE!!!
+  //2. write functions to alter the state here and give settinsg access to those functions. DONE!!!
+  //3. Bind the functions to this component's this. Hint: research .bind() method. DONE!!!
+  //4. figured out where you want to put the props in the other components to alter their css. 
   //5. figure out how the settings interface will interact with the functions you pass it to affec the state in this component and thereby change the other components css.
   //6.  Have some coffee and PB & J on that fancy cheesecake factory bread.
 
   render() {
-    //const { t } = this.props;
+    const { t } = this.props;
+    console.log(t);
     return (
       <div>
         This is the Hello World
-        {/* {t('home.title')}
+        {t('home.title')}
         {t('home.title', null, 'th')}
         {t('hello', { name: 'World' })}
-        {t('fallback')} */}
+        {t('fallback')}
 
         <button type="button" value={this.state.notUsedLanguage} onClick={this.handleSetLanguage}>
           Switch language
