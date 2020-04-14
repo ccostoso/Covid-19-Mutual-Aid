@@ -17,12 +17,6 @@ export const FontSize = () => {
       fontWeight: 600
     };
   
-    // return (
-    //   <div style={FontSize}>
-    //     <h1 style={{color: '#0d1a26', fontWeight: 400}}>Font Size</h1>
-    //     <button style={button}>Click Me!</button>
-    //   </div>
-  
    };
   
    export const Brightness = () => {
@@ -40,7 +34,7 @@ export const FontSize = () => {
       gradient: 'linear-gradient(#091236, #1E215D)',
     }
    };
+
+
+
    
-   // export FontSize;
-   // export Brightness;
-   // export Language;
