@@ -32,6 +32,22 @@ class Login extends Component {
         API.signIn(user)
             .then(res => {
                 console.log(res);
+                // console.log('json', json);
+                // if (json.success) {
+                //   setInStorage('the_main_app', { token: json.token });
+                //   this.setState({
+                //     signInError: json.message,
+                //     isLoading: false,
+                //     signInPassword: '',
+                //     signInEmail: '',
+                //     token: json.token,
+                //   });
+                // } else {
+                //   this.setState({
+                //     signInError: json.message,
+                //     isLoading: false,
+                //   });
+                // }
             });
     }
 

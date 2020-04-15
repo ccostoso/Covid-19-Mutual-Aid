@@ -11,7 +11,7 @@ export default {
         return axios.post("/api/account/signup/", newUser);
     },
     signIn: function(user) {
-        return axios.post("/api/account/signin", user)
+        return axios.post("/api/account/signin/", user);
     },
     putUser: function(id) {
         return axios.put("/api/account/user/" + id);
