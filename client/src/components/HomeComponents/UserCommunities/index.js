@@ -19,7 +19,7 @@ export const UserCommunities = props => {
                                 <div className="card-body">
                                     <p>{community.memberCount}</p>
                                     <p>{community.position}</p>
-                                    <Link to={`/community/${community.id}`} className="btn btn-success">Go to Community</Link>
+                                    <Link to={`/community/${community.id}`} className="btn btn-success">{translate("Go to Community")}</Link>
                                 </div>
                             </section>
                         </div>

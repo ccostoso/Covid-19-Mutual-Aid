@@ -28,6 +28,6 @@ export default {
         "New user? Create an account": "New user? Create an account",
         "About": "About",
         "Account": "Account",
-
+        "Go to Community": "Go to Community"
     }   
     }

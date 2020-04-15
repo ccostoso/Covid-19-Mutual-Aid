@@ -11,7 +11,6 @@ class Register extends Component {
         displayName: '',
         email: '',
         password: '',
-        datOfBirth: '',
         age: '',
         jsonMessage: ''
     }
@@ -37,7 +36,6 @@ class Register extends Component {
             displayName: this.state.displayName,
             email: this.state.email,
             password: this.state.password,
-            datOfBirth: this.state.dateOfBirth,
             age: this.state.age
         }
 
@@ -51,7 +49,6 @@ class Register extends Component {
                         displayName: '',
                         email: '',
                         password: '',
-                        datOfBirth: '',
                         age: ''
                     })
                 }
@@ -89,14 +86,6 @@ class Register extends Component {
                                 placeholder="required"
                                 type="password"
                                 label={translate("Password")}
-                            />
-                            <Input 
-                                value={this.state.dateOfBirth}
-                                onChange={this.handleChange}
-                                name="dateOfBirth"
-                                placeholder="required"
-                                type= "date"
-                                label={translate("Date Of Birth")}
                             />
                             <Input 
                                 value={this.state.age}

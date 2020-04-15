@@ -34,7 +34,7 @@ export const LoginComponent = props => {
                             btnsize="sm"
                             onClick={props.handleClick}
                         >
-                            Login
+                            {translate("Login")}
                         </FormBtn>
                         <p className="my-1">
                             <small>{translate("New user? Create an account")} <Link to="/register">here</Link>.</small>

@@ -131,7 +131,6 @@ class App extends Component {
   render() {
     return (
       <I18nProvider locale={this.state.locale}>
-        {translate("hello")}
         <Router>
           <Nav />
           <Route exact path="/" component={Login} />
