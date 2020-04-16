@@ -8,7 +8,7 @@ import Community from "./pages/Community";
 import Settings from "./pages/Settings";
 
 import { I18nProvider, LOCALES } from './i18n';
-import translate from './i18n/translate';
+// import translate from './i18n/translate';
 
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import './App.css';
@@ -87,7 +87,6 @@ class App extends Component {
 }
 
 export default App;
-
 
 
 

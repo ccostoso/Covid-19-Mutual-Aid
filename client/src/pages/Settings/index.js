@@ -80,7 +80,6 @@ class Settings extends Component {
                             </div>
 
                             <br></br>
-
                             <div>
                             <p className='fontSize'>{translate("Font Size")}</p>
                             <input id="typeinp"
