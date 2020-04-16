@@ -3,4 +3,5 @@ module.exports = {
   // User: require("./user"),
   // UserSession: require("./usersession"),
   User: require("./userpassport"),
+  Thread: require("./thread"),
 };

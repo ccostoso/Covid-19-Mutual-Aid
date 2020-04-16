@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const communitySchema = new Schema({
-  address: { type: String, required: true },
+  communityName: { type: String, required: true },
+  description: { type: String, required: true },
   creator: { type: String, required: true },
   date: { type: Date, default: Date.now },
   memberCount: {
@@ -13,16 +14,20 @@ const communitySchema = new Schema({
   membership: {
     type: [String],
     required: true,
+    default: [],
   },
-  administrators: {
-    type: Array, 
-    required: true
-  },
-  moderators: {
-    type: Array,
-    required: false,
-    default: undefined
-  }
+  threads: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Thread",
+    }
+  ],
+  users: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "UserPassport",
+    }
+  ]
 });
 
 const Community = mongoose.model("Community", communitySchema);

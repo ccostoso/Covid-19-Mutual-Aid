@@ -2,8 +2,9 @@ import React from "react";
 import { Container, Row, Col } from "../../UniversalComponents/Grid";
 import { Alert } from "../../UniversalComponents/Alert";
 import { CommunityBoardPost } from "../CommunityBoardPost";
+import { CreateThreadModal } from "../CreateThreadModal";
 
-export const CommunityBoard = ({ posts }) => {
+export const CommunityBoard = props => {
     return (
         <Container fluid className="p-0">
             <Row>
@@ -11,12 +12,17 @@ export const CommunityBoard = ({ posts }) => {
                     <h4>Message Board</h4>
                 </Col>
                 <Col size="md-6" className="d-flex pb-2">
-                    <button className="btn btn-sm btn-success ml-auto">
-                        Create a New Thread
-                    </button>
+                    <CreateThreadModal 
+                        createThread={props.createThread}
+                        createThreadHandleChange={props.createThreadHandleChange}
+                        createThreadHandleClick={props.createThreadHandleClick}
+                    />
                 </Col>
             </Row>
-            {posts.map(post => <CommunityBoardPost post={post} />)}
+            {props.threadObjects.map(thread => <CommunityBoardPost 
+                thread={thread} 
+                key={thread._id}
+            />)}
         </Container>
     )
 }

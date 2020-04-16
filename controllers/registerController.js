@@ -17,14 +17,14 @@ module.exports = {
                 'password': password,
                 'displayName': displayName,
             })
-            console.log("NEW USER RESPONSE",newUser)
+            
             newUser.save((err, savedUser) => {
                 if (err)  {
                     console.log('error!!!!', err)
                     return res.json(err);
                 }
-                console.log("I MADE IT", savedUser)
-                return res.json(savedUser)
+                // console.log("I MADE IT", savedUser)
+                return res.json(savedUser);
             })
         })
     }

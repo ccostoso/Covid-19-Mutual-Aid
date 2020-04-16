@@ -25,10 +25,18 @@ const userSchema = new Schema({
     type: [String],
     default: [],
   },
-  communities: {
-    type: [String],
-    default: [],
-  },
+  communities: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Community",
+    }
+  ],
+  threads: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Thread",
+    }
+  ],
   date: { type: Date, default: Date.now },
 });
 

@@ -5,16 +5,28 @@ import { CommunityPanelNav } from "../CommunityPanelNav";
 import { NewsAndAlerts } from "../NewsAndAlerts";
 import { CommunityBoard } from "../CommunityBoard";
 
-export const CommunityPanel = ({headerImage, title, active, alerts, about, posts}) => {
+export const CommunityPanel = ({ headerImage,
+                                title,
+                                active,
+                                alerts,
+                                about,
+                                threadObjects,
+                                createThread,
+                                createThreadHandleChange,
+                                createThreadHandleClick
+                                }) => {
     return (
         <Col size="md-10" className="border-left">
-            <CommunityPanelHeader 
+            <CommunityPanelHeader
                 headerImage={headerImage}
                 title={title}
             />
             <CommunityPanelNav isAdmin={true} />
             <CommunityBoard
-                posts={posts}
+                threadObjects={threadObjects}
+                createThread={createThread}
+                createThreadHandleChange={createThreadHandleChange}
+                createThreadHandleClick={createThreadHandleClick}
             />
             {/* <NewsAndAlerts 
                 alerts={alerts}
