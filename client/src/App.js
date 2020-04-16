@@ -8,22 +8,46 @@ import Community from "./pages/Community";
 import Settings from "./pages/Settings";
 
 import { I18nProvider, LOCALES } from './i18n';
-
-import translate from './i18n/translate';
-
+// import translate from './i18n/translate';
+import storage from 'local-storage-fallback';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import './App.css';
+import style from 'styled-theming';
+
+
+
+// const getBackground = style('mode', {
+//   light: '#EEE',
+//   dark: '#191515'
+// })
+
+// const getForeground = style('mode', {
+//   light: '#111',
+//   dark: '#EEE'
+// })
+
+const getFontSize = style('textZoom', {
+  normal: '1em',
+  magnify: '1.2em'
+})
 
 const GlobalStyle = createGlobalStyle `
 body {
   background-color: ${props => props.theme.mode === 'dark' ? '#191515' : '#EEE'};
   color: ${props => props.theme.mode === 'dark' ? '#EEE' : '#111'};
+  font-size: ${getFontSize}
 }
 nav {
   background-color: ${props => props.theme.mode === 'dark' ? '#730808' : '#e00a0a'};
 }
 `;
 
+// function getInitialTheme() {
+//   const savedTheme = storage.getItem('theme')
+//   return savedTheme 
+    // ? JSON.parse(savedTheme) 
+    // : { mode: 'light', textZoom: 'normal' };
+// }
 
 class App extends Component {
   constructor(props) {
@@ -31,13 +55,13 @@ class App extends Component {
     this.state = {
       locale: LOCALES.FRENCH,
       theme: { mode:'light' }
+      textZoom : {'normal'}
     }
     this.handleSetLanguage=this.handleSetLanguage.bind(this)
     this.handleSetBrightness=this.handleSetBrightness.bind(this)
   }
  // const [locale, setLocale] = useState(LOCALES.ENGLISH);
 //  const [theme, setTheme] = useState({ mode: 'dark' })
-
 
 
 
@@ -67,6 +91,17 @@ class App extends Component {
   };
 
   
+  handleSetFontSize = event => {
+    event.preventDefault(
+      console.log(event.target.value);
+
+      this.setState({
+        textZoom: { 'normal' }
+      })
+    )
+  };
+
+  
  
 
   render() {
@@ -83,7 +118,6 @@ class App extends Component {
               <Route path="/community/:id" component={Community} />
               <Route path="/settings" component={() => <Settings setLanguage={this.handleSetLanguage} setBrightness={this.handleSetBrightness} />} />
             </Router>
-          <button>{translate("Brightness")}</button>
         </>
       </ThemeProvider>
       </I18nProvider>

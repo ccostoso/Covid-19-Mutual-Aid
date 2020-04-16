@@ -26,6 +26,8 @@ export default {
         "New user? Create an account": "Nouvel utilisateur? Créer un compte",
         "About": "Au sujet de",
         "Account": "Le compte rendu",
-        "Go to Community": "Accéder à la communauté"
+        "Go to Community": "Accéder à la communauté",
+        "Light": "Lumière",
+        "Dark": "Foncé"
     }
 }
