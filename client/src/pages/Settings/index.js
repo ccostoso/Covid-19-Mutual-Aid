@@ -80,7 +80,7 @@ class Settings extends Component {
                             </div>
 
                             <br></br>
-{/* 
+
                             <div>
                             <p className='fontSize'>{translate("Font Size")}</p>
                             <input id="typeinp"
@@ -92,10 +92,11 @@ class Settings extends Component {
 
                             <div>
                             <p className='brightness'>{translate("Brightness")}</p>
-                            <input id="typeinp" type="range" min="0" max="5" defaultValue="3" step="1"/>
+                            <button value={{ mode: 'light'}} onClick={this.props.setBrightness}>{translate("Light")}</button>
+                            <button value={{ mode: 'dark'}} onClick={this.props.setBrightness}>{translate("Dark")}</button>
                             </div>
 
-                            <br></br> */}
+                            <br></br>
 
                             <FormBtn
                                 btntype="outline-success"

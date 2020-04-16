@@ -79,7 +79,6 @@ class App extends Component {
               <Route path="/community/:id" component={Community} />
               <Route path="/settings" component={() => <Settings setLanguage={this.handleSetLanguage} setBrightness={this.handleSetBrightness} />} />
             </Router>
-          <button>{translate("Brightness")}</button>
         </>
       </ThemeProvider>
       </I18nProvider>
