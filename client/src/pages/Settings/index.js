@@ -15,7 +15,8 @@ class Settings extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          locale: LOCALES.ENGLISH
+          locale: LOCALES.ENGLISH,
+          theme: { mode:'light' }
         }
         // fontSize: 'medium',
         // brightness: 50,
@@ -44,8 +45,8 @@ class Settings extends Component {
 
         const settings = {
             locale: this.state.locale,
+            theme: this.state.theme
             // fontSize: this.state.fontSize,
-            // brightness: this.state.brightness
         }
 
         API.update(settings)
@@ -55,9 +56,8 @@ class Settings extends Component {
                 if (!res.data.success) {
                     this.setState({
                         locale: LOCALES.ENGLISH,
+                        theme: { mode: 'light' }
                         // fontSize: 'medium',
-                        // brightness: 50,
-                        // jsonMessage: ''
 
                     })
                 }
@@ -80,22 +80,21 @@ class Settings extends Component {
                             </div>
 
                             <br></br>
-{/* 
                             <div>
                             <p className='fontSize'>{translate("Font Size")}</p>
-                            <input id="typeinp"
-                             type="range"
-                              min="0" max="5" value={this.state.fontSize} onChange={this.handleChange} step="1"/>
+                            <button value={{ ...theme, textZoom: 'magnify'}} onClick={this.props.setBrightness}>{translate("Light")}</button>
+                            <button value={{ ...theme, textZoom: 'normal'}} onClick={this.props.setBrightness}>{translate("Dark")}</button>
                             </div>
 
                             <br></br>
 
                             <div>
                             <p className='brightness'>{translate("Brightness")}</p>
-                            <input id="typeinp" type="range" min="0" max="5" defaultValue="3" step="1"/>
+                            <button value={{ ...theme, mode: 'light'}} onClick={this.props.setBrightness}>{translate("Light")}</button>
+                            <button value={{ ...theme, mode: 'dark'}} onClick={this.props.setBrightness}>{translate("Dark")}</button>
                             </div>
 
-                            <br></br> */}
+                            <br></br>
 
                             <FormBtn
                                 btntype="outline-success"
