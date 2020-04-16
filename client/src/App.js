@@ -8,18 +8,37 @@ import Community from "./pages/Community";
 import Settings from "./pages/Settings";
 
 import { I18nProvider, LOCALES } from './i18n';
-// import translate from './i18n/translate';
+
+import translate from './i18n/translate';
+
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import './App.css';
+
+const GlobalStyle = createGlobalStyle `
+body {
+  background-color: ${props => props.theme.mode === 'dark' ? '#191515' : '#EEE'};
+  color: ${props => props.theme.mode === 'dark' ? '#EEE' : '#111'};
+}
+nav {
+  background-color: ${props => props.theme.mode === 'dark' ? '#730808' : '#e00a0a'};
+}
+`;
 
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      locale: LOCALES.FRENCH
+      locale: LOCALES.FRENCH,
+      theme: { mode:'light' }
     }
     this.handleSetLanguage=this.handleSetLanguage.bind(this)
+    this.handleSetBrightness=this.handleSetBrightness.bind(this)
   }
  // const [locale, setLocale] = useState(LOCALES.ENGLISH);
+//  const [theme, setTheme] = useState({ mode: 'dark' })
+
+
 
 
   //   componentDidMount() {
@@ -37,28 +56,42 @@ class App extends Component {
       locale: event.target.value
     })
   };
+
+  handleSetBrightness = event => {
+    event.preventDefault()
+    console.log(event.target.value);
+
+    this.setState({
+      theme: { mode: event.target.value }
+    })
+  };
+
   
  
 
   render() {
     return (
       <I18nProvider locale={this.state.locale}>
-        <Router>
-          <Nav />
-          <Route exact path="/" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route path="/home" component={Home} />
-          <Route path="/community/:id" component={Community} />
-          <Route path="/settings" component={()=> <Settings setLanguage={this.handleSetLanguage} />}/>
-        </Router>
+      <ThemeProvider theme={this.state.theme}>
+        <>
+          <GlobalStyle />
+            <Router>
+              <Nav />
+              <Route exact path="/" component={Login} />
+              <Route exact path="/register" component={Register} />
+              <Route path="/home" component={Home} />
+              <Route path="/community/:id" component={Community} />
+              <Route path="/settings" component={() => <Settings setLanguage={this.handleSetLanguage} setBrightness={this.handleSetBrightness} />} />
+            </Router>
+          <button>{translate("Brightness")}</button>
+        </>
+      </ThemeProvider>
       </I18nProvider>
     )
   }
 }
 
 export default App;
-
-
 
 
 
