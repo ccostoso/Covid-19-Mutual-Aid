@@ -56,7 +56,7 @@ class Settings extends Component {
                 if (!res.data.success) {
                     this.setState({
                         locale: LOCALES.ENGLISH,
-                        theme: { mode:'light' }
+                        theme: { mode: 'light' }
                         // fontSize: 'medium',
 
                     })
