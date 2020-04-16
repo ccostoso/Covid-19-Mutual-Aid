@@ -18,9 +18,6 @@ class Settings extends Component {
           locale: LOCALES.ENGLISH,
           theme: { mode:'light' }
         }
-        // fontSize: 'medium',
-        // brightness: 50,
-        // jsonMessage: ''
 
     }
 
@@ -79,19 +76,19 @@ class Settings extends Component {
                             <button value={LOCALES.FRENCH}  onClick={this.props.setLanguage}>{translate("French")}</button>
                             </div>
 
-                            <br></br>
+                            {/* <br></br>
                             <div>
                             <p className='fontSize'>{translate("Font Size")}</p>
                             <button value={{ ...theme, textZoom: 'magnify'}} onClick={this.props.setBrightness}>{translate("Light")}</button>
                             <button value={{ ...theme, textZoom: 'normal'}} onClick={this.props.setBrightness}>{translate("Dark")}</button>
-                            </div>
+                            </div> */}
 
                             <br></br>
 
                             <div>
                             <p className='brightness'>{translate("Brightness")}</p>
-                            <button value={{ ...theme, mode: 'light'}} onClick={this.props.setBrightness}>{translate("Light")}</button>
-                            <button value={{ ...theme, mode: 'dark'}} onClick={this.props.setBrightness}>{translate("Dark")}</button>
+                            <button value={'light'} onClick={this.props.setBrightness}>{translate("Light")}</button>
+                            <button value={'dark'} onClick={this.props.setBrightness}>{translate("Dark")}</button>
                             </div>
 
                             <br></br>
