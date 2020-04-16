@@ -2,7 +2,6 @@ import { LOCALES } from '../locales';
 
 export default {
     [LOCALES.FRENCH]: {
-        'hello':'Bonjour',
         'Settings':'Réglages',
         'Languages': 'Languages',
         'Font Size': 'Taille de Police',
