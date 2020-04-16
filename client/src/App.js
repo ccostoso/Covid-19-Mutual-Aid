@@ -6,10 +6,10 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Community from "./pages/Community";
 import Settings from "./pages/Settings";
-
 import { I18nProvider, LOCALES } from './i18n';
 // import translate from './i18n/translate';
 import storage from 'local-storage-fallback';
+import useTheme from './i18n/themeFont/useTheme'
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import './App.css';
 import style from 'styled-theming';
@@ -42,12 +42,7 @@ nav {
 }
 `;
 
-// function getInitialTheme() {
-//   const savedTheme = storage.getItem('theme')
-//   return savedTheme 
-    // ? JSON.parse(savedTheme) 
-    // : { mode: 'light', textZoom: 'normal' };
-// }
+
 
 class App extends Component {
   constructor(props) {
