@@ -8,6 +8,17 @@
 //   expect(linkElement).toBeInTheDocument();
 // });
 
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Nav } from "./components/UniversalComponents/Nav";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Home from "./pages/Home";
+import Community from "./pages/Community";
+import Settings from "./pages/Settings";
+
+import { I18nProvider, LOCALES } from './i18n';
+// import translate from './i18n/translate';
 
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import './App.css';
@@ -17,19 +28,20 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      locale: LOCALES.FRENCH
+      locale: LOCALES.FRENCH,
       theme: { mode:'light' }
     }
     this.handleSetLanguage=this.handleSetLanguage.bind(this)
   }
  // const [locale, setLocale] = useState(LOCALES.ENGLISH);
+//  const [theme, setTheme] = useState({ mode: 'dark' })
 
  const GlobalStyle = createGlobalStyle `
  body {
    background-color: ${props => props.theme.mode === 'dark' ? '#111' : '#EEE'};
    color: ${props => props.theme.mode === 'dark' ? '#EEE' : '#111'};
  }
- `
+ `;
 
   //   componentDidMount() {
 //     // Do this two lines only when setting up the application
@@ -51,7 +63,7 @@ class App extends Component {
 
   render() {
     return (
-      <ThemeProvider theme={{ mode: 'dark' }}>
+      <ThemeProvider theme={this.state.theme}>
         <>
           <GlobalStyle />
           <I18nProvider locale={this.state.locale}>
@@ -64,6 +76,7 @@ class App extends Component {
               <Route path="/settings" component={() => <Settings setLanguage={this.handleSetLanguage} />} />
             </Router>
           </I18nProvider>
+          <button>Brightness</button>
         </>
       </ThemeProvider>
     )

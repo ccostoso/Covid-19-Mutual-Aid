@@ -5,7 +5,7 @@ import translate from '../../../i18n/translate';
 
 export const UserPanelNav = props => {
     return (
-        <ul className="nav nav-pills nav-fill border-bottom pb-1 mb-2">
+        <ul className="nav nav-pills nav-fill border-bottom pb-1 mb-2" id="navColor">
             <li className="nav-item">
                 <Link className="nav-link active" to="#">{translate("Communities")}</Link>
             </li>
