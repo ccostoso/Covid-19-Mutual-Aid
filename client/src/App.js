@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle `
 body {
   background-color: ${props => props.theme.mode === 'dark' ? '#191515' : '#EEE'};
   color: ${props => props.theme.mode === 'dark' ? '#EEE' : '#111'}
-  font-size: ${props => props.size.mode === 'normal' ? '1em' : '1.2em' }
+  font-size: ${props => props.theme.size === 'normal' ? '1em' : '1.2em' }
 }
 nav {
   background-color: ${props => props.theme.mode === 'dark' ? '#730808' : '#e00a0a'};
@@ -33,8 +33,10 @@ class App extends Component {
     super(props);
     this.state = {
       locale: LOCALES.FRENCH,
-      theme: { mode: 'light' },
-      size: { mode: 'normal' }
+      theme: { 
+        mode: 'light',
+        size: 'normal'
+      }
     }
     this.handleSetLanguage=this.handleSetLanguage.bind(this)
     this.handleSetBrightness=this.handleSetBrightness.bind(this)
@@ -43,8 +45,8 @@ class App extends Component {
 
 
   //   componentDidMount() {
-//     // Do this two lines only when setting up the application
-//   }
+  //   // Do this two lines only when setting up the application
+  // }
 
   handleSetLanguage = event => {
     event.preventDefault()
@@ -58,23 +60,25 @@ class App extends Component {
   handleSetBrightness = event => {
     event.preventDefault()
     console.log(event.target);
-
+    var newState= this.state.theme;
+    newState.mode = event.target.value
+    
     this.setState({
-      theme: {mode: event.target.value}
+      theme: newState    
     })
   };
 
-  
   handleSetFontSize = event => {
     event.preventDefault()
       console.log(event.target);
-
+      var newState= this.state.theme;
+      newState.size = event.target.value
       this.setState({
-        size: { mode: event.target.value }
+        theme: newState
       })
   };
 
- 
+
 
   render() {
     return (
