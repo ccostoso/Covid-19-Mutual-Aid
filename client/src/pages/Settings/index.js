@@ -79,20 +79,19 @@ class Settings extends Component {
                             <button value={LOCALES.FRENCH}  onClick={this.props.setLanguage}>{translate("French")}</button>
                             </div>
 
-                            {/* <br></br>
+                            <br></br>
                             <div>
                             <p className='fontSize'>{translate("Font Size")}</p>
-                            <input id="typeinp"
-                             type="range"
-                              min="0" max="5" value={this.state.fontSize} onChange={this.handleChange} step="1"/>
-                            </div> */}
+                            <button value={{ ...theme, textZoom: 'magnify'}} onClick={this.props.setBrightness}>{translate("Light")}</button>
+                            <button value={{ ...theme, textZoom: 'normal'}} onClick={this.props.setBrightness}>{translate("Dark")}</button>
+                            </div>
 
                             <br></br>
 
                             <div>
                             <p className='brightness'>{translate("Brightness")}</p>
-                            <button value={{ mode: 'light'}} onClick={this.props.setBrightness}>{translate("Light")}</button>
-                            <button value={{ mode: 'dark'}} onClick={this.props.setBrightness}>{translate("Dark")}</button>
+                            <button value={{ ...theme, mode: 'light'}} onClick={this.props.setBrightness}>{translate("Light")}</button>
+                            <button value={{ ...theme, mode: 'dark'}} onClick={this.props.setBrightness}>{translate("Dark")}</button>
                             </div>
 
                             <br></br>
