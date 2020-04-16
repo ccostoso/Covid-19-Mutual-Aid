@@ -64,13 +64,12 @@ class App extends Component {
     })
   };
 
-  
   handleSetFontSize = event => {
     event.preventDefault()
       console.log(event.target);
 
       this.setState({
-        size: { mode: event.target.value }
+        size: {mode: event.target.value}
       })
   };
 

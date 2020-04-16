@@ -16,7 +16,8 @@ class Settings extends Component {
         super(props);
         this.state = {
           locale: LOCALES.ENGLISH,
-          theme: { mode:'light' }
+          theme: { mode:'light' },
+          size: { mode: 'normal' }
         }
 
     }
@@ -42,8 +43,8 @@ class Settings extends Component {
 
         const settings = {
             locale: this.state.locale,
-            theme: this.state.theme
-            // fontSize: this.state.fontSize,
+            theme: this.state.theme,
+            size: this.state.size
         }
 
         API.update(settings)
@@ -53,8 +54,8 @@ class Settings extends Component {
                 if (!res.data.success) {
                     this.setState({
                         locale: LOCALES.ENGLISH,
-                        theme: { mode: 'light' }
-                        // fontSize: 'medium',
+                        theme: { mode: 'light' },
+                        size: { mode: 'normal' }
 
                     })
                 }
@@ -76,12 +77,12 @@ class Settings extends Component {
                             <button value={LOCALES.FRENCH}  onClick={this.props.setLanguage}>{translate("French")}</button>
                             </div>
 
-                            {/* <br></br>
+                            <br></br>
                             <div>
                             <p className='fontSize'>{translate("Font Size")}</p>
-                            <button value={{ ...theme, textZoom: 'magnify'}} onClick={this.props.setBrightness}>{translate("Light")}</button>
-                            <button value={{ ...theme, textZoom: 'normal'}} onClick={this.props.setBrightness}>{translate("Dark")}</button>
-                            </div> */}
+                            <button value={'normal'} onClick={this.props.setFontSize}>{translate("Normal")}</button>
+                            <button value={'magnify'} onClick={this.props.setFontSize}>{translate("Magnify")}</button>
+                            </div>
 
                             <br></br>
 
