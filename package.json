@@ -33,5 +33,6 @@
     "socket.io": "^2.3.0",
     "styled-components": "^5.1.0",
     "styled-theming": "^2.2.0"
+
   }
 }

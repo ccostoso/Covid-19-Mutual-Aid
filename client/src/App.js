@@ -8,6 +8,7 @@ import Community from "./pages/Community";
 import Settings from "./pages/Settings";
 
 import { I18nProvider, LOCALES } from './i18n';
+
 import translate from './i18n/translate';
 
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
@@ -23,6 +24,7 @@ nav {
 }
 `;
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -35,6 +37,7 @@ class App extends Component {
   }
  // const [locale, setLocale] = useState(LOCALES.ENGLISH);
 //  const [theme, setTheme] = useState({ mode: 'dark' })
+
 
 
 
@@ -62,6 +65,7 @@ class App extends Component {
       theme: { mode: event.target.value }
     })
   };
+
   
  
 
@@ -88,7 +92,6 @@ class App extends Component {
 }
 
 export default App;
-
 
 
 
