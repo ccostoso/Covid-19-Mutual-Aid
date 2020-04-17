@@ -10,8 +10,7 @@ import { I18nProvider, LOCALES } from './i18n';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import './App.css';
 
-
-const GlobalStyle = createGlobalStyle `
+const GlobalStyle = createGlobalStyle`
 body {
   background-color: ${props => props.theme.mode === 'dark' ? '#191515' : '#EEE'};
   color: ${props => props.theme.mode === 'dark' ? '#EEE' : '#111'};
@@ -28,14 +27,14 @@ class App extends Component {
     super(props);
     this.state = {
       locale: LOCALES.FRENCH,
-      theme: { 
-        mode: 'light', 
+      theme: {
+        mode: 'light',
         size: 'normal'
       }
     }
-    this.handleSetLanguage=this.handleSetLanguage.bind(this)
-    this.handleSetBrightness=this.handleSetBrightness.bind(this)
-    this.handleSetFontSize=this.handleSetFontSize.bind(this)
+    this.handleSetLanguage = this.handleSetLanguage.bind(this)
+    this.handleSetBrightness = this.handleSetBrightness.bind(this)
+    this.handleSetFontSize = this.handleSetFontSize.bind(this)
   }
 
 
@@ -55,13 +54,11 @@ class App extends Component {
   handleSetBrightness = event => {
     event.preventDefault()
     console.log(event.target);
-    console.log(this.state.theme);
-    console.log(this.props.mode);
-
-
+    const newMode = event.target.value
+  
     this.setState({
       theme: {
-        mode: this.state.theme.mode === "light" ? "dark" : "light",
+        mode: newMode === "light" ? "light" : "dark"
       }
     })
   };
@@ -69,24 +66,21 @@ class App extends Component {
   handleSetFontSize = event => {
     event.preventDefault()
     console.log(event.target);
-    console.log(this.state.theme);
-    console.log(this.props.size);
-
-
+    const newSize = event.target.value
+  
     this.setState({
       theme: {
-        size: this.state.theme.size === "normal" ? "magnify" : "normal",
+        size: newSize === "normal" ? "normal" : "magnify"
       }
     })
   };
 
-
   render() {
     return (
       <I18nProvider locale={this.state.locale}>
-      <ThemeProvider theme={this.state.theme}>
-        <>
-          <GlobalStyle />
+        <ThemeProvider theme={this.state.theme}>
+          <>
+            <GlobalStyle />
             <Router>
               <Nav />
               <Route exact path="/" component={Login} />
@@ -95,8 +89,8 @@ class App extends Component {
               <Route path="/community/:id" component={Community} />
               <Route path="/settings" component={() => <Settings setLanguage={this.handleSetLanguage} setBrightness={this.handleSetBrightness} setFontSize={this.handleSetFontSize} />} />
             </Router>
-        </>
-      </ThemeProvider>
+          </>
+        </ThemeProvider>
       </I18nProvider>
     )
   }
