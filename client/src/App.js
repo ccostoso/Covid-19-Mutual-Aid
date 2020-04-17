@@ -7,13 +7,8 @@ import Home from "./pages/Home";
 import Community from "./pages/Community";
 import Settings from "./pages/Settings";
 import { I18nProvider, LOCALES } from './i18n';
-// import translate from './i18n/translate';
-// import storage from 'local-storage-fallback';
-// import useTheme from './i18n/themeFont/useTheme';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import './App.css';
-// import style from 'styled-theming';
-
 
 
 const GlobalStyle = createGlobalStyle `
@@ -34,7 +29,7 @@ class App extends Component {
     this.state = {
       locale: LOCALES.FRENCH,
       theme: { 
-        mode: 'light',
+        mode: 'light', 
         size: 'normal'
       }
     }
@@ -60,33 +55,30 @@ class App extends Component {
   handleSetBrightness = event => {
     event.preventDefault()
     console.log(event.target);
-    // var newState = this.state.theme;
-    // newState.mode = event.target.value
-    
-    this.setState(() => ({
+    console.log(this.state.theme);
+    console.log(this.props.mode);
+
+
+    this.setState({
       theme: {
-        ...this.state.theme,
-        mode: 'light',
-        mode: 'dark'
+        mode: this.state.theme.mode === "light" ? "dark" : "light",
       }
-    }))
+    })
   };
 
   handleSetFontSize = event => {
     event.preventDefault()
     console.log(event.target);
-    // var newState = this.state.theme;
-    // newState.size = event.target.value
-    
-    this.setState(() => ({
-      theme: {
-        ...this.state.theme,
-        size: 'normal',
-        size: 'magnify'
-      }
-    }))
-  };
+    console.log(this.state.theme);
+    console.log(this.props.size);
 
+
+    this.setState({
+      theme: {
+        size: this.state.theme.size === "normal" ? "magnify" : "normal",
+      }
+    })
+  };
 
 
   render() {
@@ -111,14 +103,4 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-  //1. write state for things you want to control in other components DONE!!!
-  //2. write functions to alter the state here and give settinsg access to those functions. DONE!!!
-  //3. Bind the functions to this component's this. Hint: research .bind() method. DONE!!!
-  //4. figured out where you want to put the props in the other components to alter their css. 
-  //5. figure out how the settings interface will interact with the functions you pass it to affec the state in this component and thereby change the other components css.
-
-
 
