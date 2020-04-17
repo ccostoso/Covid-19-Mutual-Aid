@@ -60,22 +60,31 @@ class App extends Component {
   handleSetBrightness = event => {
     event.preventDefault()
     console.log(event.target);
-    var newState = this.state.theme;
-    newState.mode = event.target.value
+    // var newState = this.state.theme;
+    // newState.mode = event.target.value
     
-    this.setState({
-      theme: newState
-    })
+    this.setState(() => ({
+      theme: {
+        ...this.state.theme,
+        mode: 'light',
+        mode: 'dark'
+      }
+    }))
   };
 
   handleSetFontSize = event => {
     event.preventDefault()
     console.log(event.target);
-    var newState = this.state.theme;
-    newState.size = event.target.value
-    this.setState({
-      theme: newState
-    })
+    // var newState = this.state.theme;
+    // newState.size = event.target.value
+    
+    this.setState(() => ({
+      theme: {
+        ...this.state.theme,
+        size: 'normal',
+        size: 'magnify'
+      }
+    }))
   };
 
 
