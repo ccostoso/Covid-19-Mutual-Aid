@@ -28,13 +28,16 @@ nav {
 `;
 
 
+
+
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       locale: LOCALES.FRENCH,
       theme: { 
-        mode: 'light',
+        mode: 'light', 
         size: 'normal'
       }
     }
@@ -60,31 +63,51 @@ class App extends Component {
   handleSetBrightness = event => {
     event.preventDefault()
     console.log(event.target);
+    console.log(this.state.theme);
+    console.log(this.props.mode);
     // var newState = this.state.theme;
     // newState.mode = event.target.value
+    // var theme=event.target.mode
     
-    this.setState(() => ({
-      theme: {
-        ...this.state.theme,
-        mode: 'light',
-        mode: 'dark'
-      }
-    }))
+    var newState = this.state = { theme: this.props.mode};
+    newState.mode = event.target.value
+
+    this.setState({
+      theme: event.target.value
+    })
+
+    // this.setState(() => ({
+    //   theme: {
+    //     ...this.state.theme,
+    //     mode: 'light',
+    //     mode: 'dark'
+    //   }
+    // }))
   };
 
   handleSetFontSize = event => {
     event.preventDefault()
     console.log(event.target);
+    console.log(this.state.theme);
+    console.log(this.props.size);
     // var newState = this.state.theme;
     // newState.size = event.target.value
+    // var theme=event.target.size
+
+    var newState = this.state = { theme: this.props.size};
+    newState.size = event.target.value
+
+    this.setState({
+      theme: event.target.value
+    })
     
-    this.setState(() => ({
-      theme: {
-        ...this.state.theme,
-        size: 'normal',
-        size: 'magnify'
-      }
-    }))
+    // this.setState(() => ({
+    //   theme: {
+    //     ...this.state.theme,
+    //     size: 'normal',
+    //     size: 'magnify'
+    //   }
+    // }))
   };
 
 
