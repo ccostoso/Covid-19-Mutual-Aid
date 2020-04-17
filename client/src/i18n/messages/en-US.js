@@ -29,6 +29,8 @@ export default {
         "Account": "Account",
         "Go to Community": "Go to Community",
         "Light": "Light",
-        "Dark": "Dark"
+        "Dark": "Dark",
+        "Normal": "Normal",
+        "Magnify": "Magnify"
     }   
     }

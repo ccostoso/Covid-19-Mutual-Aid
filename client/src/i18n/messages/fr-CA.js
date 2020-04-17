@@ -28,6 +28,8 @@ export default {
         "Account": "Le compte rendu",
         "Go to Community": "Accéder à la communauté",
         "Light": "Lumière",
-        "Dark": "Foncé"
+        "Dark": "Foncé",
+        "Normal": "Ordinaire",
+        "Magnify": "Amplifier"
     }
 }
