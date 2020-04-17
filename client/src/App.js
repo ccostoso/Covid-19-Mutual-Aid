@@ -61,7 +61,6 @@ class App extends Component {
         mode: newMode === "light" ? "light" : "dark"
       }
     })
-
   };
 
   handleSetFontSize = event => {
@@ -74,7 +73,6 @@ class App extends Component {
         size: newSize === "normal" ? "normal" : "magnify"
       }
     })
-
   };
 
   render() {
