@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "../../components/UniversalComponents/Grid";
 import { FormBtn } from "../../components/UniversalComponents/Form";
 import { Alert } from "../../components/UniversalComponents/Alert";
-//import { Button } from 'react-bootstrap'
 import API from "../../utils/API";
-// import { Link } from "react-router-dom";
 import "./style.css";
 import { LOCALES } from '../../i18n';
 import translate from '../../i18n/translate';
