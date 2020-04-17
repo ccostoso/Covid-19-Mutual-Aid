@@ -23,7 +23,6 @@ nav {
 `;
 
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -65,7 +64,6 @@ class App extends Component {
         mode: this.state.theme.mode === "light" ? "dark" : "light",
       }
     })
-
   };
 
   handleSetFontSize = event => {
@@ -80,7 +78,6 @@ class App extends Component {
         size: this.state.theme.size === "normal" ? "magnify" : "normal",
       }
     })
-
   };
 
 
