@@ -10,7 +10,6 @@ import { I18nProvider, LOCALES } from './i18n';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import './App.css';
 
-
 const GlobalStyle = createGlobalStyle`
 body {
   background-color: ${props => props.theme.mode === 'dark' ? '#191515' : '#EEE'};
@@ -78,7 +77,6 @@ class App extends Component {
     })
 
   };
-
 
   render() {
     return (
