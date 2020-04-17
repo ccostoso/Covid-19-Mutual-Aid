@@ -7,13 +7,8 @@ import Home from "./pages/Home";
 import Community from "./pages/Community";
 import Settings from "./pages/Settings";
 import { I18nProvider, LOCALES } from './i18n';
-// import translate from './i18n/translate';
-// import storage from 'local-storage-fallback';
-// import useTheme from './i18n/themeFont/useTheme';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import './App.css';
-// import style from 'styled-theming';
-
 
 
 const GlobalStyle = createGlobalStyle `
@@ -26,9 +21,6 @@ nav {
   background-color: ${props => props.theme.mode === 'dark' ? '#730808' : '#e00a0a'};
 }
 `;
-
-
-
 
 
 class App extends Component {
@@ -65,24 +57,13 @@ class App extends Component {
     console.log(event.target);
     console.log(this.state.theme);
     console.log(this.props.mode);
-    // var newState = this.state.theme;
-    // newState.mode = event.target.value
-    // var theme=event.target.mode
-    
-    var newState = this.state = { theme: this.props.mode};
-    newState.mode = event.target.value
+
 
     this.setState({
-      theme: event.target.value
+      theme: {
+        mode: this.state.theme.mode === "light" ? "dark" : "light",
+      }
     })
-
-    // this.setState(() => ({
-    //   theme: {
-    //     ...this.state.theme,
-    //     mode: 'light',
-    //     mode: 'dark'
-    //   }
-    // }))
   };
 
   handleSetFontSize = event => {
@@ -90,26 +71,14 @@ class App extends Component {
     console.log(event.target);
     console.log(this.state.theme);
     console.log(this.props.size);
-    // var newState = this.state.theme;
-    // newState.size = event.target.value
-    // var theme=event.target.size
 
-    var newState = this.state = { theme: this.props.size};
-    newState.size = event.target.value
 
     this.setState({
-      theme: event.target.value
+      theme: {
+        size: this.state.theme.size === "normal" ? "magnify" : "normal",
+      }
     })
-    
-    // this.setState(() => ({
-    //   theme: {
-    //     ...this.state.theme,
-    //     size: 'normal',
-    //     size: 'magnify'
-    //   }
-    // }))
   };
-
 
 
   render() {
@@ -134,14 +103,4 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-  //1. write state for things you want to control in other components DONE!!!
-  //2. write functions to alter the state here and give settinsg access to those functions. DONE!!!
-  //3. Bind the functions to this component's this. Hint: research .bind() method. DONE!!!
-  //4. figured out where you want to put the props in the other components to alter their css. 
-  //5. figure out how the settings interface will interact with the functions you pass it to affec the state in this component and thereby change the other components css.
-
-
 
