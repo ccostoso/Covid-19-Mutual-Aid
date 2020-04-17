@@ -27,5 +27,11 @@ export default {
         "New user? Create an account": "新用户? 创建账户",
         "About": "关于",
         "Account": "账户",
+        "Go to Community": "前去社区",
+        "Light": "光",
+        "Dark": "暗",
+        "Normal": "正常",
+        "Magnify": "放大",
+        "Chinese": "中文"
     }
 }
