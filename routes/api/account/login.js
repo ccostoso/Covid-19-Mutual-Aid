@@ -16,9 +16,9 @@ router.post('/', function (req, res, next) {
 				console.log("ERROR WITH REQ.LOGIN")
 				return next(err); 
 			}
-			return res.json(user);
+			// return res.json(user);
 			console.log("ROUTE LOGIN.JS", user)
-			// return res.redirect('/home/' + user._id);
+			return res.redirect('/home/' + user._id);
 			// return res.redirect('/home/');
 		});
 	})(req, res, next);

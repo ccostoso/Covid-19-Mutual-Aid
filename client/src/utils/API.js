@@ -36,6 +36,15 @@ export default {
     getThreads: function(communityId) {
         console.log("Community id is:", communityId);
         return axios.get("/api/thread/getThreads/" + communityId);
+    },
+    createReply: function(newReply) {
+        console.log("New reply is:", newReply);
+        return axios.get("/api/reply/create");
+    },
+    getReplies: function(threadId) {
+        console.log("Thread id is:", threadId);
+        return axios.get("/api/reply/getReplies");
+        
     }
     // putUser: function(id) {
     //     return axios.put("/api/account/user/" + id);

@@ -6,12 +6,10 @@ const UserPassport = require ("../db/models/userpassport");
 module.exports = {
   create: function (req, res) {
     const { title, body, community, author } = req.body;
-    console.log('author is', author);
 
     // ADD VALIDATION
     Community.findOne({ 'communityName': community })
     .then(communityMatch => {
-      console.log('still have access to author', author);
 
       return UserPassport.findOne({ 'email': author });
     }).then(userMatch => {
@@ -44,9 +42,6 @@ module.exports = {
         console.log('PROMISE.ALL has resolved', result);
         return;
       })
-      // .then(savedThread => {
-      //   return
-      // })
     .catch(err => console.log(err));
   },
 };

@@ -10,7 +10,7 @@ router.get('/:communityName', (req, res, next) => {
 	console.log("req.params.communityName", req.params.communityName);
 	const communityName = req.params.communityName;
 
-	Community.findOne({ communityName: communityName })
+	Community.findOne({ communityName: communityName }).sort({ date: -1 })
 		.then(response => {
 			console.log("Community.findOne response", response);
 			return res.json(response);

@@ -37,30 +37,38 @@ class Community extends Component {
 
         API.getCommunity(id)
             .then(response => {
-                console.log(response.data.threads);
+                this.setState({
+                    community: response.data
+                })
+                console.log("this.state.community", this.state.community);
                 return this.setState({
                     threadIds: response.data.threads,
                 })
             }).then(response => {
-                console.log("comp did mount then response", response);
-                console.log("state threadIds", this.state.threadIds);
                 const threadIds = this.state.threadIds;
                 return threadIds;
             }).then(threadIds => {
                 threadIds.forEach(async threadId => {
                     const response = await API.getThread(threadId);
-                    console.log(response.data);
                     let newThreadObjects = this.state.threadObjects;
                     newThreadObjects.unshift(response.data);
                     this.setState({
                         threadObjects: newThreadObjects,
                     });
                 })
+                return threadIds;
+            }).then(threadIds => {
+                threadIds.forEach(threadId => {
+                    API.getReplies(threadId)
+                        .then()
+                })
             })
-
+        
+        
     }
 
     createThreadHandleChange = e => {
+        console.log("change");
         const { name, value } = e.target;
 
         let oldCreateThread = this.state.createThread;
@@ -74,10 +82,16 @@ class Community extends Component {
     createThreadHandleClick = e => {
         e.preventDefault();
 
-        console.log(this.props.match.params);
-
         const newThread = this.state.createThread;
         newThread.community = this.props.match.params.id;
+        console.log(e.target);
+        console.log(e.target.title);
+        console.log(e.target.id);
+
+        if (e.target.isReply) {
+            newThread.parentThread = e.target.key;
+            newThread.title = e.target.title;
+        }
 
         API.createThread(newThread)
             .then(response => {
@@ -87,22 +101,17 @@ class Community extends Component {
 
                 API.getCommunity(id)
                     .then(response => {
-                        console.log(response.data.threads);
                         return this.setState({
                             threadIds: response.data.threads,
                         })
                     }).then(response => {
-                        console.log("comp did mount then response", response);
-                        console.log("state threadIds", this.state.threadIds);
                         const threadIds = this.state.threadIds;
                         return threadIds;
                     }).then(threadIds => {
                         threadIds.forEach(async threadId => {
                             const response = await API.getThread(threadId);
-                            console.log(response.data);
                             let newThreadObjects = this.state.threadObjects;
                             newThreadObjects.push(response.data);
-                            newThreadObjects.sort((a, b) => (a.date < b.date));
                             this.setState({
                                 threadObjects: newThreadObjects,
                             });
@@ -117,8 +126,8 @@ class Community extends Component {
                 <Row className="my-4">
                     <UserSidebar user={this.state.user} />
                     <CommunityPanel
-                        headerImage={this.state.community.headerImage}
-                        title={this.state.community.title}
+                        headerImage={this.state.community.headerImage || ""}
+                        title={this.state.community.communityName}
                         alerts={this.state.community.alerts}
                         about={this.state.community.about}
                         active={this.state.activePage}

@@ -12,15 +12,18 @@ export const CommunityBoard = props => {
                     <h4>Message Board</h4>
                 </Col>
                 <Col size="md-6" className="d-flex pb-2">
-                    <CreateThreadModal 
+                    <CreateThreadModal
                         createThread={props.createThread}
                         createThreadHandleChange={props.createThreadHandleChange}
                         createThreadHandleClick={props.createThreadHandleClick}
                     />
                 </Col>
             </Row>
-            {props.threadObjects.map(thread => <CommunityBoardPost 
-                thread={thread} 
+            {props.threadObjects.map(thread => <CommunityBoardPost
+                createThread={props.createThread}
+                createThreadHandleChange={props.createThreadHandleChange}
+                createThreadHandleClick={props.createThreadHandleClick}
+                thread={thread}
                 key={thread._id}
             />)}
         </Container>

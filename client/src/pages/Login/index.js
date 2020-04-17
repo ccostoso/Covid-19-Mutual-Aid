@@ -32,7 +32,9 @@ class Login extends Component {
         API.signIn(user)
             .then(res => {
                 console.log(res);
-            });
+                return 
+            })
+            .then()
     }
 
     render() {
