@@ -19,8 +19,8 @@ import './App.css';
 const GlobalStyle = createGlobalStyle `
 body {
   background-color: ${props => props.theme.mode === 'dark' ? '#191515' : '#EEE'};
-  color: ${props => props.theme.mode === 'dark' ? '#EEE' : '#111'}
-  font-size: ${props => props.theme.size === 'normal' ? '1em' : '1.2em' }
+  color: ${props => props.theme.mode === 'dark' ? '#EEE' : '#111'};
+  font-size: ${props => props.theme.size === 'normal' ? '1em' : '1.2em'};
 }
 nav {
   background-color: ${props => props.theme.mode === 'dark' ? '#730808' : '#e00a0a'};
@@ -60,22 +60,22 @@ class App extends Component {
   handleSetBrightness = event => {
     event.preventDefault()
     console.log(event.target);
-    var newState= this.state.theme;
+    var newState = this.state.theme;
     newState.mode = event.target.value
     
     this.setState({
-      theme: newState    
+      theme: newState
     })
   };
 
   handleSetFontSize = event => {
     event.preventDefault()
-      console.log(event.target);
-      var newState= this.state.theme;
-      newState.size = event.target.value
-      this.setState({
-        theme: newState
-      })
+    console.log(event.target);
+    var newState = this.state.theme;
+    newState.size = event.target.value
+    this.setState({
+      theme: newState
+    })
   };
 
 
