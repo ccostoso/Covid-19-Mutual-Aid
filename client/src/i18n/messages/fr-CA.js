@@ -30,6 +30,7 @@ export default {
         "Light": "Lumière",
         "Dark": "Foncé",
         "Normal": "Ordinaire",
-        "Magnify": "Amplifier"
+        "Magnify": "Amplifier",
+        "Chinese": "Chinoise"
     }
 }
