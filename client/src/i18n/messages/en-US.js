@@ -31,6 +31,7 @@ export default {
         "Light": "Light",
         "Dark": "Dark",
         "Normal": "Normal",
-        "Magnify": "Magnify"
+        "Magnify": "Magnify",
+        "Chinese": "Chinese"
     }   
     }

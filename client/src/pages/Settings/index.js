@@ -77,6 +77,8 @@ class Settings extends Component {
                             <p className='languages'>{translate("Languages")}</p>
                             <button value={LOCALES.ENGLISH} onClick={this.props.setLanguage}>{translate("English")}</button>
                             <button value={LOCALES.FRENCH}  onClick={this.props.setLanguage}>{translate("French")}</button>
+                            <button value={LOCALES.CHINESE}  onClick={this.props.setLanguage}>{translate("Chinese")}</button>
+
                             </div>
 
                             <br></br>
