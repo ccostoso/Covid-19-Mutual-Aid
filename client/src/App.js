@@ -13,7 +13,7 @@ import './App.css';
 const GlobalStyle = createGlobalStyle`
 body {
   background-color: ${props => props.theme.mode === 'dark' ? '#191515' : '#EEE'};
-  color: ${props => props.theme.mode === 'dark' ? '#EEE' : '#111'};
+  color: ${props => props.theme.mode === 'dark' ? '#EEE' : '#191515'};
   font-size: ${props => props.theme.size === 'normal' ? '1em' : '1.2em'};
 }
 nav {
