@@ -8,6 +8,7 @@ import API from "../../utils/API";
 import "./style.css";
 import { LOCALES } from '../../i18n';
 import translate from '../../i18n/translate';
+// import setTheme from './i18n/themeFont/useTheme';
 
 
 
@@ -76,8 +77,8 @@ class Settings extends Component {
                             <div>
                             <p className='languages'>{translate("Languages")}</p>
                             <button value={LOCALES.ENGLISH} onClick={this.props.setLanguage}>{translate("English")}</button>
-                            <button value={LOCALES.FRENCH}  onClick={this.props.setLanguage}>{translate("French")}</button>
-                            <button value={LOCALES.CHINESE}  onClick={this.props.setLanguage}>{translate("Chinese")}</button>
+                            <button value={LOCALES.FRENCH} onClick={this.props.setLanguage}>{translate("French")}</button>
+                            <button value={LOCALES.CHINESE} onClick={this.props.setLanguage}>{translate("Chinese")}</button>
 
                             </div>
 

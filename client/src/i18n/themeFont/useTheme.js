@@ -2,7 +2,7 @@
 // import storage from 'local-storage-fallback';
 
 // export default function useTheme(
-//     defaultTheme={ mode: 'light', textZoom: 'normal' }) 
+//     defaultTheme={ mode: 'light', size: 'normal' }) 
 //     {
 //     const[theme, _setTheme] = useState(getInitialTheme)
 
@@ -21,7 +21,7 @@
 //     );
 //     return {
 //         ...theme,
-//         setTheme: ({setTheme, ...theme}) = _setTheme(theme)
-//     }
+//         setTheme: ({setTheme, ...theme}) => _setTheme(theme)
+//     };
 // }
 

@@ -9,7 +9,7 @@ import Settings from "./pages/Settings";
 import { I18nProvider, LOCALES } from './i18n';
 // import translate from './i18n/translate';
 // import storage from 'local-storage-fallback';
-// import useTheme from './i18n/themeFont/useTheme'
+// import useTheme from './i18n/themeFont/useTheme';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import './App.css';
 // import style from 'styled-theming';
