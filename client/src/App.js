@@ -10,6 +10,11 @@ import { I18nProvider, LOCALES } from './i18n';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import './App.css';
 
+
+
+// A helper function to generate a special StyledComponent that handles global styles.
+// Returns a StyledComponent that does not accept children. 
+// Place it at the top of your React tree and the global styles will be injected when the component is "rendered". 
 const GlobalStyle = createGlobalStyle`
 body {
   background-color: ${props => props.theme.mode === 'dark' ? '#191515' : '#EEE'};
@@ -41,6 +46,8 @@ class App extends Component {
   //   // Do this two lines only when setting up the application
   // }
 
+  
+  //triggers the selection of languages to be rendered throughout the app
   handleSetLanguage = event => {
     event.preventDefault()
     console.log(event.target.value);
@@ -49,7 +56,7 @@ class App extends Component {
       locale: event.target.value
     })
   };
-
+  //triggers the dark and light mode theme to the app
   handleSetBrightness = event => {
     event.preventDefault()
     console.log(event.target);
@@ -61,7 +68,7 @@ class App extends Component {
       }
     })
   };
-
+  //triggers whether the font throughout the app will be magnified or not
   handleSetFontSize = event => {
     event.preventDefault()
     console.log(event.target);
