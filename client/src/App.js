@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, useParams, useRouteMatch } from "react-router-dom";
 import { Nav } from "./components/UniversalComponents/Nav";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -21,12 +21,11 @@ nav {
 }
 `;
 
-
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      locale: LOCALES.FRENCH,
+      locale: LOCALES.ENGLISH,
       theme: {
         mode: 'light',
         size: 'normal'
@@ -85,7 +84,7 @@ class App extends Component {
               <Nav />
               <Route exact path="/" component={Login} />
               <Route exact path="/register" component={Register} />
-              <Route path="/home" component={Home} />
+              <Route path="/home/:id" component={Home} _id={this.state.hi} />
               <Route path="/community/:id" component={Community} />
               <Route path="/settings" component={() => <Settings setLanguage={this.handleSetLanguage} setBrightness={this.handleSetBrightness} setFontSize={this.handleSetFontSize} />} />
             </Router>

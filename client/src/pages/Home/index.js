@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, Row } from "../../components/UniversalComponents/Grid";
 import { UserPanel } from "../../components/HomeComponents/UserPanel";
 import { UserSidebar } from "../../components/UniversalComponents/UserSidebar";
+import API from "../../utils/API";
 
 
 
@@ -9,7 +10,10 @@ class Home extends Component {
     state = {
         user: {
             displayName: "Dem O. User",
-            username: "DemoUser"
+            email: "DemoUser",
+            communities: [
+                
+            ]
         },
         communities: [
             {
@@ -30,11 +34,48 @@ class Home extends Component {
                 position: "Moderator",
                 id: 3
             }
-        ]
+        ],
+        createCommunity: {
+            communityName: "",
+            creator: "",
+            description: "",
+        },
     }
 
     componentDidMount() {
+        const { id } = this.props.match.params;
+        console.log("id", id);
+        console.log("props.match", this.props.match.params);
+        
+        API.getUser(id)
+            .then(res => {
+                console.log(res.data);
+                this.setState({
+                    user: res.data
+                })
+            })
+            .catch(err => console.log(err));
+    }
 
+    createCommunityHandleChange = e => {
+        const { name, value } = e.target;
+
+        let newCreateCommunity = this.state.createCommunity;
+        newCreateCommunity[name] = value;
+
+        this.setState({
+            createCommunity: newCreateCommunity,
+        })
+    }
+
+    createCommunityHandleClick = e => {
+        e.preventDefault();
+
+        let newCommunity = this.state.createCommunity;
+        newCommunity["creator"] = this.props.match.params.id;
+        console.log(newCommunity);
+
+        API.createCommunity(newCommunity);
     }
 
     render() {
@@ -42,7 +83,12 @@ class Home extends Component {
             <Container>
                 <Row className="my-4">
                     <UserSidebar user={this.state.user} />
-                    <UserPanel communities={this.state.communities} />
+                    <UserPanel 
+                        communities={this.state.communities}  
+                        createCommunityHandleChange={this.createCommunityHandleChange}
+                        createCommunityHandleClick={this.createCommunityHandleClick}
+                        createCommunity={this.state.createCommunity}
+                    />
                 </Row>
             </Container>
         )

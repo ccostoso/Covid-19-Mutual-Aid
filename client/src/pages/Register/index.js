@@ -11,7 +11,6 @@ class Register extends Component {
         displayName: '',
         email: '',
         password: '',
-        age: '',
         jsonMessage: ''
     }
 
@@ -36,20 +35,13 @@ class Register extends Component {
             displayName: this.state.displayName,
             email: this.state.email,
             password: this.state.password,
-            age: this.state.age
         }
 
         API.signUp(newUser)
             .then(res => {
-                console.log(res);
-                
                 if (!res.data.success) {
                     this.setState({
                         jsonMessage: res.data.message,
-                        displayName: '',
-                        email: '',
-                        password: '',
-                        age: ''
                     })
                 }
             });
