@@ -6,7 +6,8 @@ const UserPassport = require("../db/models/userpassport");
 // Defining methods for the communityController
 module.exports = {
     create: function (req, res) {
-        const { threadId, body, community, author } = req.body;
+        console.log("req.body for new reply", req.body);
+        const { parentThread, body, community, author } = req.body;
 
         // ADD VALIDATION
         UserPassport.findOne({ 'email': author })
@@ -18,8 +19,8 @@ module.exports = {
                     })
                 }
 
-                const newReply = new Thread({
-                    'parentThread': threadId,
+                const newReply = new Reply({
+                    'parentThread': parentThread,
                     'body': body,
                     'community': community,
                     'author': userMatch._id,
@@ -31,9 +32,9 @@ module.exports = {
             .then(savedReply => {
                 console.log("SAVED REPLY", savedReply);
                 return Promise.all([
-                    Community.findOneAndUpdate({ communityName: savedThread.community }, { $push: { threads: savedThread._id } }, { new: true }),
-                    UserPassport.findOneAndUpdate({ _id: savedThread.author }, { $push: { threads: savedThread._id } }, { new: true }),
-                    Thread.findOneAndUpdate({ _id: savedThread.parentThread },{ $push: { childThreads: savedThread._id } }, { new: true} )
+                    Community.findOneAndUpdate({ communityName: savedReply.community }, { $push: { threads: savedReply._id } }, { new: true }),
+                    UserPassport.findOneAndUpdate({ _id: savedReply.author }, { $push: [{ threads: savedReply._id }, { communities: savedReply.community }] }, { new: true }),
+                    Thread.findOneAndUpdate({ _id: savedReply.parentThread }, { $push: { replies: savedReply._id } }, { new: true } )
                 ])
             })
             .then(result => {

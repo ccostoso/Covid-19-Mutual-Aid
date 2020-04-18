@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Community from "./pages/Community";
+import Thread from "./pages/Thread";
 
 class App extends Component {
   state = {
@@ -19,6 +20,7 @@ class App extends Component {
         <Route exact path="/register" component={Register} />
         <Route path="/home/:id" component={Home} _id={this.state.hi} />
         <Route path="/community/:id" component={Community} />
+        {/* <Route path="/community/:id/thread/:id" component={Thread} /> */}
       </Router>
     )
   }

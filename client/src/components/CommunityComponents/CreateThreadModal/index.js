@@ -82,7 +82,7 @@ export const CreateReplyModal = props => {
                             <Input
                                 name="title"
                                 value={`Re: ${props.thread.title}`}
-                                onChange={props.createThreadHandleChange}
+                                onChange={props.createReplyHandleChange}
                                 placeholder={`Re: ${props.thread.title}`}
                             >
 
@@ -90,8 +90,8 @@ export const CreateReplyModal = props => {
                             Thread Author:
                             <Input
                                 name="author"
-                                value={props.createThread.author}
-                                onChange={props.createThreadHandleChange}
+                                value={props.createReply.author}
+                                onChange={props.createReplyHandleChange}
                                 placeholder="Thread Author"
                             >
 
@@ -99,8 +99,8 @@ export const CreateReplyModal = props => {
                             Response Body:
                             <TextArea
                                 name="body"
-                                value={props.createThread.body}
-                                onChange={props.createThreadHandleChange}
+                                value={props.createReply.body}
+                                onChange={props.createReplyHandleChange}
                                 placeholder="Message Body"
                             >
 
@@ -112,11 +112,10 @@ export const CreateReplyModal = props => {
                                 type="button"
                                 className="btn btn-primary"
                                 data-dismiss="modal"
-                                onClick={props.createThreadHandleClick}
+                                onClick={props.createReplyHandleClick}
                                 key={props.thread._id}
                                 id={props.thread._id}
                                 title={props.thread.title}
-                                isReply={true}
                             >
                                 Reply
                             </FormBtn>

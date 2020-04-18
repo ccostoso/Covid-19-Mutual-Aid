@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const createReplyController = require("../../../controllers/createReplyController");
 
-// Matches with "/api/community"
+// Matches with "/api/replies/"
 router.route("/")
   .post(createReplyController.create);
 

@@ -13,7 +13,10 @@ export const CommunityPanel = ({ headerImage,
                                 threadObjects,
                                 createThread,
                                 createThreadHandleChange,
-                                createThreadHandleClick
+                                createThreadHandleClick,
+                                createReply,
+                                createReplyHandleChange,
+                                createReplyHandleClick
                                 }) => {
     return (
         <Col size="md-10" className="border-left">
@@ -27,6 +30,9 @@ export const CommunityPanel = ({ headerImage,
                 createThread={createThread}
                 createThreadHandleChange={createThreadHandleChange}
                 createThreadHandleClick={createThreadHandleClick}
+                createReply={createReply}
+                createReplyHandleChange={createReplyHandleChange}
+                createReplyHandleClick={createReplyHandleClick}
             />
             {/* <NewsAndAlerts 
                 alerts={alerts}

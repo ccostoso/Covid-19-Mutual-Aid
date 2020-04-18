@@ -8,19 +8,14 @@ const threadSchema = new Schema({
   author: { type: String, required: true },
   authorName: { type: String, required: true },
   date: { type: Date, default: Date.now },
-  replied: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
   parentThread: {
     type: Schema.Types.ObjectId,
     ref: "Thread",
   },
-  childThreads: [
+  replies: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Thread",
+      ref: "Reply",
     }
   ]
 });

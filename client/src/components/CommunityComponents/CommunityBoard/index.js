@@ -20,9 +20,9 @@ export const CommunityBoard = props => {
                 </Col>
             </Row>
             {props.threadObjects.map(thread => <CommunityBoardPost
-                createThread={props.createThread}
-                createThreadHandleChange={props.createThreadHandleChange}
-                createThreadHandleClick={props.createThreadHandleClick}
+                createReply={props.createReply}
+                createReplyHandleChange={props.createReplyHandleChange}
+                createReplyHandleClick={props.createReplyHandleClick}
                 thread={thread}
                 key={thread._id}
             />)}

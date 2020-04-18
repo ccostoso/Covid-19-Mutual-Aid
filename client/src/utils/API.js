@@ -23,6 +23,7 @@ export default {
     },
     getCommunity: function(id) {
         console.log("Community id is:", id);
+        console.log("!!!!!!!!!!I AM RUNNING!!!!!!!!!!");
         return axios.get("/api/community/getCommunity/" + id);
     },
     createThread: function(newThread) {
@@ -39,13 +40,12 @@ export default {
     },
     createReply: function(newReply) {
         console.log("New reply is:", newReply);
-        return axios.get("/api/reply/create");
+        return axios.post("/api/replies/create", newReply);
     },
     getReplies: function(threadId) {
-        console.log("Thread id is:", threadId);
-        return axios.get("/api/reply/getReplies");
-        
-    }
+        console.log("For getReplies, thread id is:", threadId);
+        return axios.get("/api/replies/getReplies/" + threadId);
+    },
     // putUser: function(id) {
     //     return axios.put("/api/account/user/" + id);
     // },
