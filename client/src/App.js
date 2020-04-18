@@ -25,7 +25,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      locale: LOCALES.FRENCH,
+      locale: LOCALES.ENGLISH,
       theme: {
         mode: 'light',
         size: 'normal'
