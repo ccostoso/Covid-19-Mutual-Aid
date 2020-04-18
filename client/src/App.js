@@ -80,8 +80,9 @@ class App extends Component {
       }
     })
   };
-
-  render() {
+  //"ThemeProvider" A helper component for theming. Injects the theme into all styled components 
+  // anywhere beneath it in the component tree, via the context API.
+render() {
     return (
       <I18nProvider locale={this.state.locale}>
         <ThemeProvider theme={this.state.theme}>
