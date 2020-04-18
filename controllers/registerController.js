@@ -1,27 +1,31 @@
-// const User = require("../models/user");
-// const passport = require("../passport");
+const UserPassport = require("../db/models/userpassport");
 
-// module.exports = {
-//     findAll: function () {
-
-//     },
-//     create: function(req, res) {
-//         const { username, password } = req.body
-//         // ADD VALIDATION
-//         User.findOne({ 'local.username': username }, (err, userMatch) => {
-//             if (userMatch) {
-//                 return res.json({
-//                     error: `Sorry, already a user with the username: ${username}`
-//                 })
-//             }
-//             const newUser = new User({
-//                 'local.username': username,
-//                 'local.password': password
-//             })
-//             newUser.save((err, savedUser) => {
-//                 if (err) return res.json(err)
-//                 return res.json(savedUser)
-//             })
-//         })
-//     }
-// }
+module.exports = {
+    create: function(req, res) {
+    
+        const { displayName, email, password } = req.body
+        // ADD VALIDATION
+        UserPassport.findOne({ 'email': email }, (err, userMatch) => {
+            console.log("USER MATCH", userMatch)
+            if (userMatch) {
+                return res.json({
+                    error: `Sorry, already an account with the email address: ${email}`
+                })
+            }
+            const newUser = new UserPassport({
+                'email': email,
+                'password': password,
+                'displayName': displayName,
+            })
+            
+            newUser.save((err, savedUser) => {
+                if (err)  {
+                    console.log('error!!!!', err)
+                    return res.json(err);
+                }
+                // console.log("I MADE IT", savedUser)
+                return res.json(savedUser);
+            })
+        })
+    }
+}
