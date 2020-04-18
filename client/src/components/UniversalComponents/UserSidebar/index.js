@@ -5,7 +5,7 @@ export const UserSidebar = ({ user }) => {
     return (
         <Col size="md-2">
             <p>{user.displayName}</p>
-            <p>@{user.username}</p>
+            <p>{user.email}</p>
             <p>{user.needs}</p>
             <p>{user.skills}</p>
         </Col>
