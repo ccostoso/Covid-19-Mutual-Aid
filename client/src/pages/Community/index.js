@@ -58,7 +58,7 @@ class Community extends Component {
                     newThreadObjects.unshift(response.data);
                     this.setState({
                         threadObjects: newThreadObjects,
-                    }, this.getThreads(id));
+                    }, this.getReplies(id));
                 })
             })
 
@@ -81,65 +81,23 @@ class Community extends Component {
 
         const newThread = this.state.createThread;
         newThread.community = this.props.match.params.id;
-        console.log(e.target);
-        console.log(e.target.title);
-        console.log(e.target.id);
-
-        // API.createThread(newThread)
-        //     .then(response => {
-        //         const { id } = this.props.match.params;
-        //         console.log("id", id);
-        //         console.log("props.match", this.props.match.params);
-
-        //         API.getCommunity(id)
-        //             .then(response => {
-        //                 return this.setState({
-        //                     threadIds: response.data.threads,
-        //                 })
-        //             }).then(response => {
-        //                 const threadIds = this.state.threadIds;
-        //                 return threadIds;
-        //             }).then(threadIds => {
-        //                 threadIds.forEach(async threadId => {
-        //                     const response = await API.getThread(threadId);
-        //                     let newThreadObjects = this.state.threadObjects;
-        //                     newThreadObjects.push(response.data);
-        //                     this.setState({
-        //                         threadObjects: newThreadObjects,
-        //                     }, this.getThreads(id));
-        //                 })
-        //             })
-        //     })
+        // console.log(e.target);
+        // console.log(e.target.title);
+        // console.log(e.target.id);
     }
 
-    getThreads = communityId => {
-        // get threads and community information
-        // let newThreadObjects;
-
-
-        // const threadIds = this.state.threadIds;
-        // let newThreadObjects = this.state.threadObjects;
-        // console.log("original thread object values", newThreadObjects)
-        // threadIds.forEach(async threadId => {
-        //     const response = await API.getThread(threadId);
-
-        //     newThreadObjects.unshift(response.data);
-        //     this.setState({
-        //         threadObjects: newThreadObjects,
-        //     });
-        // })
-
+    getReplies = communityId => {
         let oldThreadObjectsArray = this.state.threadObjects;
-        console.log('oldThreadObjects', oldThreadObjectsArray);
-        console.log('oldThreadObjects length', oldThreadObjectsArray.length);
+        // console.log('oldThreadObjects', oldThreadObjectsArray);
+        // console.log('oldThreadObjects length', oldThreadObjectsArray.length);
         const newThreadObjectsArray = []
         oldThreadObjectsArray.map( threadObj => {
-            console.log("threadObj", threadObj._id);
+            // console.log("threadObj", threadObj._id);
              API.getReplies(threadObj._id)
                 .then(response => {
-                    console.log("THREAD OBJ IN THEN", threadObj)
-                    console.log("response LINE 138", response);
-                    console.log("NEW UPDATED THREAD OBJ", {...threadObj, replyObjectsArray : response.data})
+                    // console.log("THREAD OBJ IN THEN", threadObj)
+                    // console.log("response LINE 138", response);
+                    // console.log("NEW UPDATED THREAD OBJ", {...threadObj, replyObjectsArray : response.data})
                     return {...threadObj, replyObjectsArray : response.data}
                 }).then(res => {
                     newThreadObjectsArray.push(res)
@@ -147,84 +105,13 @@ class Community extends Component {
                         threadObjects: newThreadObjectsArray,
                     });
                 })
-                console.log("FINAL STATE UPDATED", newThreadObjectsArray)
+                // console.log("FINAL STATE UPDATED", newThreadObjectsArray)
         });
-        console.log("newThreadObjectsArray", newThreadObjectsArray);
-
-
-        //KEEEEEEEEEEEEEEEEEEEEEEEEP
-        // return threadObjects;
-
-        // })
-
-        // API.getCommunity(communityId)
-        //     .then(response => {
-        //         // update state to have community information
-        //         this.setState({
-        //             community: response.data,
-        //             threadIds: response.data.threads,
-        //         })
-        //         console.log("this.state", this.state);
-
-        //         // declare variable of array of thread ids from state
-        //         const threadIds = this.state.threadIds;
-
-        //         // decalre newThreadObjects as copy of existing this.state.threadObjects
-        //         newThreadObjects = this.state.threadObjects;
-
-        //         // FIRST for each thread id in state.threadIds
-        //         threadIds.forEach(threadId => {
-
-        //             // call getThread from utils/API.js
-        //             API.getThread(threadId)
-        //                 .then(response => {
-
-        //                     // get thread object with array of reply IDs
-        //                     console.log("response for getThread/first loop", response);
-
-        //                     // unshift response.data into newThreadObjects
-        //                     newThreadObjects.unshift(response.data);
-
-        //                     return newThreadObjects;
-        //                 }).then(newThreadObjects => {
-        //                     console.log("!!!! line 127 newThreadObjects", newThreadObjects);
-
-
-        //                     // SECOND for each threadObject in array newThreadObjects
-        //                     newThreadObjects.forEach(newThreadObj => {
-
-        //                         // get reply objects from back end based on thread ID
-        //                         const response = async () => {
-        //                             API.getReplies(newThreadObj._id) => {
-
-        //                             }
-        //                         })
-        //                             .then(response => {
-        //                         console.log("response for getReplies/second loop", response);
-
-        //                         // assign response.data to newThreadObj.replyObject
-        //                         newThreadObj.replyObjects = response.data;
-        //                     })
-        //                     })
-
-        //         })
-
-        //         console.log("newThreadObjects after getThread call, before getReplies", newThreadObjects);
-
-        //     })
-
-
-
-        // this.setState({
-        //     threadObjects: newThreadObjects
-        // })
-
-        // console.log("this.state", this.state);
-        // })
+        // console.log("newThreadObjectsArray", newThreadObjectsArray);
     }
 
     createReplyHandleChange = e => {
-        console.log("change");
+        // console.log("change");
         const { name, value } = e.target;
 
         let oldCreateReply = this.state.createReply;
@@ -242,10 +129,10 @@ class Community extends Component {
 
         const newReply = this.state.createReply;
         newReply.parentThread = id;
-        console.log(newReply);
-        console.log(e.target);
-        console.log(e.target.title);
-        console.log(e.target.id);
+        // console.log(newReply);
+        // console.log(e.target);
+        // console.log(e.target.title);
+        // console.log(e.target.id);
 
         API.createReply(newReply);
 
