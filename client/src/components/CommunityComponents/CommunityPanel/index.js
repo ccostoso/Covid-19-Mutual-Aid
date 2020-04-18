@@ -5,7 +5,7 @@ import { CommunityPanelNav } from "../CommunityPanelNav";
 import { NewsAndAlerts } from "../NewsAndAlerts";
 // import { CommunityBoard } from "../CommunityBoard";
 
-export const CommunityPanel = ({headerImage, title, alerts, about}) => {
+export const CommunityPanel = ({headerImage, title, active, alerts, about}) => {
     return (
         <Col size="md-10" className="border-left">
             <CommunityPanelHeader 

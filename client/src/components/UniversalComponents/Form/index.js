@@ -31,7 +31,7 @@ export const FormBtn = props => {
                 ${props.btnsize ? `btn-${props.btnsize}` : "" }
                 ${props.className ? props.className : ""}
             `} 
-            // {...props}
+            {...props}
             >
                 {props.children}
         </button>

@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "../../components/UniversalComponents/Grid";
 import { Input, FormBtn } from "../../components/UniversalComponents/Form";
+import { Alert } from "../../components/UniversalComponents/Alert";
+import API from "../../utils/API";
 // import { Link } from "react-router-dom";
+import translate from '../../i18n/translate';
 
 class Register extends Component {
     state = {
-
+        displayName: '',
+        email: '',
+        password: '',
+        age: '',
+        jsonMessage: ''
     }
 
     componentDidMount() {
@@ -13,7 +20,7 @@ class Register extends Component {
     }
 
     handleChange = e => {
-        const { name, value } = e;
+        const { name, value } = e.target;
 
         this.setState({
             [name]: value
@@ -22,6 +29,30 @@ class Register extends Component {
 
     handleClick = e => {
         e.preventDefault();
+
+        console.log(e);
+
+        const newUser = {
+            displayName: this.state.displayName,
+            email: this.state.email,
+            password: this.state.password,
+            age: this.state.age
+        }
+
+        API.signUp(newUser)
+            .then(res => {
+                console.log(res);
+                
+                if (!res.data.success) {
+                    this.setState({
+                        jsonMessage: res.data.message,
+                        displayName: '',
+                        email: '',
+                        password: '',
+                        age: ''
+                    })
+                }
+            });
     }
 
     render() {
@@ -31,14 +62,14 @@ class Register extends Component {
                     <Col size="md-6" className="border rounded py-3">
                         <form>
                             <p className="text-center">
-                                <strong>Register</strong>
+                                <strong>{translate("Register")}</strong>
                             </p>
                             <Input 
-                                value={this.state.username}
+                                value={this.state.displayName}
                                 onChange={this.handleChange}
-                                name="username"
+                                name="displayName"
                                 placeholder="required"
-                                label={"Username"}
+                                label={translate("Display Name")}
                             />
                             <Input 
                                 value={this.state.email}
@@ -46,7 +77,7 @@ class Register extends Component {
                                 name="email"
                                 placeholder="required"
                                 type="email"
-                                label="Email"
+                                label={translate("Email")}
                             />
                             <Input 
                                 value={this.state.password}
@@ -54,19 +85,31 @@ class Register extends Component {
                                 name="password"
                                 placeholder="required"
                                 type="password"
-                                label="Password"
+                                label={translate("Password")}
+                            />
+                            <Input 
+                                value={this.state.age}
+                                onChange={this.handleChange}
+                                name="age"
+                                placeholder="required"
+                                type="number"
+                                label={translate("Age")}
                             />
                             <FormBtn
                                 btntype="outline-success"
                                 btnsize="sm"
                                 onClick={this.handleClick}
                             >
-                                Login
+                                {translate("Register")}
                             </FormBtn>
                             <p className="my-1">
-                                <small>We won't share your personal information with anyone.</small>
+                                <small>{translate("We won't share your personal information with anyone.")}</small>
                             </p>
                         </form>
+                        {this.state.jsonMessage && <Alert>
+                            {this.state.jsonMessage}
+                        </Alert>}
+                        
                     </Col>
                 </Row>
             </Container>

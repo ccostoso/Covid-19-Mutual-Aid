@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, Row } from "../../components/UniversalComponents/Grid";
 import { UserSidebar } from "../../components/UniversalComponents/UserSidebar";
 import { CommunityPanel } from "../../components/CommunityComponents/CommunityPanel";
+// import translate from '../../i18n/translate';
 
 class Community extends Component {
     state = {
@@ -17,7 +18,8 @@ class Community extends Component {
             headerImage: "https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/weather/cloud/cumulus-cloud.jpg/",
             alerts: ["a", 2],
             about: "This is our page for Middletown Mutual Aid! Love you xoxo"
-        }
+        },
+        activePage: "NewsAndAlerts"
     }
 
     componentDidMount() {
@@ -28,13 +30,16 @@ class Community extends Component {
         return (
             <Container>
                 <Row className="my-4">
+                    {/* {translate} */}
                     <UserSidebar user={this.state.user} />
                     <CommunityPanel 
                         headerImage={this.state.community.headerImage}
                         title={this.state.community.title}
                         alerts={this.state.community.alerts} 
                         about={this.state.community.about}
+                        active={this.state.activePage}
                     />
+                    <CommunityPanel />
                 </Row>
             </Container>
         )
