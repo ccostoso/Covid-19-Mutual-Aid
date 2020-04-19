@@ -49,7 +49,7 @@ class CommunityBoardPost extends Component {
     }
     
     render() {
-        // console.log("COMMUNITY BOARD POST PROPS", this.props)
+        console.log("COMMUNITY BOARD POST PROPS", this.props)
         const replies = this.props.thread["replyObjectsArray"];
     
         // console.log(this.state.createReply);
@@ -62,7 +62,10 @@ class CommunityBoardPost extends Component {
                 <div className="card-body">{this.props.thread.body}</div>
                 <ul className="list-group list-group-flush">
                     {replies && replies.map(reply => {
-                        return <CommunityBoardPostReply reply={reply} />
+                        return <CommunityBoardPostReply 
+                            reply={reply}
+                            key={reply._id} 
+                        />
                     })}
                     <li className="list-group-item d-flex p-1">
                         <CreateReplyModal

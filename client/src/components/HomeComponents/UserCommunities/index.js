@@ -3,8 +3,10 @@ import { Row } from "../../UniversalComponents/Grid";
 import { Link } from "react-router-dom";
 import translate from '../../../i18n/translate';
 import { CreateCommunityModal } from "../CreateCommunityModal";
+import { UserCommunityListCard } from "../UserCommunityListCard";
 
 export const UserCommunities = props => {
+    console.log("USER COMMUNITIES DISPLAY PROPS", props);
     return (
         <main>
             <section className="d-flex justify-content-between">
@@ -18,18 +20,22 @@ export const UserCommunities = props => {
             <Row>
                 {props.communities && props.communities.map(community => {
                     return (
-                        <div className="col-md-6 mb-4" key={community.id}>
-                            <section className="card">
-                                <header className="card-header">
-                                    {community.communityName}
-                                </header>
-                                <div className="card-body">
-                                    <p>{community.memberCount}</p>
-                                    <p>{community.position}</p>
-                                    <Link to={`/community/${community.id}`} className="btn btn-success">{translate("Go to Community")}</Link>
-                                </div>
-                            </section>
-                        </div>
+                        <UserCommunityListCard
+                            community={community}
+                            key={community._id}
+                        />
+                        // <div className="col-md-6 mb-4" key={community.id}>
+                        //     <section className="card">
+                        //         <header className="card-header">
+                        //             {community.communityName}
+                        //         </header>
+                        //         <div className="card-body">
+                        //             <p>{community.memberCount}</p>
+                        //             <p>{community.position}</p>
+                        //             <Link to={`/community/${community.id}`} className="btn btn-success">{translate("Go to Community")}</Link>
+                        //         </div>
+                        //     </section>
+                        // </div>
                     )
                 })}
             </Row>

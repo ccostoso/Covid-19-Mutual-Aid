@@ -16,24 +16,24 @@ class Home extends Component {
             ]
         },
         communities: [
-            {
-                title: "Middletown Mutual Aid",
-                memberCount: 45,
-                position: "Administrator",
-                id: 1
-            },
-            {
-                title: "Middlesex County Mutual Aid",
-                memberCount: 255,
-                position: "Member",
-                id: 2
-            },
-            {
-                title: "123 Fake Street Apt #45 Mutual Aid",
-                memberCount: 19,
-                position: "Moderator",
-                id: 3
-            }
+            // {
+            //     title: "Middletown Mutual Aid",
+            //     memberCount: 45,
+            //     position: "Administrator",
+            //     id: 1
+            // },
+            // {
+            //     title: "Middlesex County Mutual Aid",
+            //     memberCount: 255,
+            //     position: "Member",
+            //     id: 2
+            // },
+            // {
+            //     title: "123 Fake Street Apt #45 Mutual Aid",
+            //     memberCount: 19,
+            //     position: "Moderator",
+            //     id: 3
+            // }
         ],
         createCommunity: {
             communityName: "",
@@ -62,7 +62,8 @@ class Home extends Component {
                 console.log(communityObjects);
 
                 userCommunities.forEach(async communityId => {
-                    const response = await API.getCommunity(communityId)
+                    const response = await API.getCommunityById(communityId);
+                    console.log("response for getCommunity", response);
                     communityObjects.unshift(response.data);
                     this.setState({
                         communities: communityObjects
@@ -100,7 +101,7 @@ class Home extends Component {
                 <Row className="my-4">
                     <UserSidebar user={this.state.user} />
                     <UserPanel 
-                        communities={this.state.user.communities}  
+                        communities={this.state.communities}  
                         createCommunityHandleChange={this.createCommunityHandleChange}
                         createCommunityHandleClick={this.createCommunityHandleClick}
                         createCommunity={this.state.createCommunity}
