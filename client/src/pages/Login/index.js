@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { LoginComponent } from "../../components/UniversalComponents/LoginComponent";
 import API from "../../utils/API";
+import { Redirect } from "react-router-dom";
 
 class Login extends Component {
     state = {
         email: '',
         password: '',
         jsonMessage: '',
+        user: "",
+        // loggedIn: false,
     }
 
     componentDidMount() {
@@ -21,7 +24,7 @@ class Login extends Component {
         })
     }
 
-    handleClick = e => {
+    handleClick = async e => {
         e.preventDefault();
 
         const user = {
@@ -29,22 +32,27 @@ class Login extends Component {
             password: this.state.password
         };
 
-        API.signIn(user)
-            .then(res => {
-                console.log(res);
-                return 
-            })
-            .then()
+        const response = await API.signIn(user)
+        console.log("LOGIN RESPONSE", response);
+
+        response.status === 200 && this.setState({
+            user: response.data._id,
+            loggedIn: true,
+        })
     }
 
     render() {
-        return <LoginComponent 
-            email={this.state.email}
-            // username={this.state.username}
-            password={this.state.password}
-            handleChange={this.handleChange}
-            handleClick={this.handleClick}
-             />
+        return (
+            <div>
+                <LoginComponent 
+                email={this.state.email}
+                password={this.state.password}
+                handleChange={this.handleChange}
+                handleClick={this.handleClick}
+                />
+                {this.state.user && <Redirect to={`/home/${this.state.user}`}/>}
+            </div>
+        )
     }
 }
 

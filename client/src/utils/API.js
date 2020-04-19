@@ -23,13 +23,15 @@ export default {
     },
     getCommunity: function(communityName) {
         console.log("Community name is:", communityName);
-        console.log("!!!!!!!!!!I AM RUNNING!!!!!!!!!!");
         return axios.get("/api/community/getCommunity/" + communityName);
     },
     getCommunityById: function(id) {
         console.log("Community id is:", id);
-        console.log("!!!!!!!!!!I AM RUNNING!!!!!!!!!!");
         return axios.get("/api/community/getCommunityById/" + id);
+    },
+    putCommunity: function(communityName, data) {
+        console.log("Community name is:", communityName);
+        return axios.put("/api/community/putCommunity/" + communityName, data);
     },
     createThread: function(newThread) {
         console.log("New thread is:", newThread);

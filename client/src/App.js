@@ -34,7 +34,9 @@ class App extends Component {
       theme: {
         mode: 'light',
         size: 'normal'
-      }
+      },
+      user: {},
+      isLoggedIn: false,
     }
     this.handleSetLanguage = this.handleSetLanguage.bind(this)
     this.handleSetBrightness = this.handleSetBrightness.bind(this)
@@ -68,6 +70,7 @@ class App extends Component {
       }
     })
   };
+  
   //triggers whether the font throughout the app will be magnified or not
   handleSetFontSize = event => {
     event.preventDefault()
