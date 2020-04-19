@@ -38,18 +38,10 @@ export const CreateCommunityModal = props => {
                             >
                                 
                             </Input>
-                            <Input 
-                                name="creator" 
-                                value={props.createCommunity.creator}
-                                onChange={props.createCommunityHandleChange}
-                                placeholder="Creator"
-                            >
-                                
-                            </Input>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary" onClick={props.createCommunityHandleClick}>Save changes</button>
+                            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={props.createCommunityHandleClick}>Save changes</button>
                         </div>
                     </div>
                 </div>

@@ -21,6 +21,7 @@ export const UserCommunities = props => {
                 {props.communities && props.communities.map(community => {
                     return (
                         <UserCommunityListCard
+                            user={props.user}
                             community={community}
                             key={community._id}
                         />

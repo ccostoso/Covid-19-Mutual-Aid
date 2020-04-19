@@ -13,6 +13,9 @@ export default {
     signIn: function(user) {
         return axios.post("/api/account/login", user)
     },
+    logout: function(user) {
+        return axios.post("/api/account/logout", user)
+    },
     getUser: function(id) {
         console.log("API.js id", id);
         return axios.get("/api/account/user/" + id);

@@ -9,8 +9,7 @@ import Settings from "./pages/Settings";
 import { I18nProvider, LOCALES } from './i18n';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import './App.css';
-
-
+import API from "./utils/API";
 
 // A helper function to generate a special StyledComponent that handles global styles.
 // Returns a StyledComponent that does not accept children. 
@@ -35,24 +34,19 @@ class App extends Component {
         mode: 'light',
         size: 'normal'
       },
-      user: {},
+      user: {
+        email: '',
+        password: '',
+        jsonMessage: '',
+        userId: "",
+      },
       isLoggedIn: false,
     }
-    this.handleSetLanguage = this.handleSetLanguage.bind(this)
-    this.handleSetBrightness = this.handleSetBrightness.bind(this)
-    this.handleSetFontSize = this.handleSetFontSize.bind(this)
   }
 
-
-  //   componentDidMount() {
-  //   // Do this two lines only when setting up the application
-  // }
-
-  
   //triggers the selection of languages to be rendered throughout the app
   handleSetLanguage = event => {
     event.preventDefault()
-    console.log(event.target.value);
 
     this.setState({
       locale: event.target.value
@@ -61,31 +55,59 @@ class App extends Component {
   //triggers the dark and light mode theme to the app
   handleSetBrightness = event => {
     event.preventDefault()
-    console.log(event.target);
     const newMode = event.target.value
-  
+
     this.setState({
       theme: {
         mode: newMode === "light" ? "light" : "dark"
       }
     })
   };
-  
+
   //triggers whether the font throughout the app will be magnified or not
   handleSetFontSize = event => {
     event.preventDefault()
-    console.log(event.target);
     const newSize = event.target.value
-  
+
     this.setState({
       theme: {
         size: newSize === "normal" ? "normal" : "magnify"
       }
     })
   };
+
+  handleChange = e => {
+    const { name, value } = e.target;
+
+    this.setState({
+      user: {
+        ...this.state.user,
+        [name]: value
+      }
+    })
+  }
+
+  handleClick = async e => {
+    e.preventDefault();
+
+    const user = {
+      email: this.state.user.email,
+      password: this.state.user.password
+    };
+
+    const response = await API.signIn(user)
+
+    response.status === 200 && this.setState({
+      user: {
+        ...this.state.user,
+        userId: response.data._id,
+      }
+    })
+  }
+
   //"ThemeProvider" A helper component for theming. Injects the theme into all styled components 
   // anywhere beneath it in the component tree, via the context API.
-render() {
+  render() {
     return (
       <I18nProvider locale={this.state.locale}>
         <ThemeProvider theme={this.state.theme}>
@@ -93,9 +115,21 @@ render() {
             <GlobalStyle />
             <Router>
               <Nav />
-              <Route exact path="/" component={Login} />
+              <Route exact path="/" render={() => {
+                  return <Login
+                    user={this.state.user}
+                    handleChange={this.handleChange}
+                    handleClick={this.handleClick}
+                  />
+                }
+              } />
               <Route exact path="/register" component={Register} />
-              <Route path="/home/:id" component={Home} _id={this.state.hi} />
+              <Route path="/home/:id" render={() => {
+                  return <Home 
+                    user={this.state.user}
+                  />
+                }} 
+              />
               <Route path="/community/:id" component={Community} />
               <Route path="/settings" component={() => <Settings setLanguage={this.handleSetLanguage} setBrightness={this.handleSetBrightness} setFontSize={this.handleSetFontSize} />} />
             </Router>

@@ -10,9 +10,15 @@ export const UserCommunityListCard = props => {
                     {props.community.communityName}
                 </header>
                 <div className="card-body">
+                    {props.community.description}
                     <p>{props.community.memberCount}</p>
                     {/* <p>{props.community.position}</p */}
-                    <Link to={`/community/${props.community.communityName}`} className="btn btn-success">{translate("Go to Community")}</Link>
+                    <Link to={{
+                        pathname: `/community/${props.community.communityName}`,
+                        state: {
+                            user: props.user
+                        }
+                    }} className="btn btn-success">{translate("Go to Community")}</Link>
                 </div>
             </section>
         </div>

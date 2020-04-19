@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row } from "../../components/UniversalComponents/Grid";
-import { UserSidebar } from "../../components/UniversalComponents/UserSidebar";
+import UserSidebar from "../../components/UniversalComponents/UserSidebar";
 import CommunityPanel from "../../components/CommunityComponents/CommunityPanel";
 // import translate from '../../i18n/translate';
 import API from "../../utils/API";
@@ -56,7 +56,11 @@ class Community extends Component {
                         threadObjects: newThreadObjects,
                     }, this.getReplies(id));
                 })
-            })   
+            })
+        
+        this.setState({
+            user: this.props.location.state.user,
+        })
     }
 
     createThreadHandleChange = e => {
@@ -130,7 +134,7 @@ class Community extends Component {
     }
 
     render() {
-        console.log("this.state.user._id", this.state.user._id);
+        console.log("this.props.location.state", this.props.location.state);
         return (
             <Container>
                 <Row className="my-4">
