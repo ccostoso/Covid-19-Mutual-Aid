@@ -3,7 +3,7 @@ import { Col } from "../../UniversalComponents/Grid";
 import { CommunityPanelHeader } from "../CommunityPanelHeader";
 import { CommunityPanelNav } from "../CommunityPanelNav";
 import { NewsAndAlerts } from "../NewsAndAlerts";
-import { CommunityBoard } from "../CommunityBoard";
+import CommunityBoard from "../CommunityBoard";
 
 export const CommunityPanel = ({ headerImage,
                                 title,
@@ -27,6 +27,7 @@ export const CommunityPanel = ({ headerImage,
             />
             <CommunityPanelNav isAdmin={true} />
             <CommunityBoard
+                communityTitle={title}
                 threadObjects={threadObjects}
                 createThread={createThread}
                 createThreadHandleChange={createThreadHandleChange}

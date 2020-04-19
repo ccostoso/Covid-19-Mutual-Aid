@@ -1,11 +1,11 @@
 import React from "react";
 import { Container, Row, Col } from "../../UniversalComponents/Grid";
 import { Alert } from "../../UniversalComponents/Alert";
-import { CommunityBoardPost } from "../CommunityBoardPost";
+import CommunityBoardPost from "../CommunityBoardPost";
 import { CreateThreadModal } from "../CreateThreadModal";
 
 export const CommunityBoard = props => {
-    console.log("PROPS", props);
+    // console.log("COMMUNITYBOARD PROPS", props.threadObjects);
     return (
         <Container fluid className="p-0">
             <Row>
@@ -21,6 +21,7 @@ export const CommunityBoard = props => {
                 </Col>
             </Row>
             {props.threadObjects.map(thread => <CommunityBoardPost
+                communityTitle={props.communityTitle}
                 createReply={props.createReply}
                 createReplyHandleChange={props.createReplyHandleChange}
                 createReplyHandleClick={props.createReplyHandleClick}
@@ -30,3 +31,5 @@ export const CommunityBoard = props => {
         </Container>
     )
 }
+
+export default CommunityBoard;

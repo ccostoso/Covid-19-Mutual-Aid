@@ -29,11 +29,11 @@ class Community extends Component {
             body: "",
             community: this.props.match.params.id,
         },
-        createReply: {
-            author: "",
-            body: "",
-            community: this.props.match.params.id,
-        }
+        // createReply: {
+        //     author: "",
+        //     body: "",
+        //     community: this.props.match.params.id,
+        // }
     }
 
     async componentWillMount() {
@@ -51,19 +51,17 @@ class Community extends Component {
             }).then(response => {
                 const threadIds = this.state.threadIds;
                 let newThreadObjects = this.state.threadObjects;
-                console.log("original thread object values", newThreadObjects)
+                // console.log("original thread object values", newThreadObjects)
                 threadIds.forEach(async threadId => {
-                    console.log("threadId", threadId);
+                    // console.log("threadId", threadId);
                     const response = await API.getThread(threadId);
-                    console.log("AWAIT RESPONSE", response)
+                    // console.log("AWAIT RESPONSE", response)
                     newThreadObjects.unshift(response.data);
                     this.setState({
                         threadObjects: newThreadObjects,
                     }, this.getReplies(id));
                 })
-            })
-
-        
+            })   
     }
 
     createThreadHandleChange = e => {
@@ -113,17 +111,17 @@ class Community extends Component {
         // console.log("newThreadObjectsArray", newThreadObjectsArray);
     }
 
-    createReplyHandleChange = e => {
-        // console.log("change");
-        const { name, value } = e.target;
+    // createReplyHandleChange = e => {
+    //     // console.log("change");
+    //     const { name, value } = e.target;
 
-        let oldCreateReply = this.state.createReply;
-        oldCreateReply[name] = value;
+    //     let oldCreateReply = this.state.createReply;
+    //     oldCreateReply[name] = value;
 
-        this.setState({
-            createReply: oldCreateReply,
-        })
-    }
+    //     this.setState({
+    //         createReply: oldCreateReply,
+    //     })
+    // }
 
     createReplyHandleClick = e => {
         const { id } = e.target;

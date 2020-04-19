@@ -16,12 +16,12 @@ export const UserCommunities = props => {
 
             <hr />
             <Row>
-                {props.communities.map(community => {
+                {props.communities && props.communities.map(community => {
                     return (
                         <div className="col-md-6 mb-4" key={community.id}>
                             <section className="card">
                                 <header className="card-header">
-                                    {community.title}
+                                    {community.communityName}
                                 </header>
                                 <div className="card-body">
                                     <p>{community.memberCount}</p>
