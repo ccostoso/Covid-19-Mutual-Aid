@@ -21,10 +21,15 @@ export default {
         console.log("New community is:", newCommunity);
         return axios.post("/api/community/create", newCommunity);
     },
-    getCommunity: function(id) {
+    getCommunity: function(communityName) {
+        console.log("Community name is:", communityName);
+        console.log("!!!!!!!!!!I AM RUNNING!!!!!!!!!!");
+        return axios.get("/api/community/getCommunity/" + communityName);
+    },
+    getCommunityById: function(id) {
         console.log("Community id is:", id);
         console.log("!!!!!!!!!!I AM RUNNING!!!!!!!!!!");
-        return axios.get("/api/community/getCommunity/" + id);
+        return axios.get("/api/community/getCommunityById/" + id);
     },
     createThread: function(newThread) {
         console.log("New thread is:", newThread);

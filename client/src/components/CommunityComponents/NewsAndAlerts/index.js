@@ -13,7 +13,7 @@ export const NewsAndAlerts = ({ newsPosts, alerts, about }) => {
                 <CommunityNews newsPosts={newsPosts} />
                 <Col size="md-6">
                     <h4>{translate("Alerts")}</h4>
-                    {alerts.map(alert => <Alert>{alert}</Alert>)}
+                    {alerts && alerts.map(alert => <Alert>{alert}</Alert>)}
                 </Col>
             </Row>
         </Container>

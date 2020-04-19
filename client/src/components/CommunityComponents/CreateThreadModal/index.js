@@ -2,7 +2,7 @@ import React from "react";
 import { Input, TextArea, FormBtn } from "../../UniversalComponents/Form";
 
 export const CreateThreadModal = props => {
-    console.log("CREATE THREAD MODAL PROPS", props);
+    // console.log("CREATE THREAD MODAL PROPS", props);
     return (
         <section className="ml-auto">
             {/* // < !--Button trigger modal-- > */}
@@ -61,15 +61,16 @@ export const CreateThreadModal = props => {
 }
 
 export const CreateReplyModal = props => {
+    console.log(props);
     return (
         <section className="ml-auto">
             {/* // < !--Button trigger modal-- > */}
-            <button type="button" className="btn btn-sm btn-primary ml-auto" data-toggle="modal" data-target="#replyModal">
+            <button type="button" className="btn btn-sm btn-primary ml-auto" data-toggle="modal" data-target={`#modal-${props.parentThread}`}>
                 Reply
             </button>
 
             {/* // <!--Modal --> */}
-            <div className="modal fade" id="replyModal" tabIndex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
+            <div className="modal fade" id={`modal-${props.parentThread}`} tabIndex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -82,16 +83,16 @@ export const CreateReplyModal = props => {
                             Response Title:
                             <Input
                                 name="title"
-                                value={`Re: ${props.thread.title}`}
+                                value={`Re: ${props.title}`}
                                 onChange={props.createReplyHandleChange}
-                                placeholder={`Re: ${props.thread.title}`}
+                                placeholder={`Re: ${props.title}`}
                             >
 
                             </Input>
                             Thread Author:
                             <Input
                                 name="author"
-                                value={props.createReply.author}
+                                value={props.author}
                                 onChange={props.createReplyHandleChange}
                                 placeholder="Thread Author"
                             >
@@ -100,7 +101,7 @@ export const CreateReplyModal = props => {
                             Response Body:
                             <TextArea
                                 name="body"
-                                value={props.createReply.body}
+                                value={props.body}
                                 onChange={props.createReplyHandleChange}
                                 placeholder="Message Body"
                             >
@@ -114,9 +115,9 @@ export const CreateReplyModal = props => {
                                 className="btn btn-primary"
                                 data-dismiss="modal"
                                 onClick={props.createReplyHandleClick}
-                                key={props.thread._id}
-                                id={props.thread._id}
-                                title={props.thread.title}
+                                key={props.parentThread}
+                                id={props.parentThread}
+                                title={props.title}
                             >
                                 Reply
                             </FormBtn>

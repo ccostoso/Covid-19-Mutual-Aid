@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row } from "../../components/UniversalComponents/Grid";
 import { UserSidebar } from "../../components/UniversalComponents/UserSidebar";
-import { CommunityPanel } from "../../components/CommunityComponents/CommunityPanel";
+import CommunityPanel from "../../components/CommunityComponents/CommunityPanel";
 // import translate from '../../i18n/translate';
 import API from "../../utils/API";
 
@@ -20,7 +20,7 @@ class Community extends Component {
             alerts: ["a", 2],
             about: "This is our page for Middletown Mutual Aid! Love you xoxo"
         },
-        activePage: "NewsAndAlerts",
+        activePage: "MessageBoards",
         threadIds: [],
         threadObjects: [],
         createThread: {
@@ -29,11 +29,6 @@ class Community extends Component {
             body: "",
             community: this.props.match.params.id,
         },
-        createReply: {
-            author: "",
-            body: "",
-            community: this.props.match.params.id,
-        }
     }
 
     async componentWillMount() {
@@ -51,19 +46,17 @@ class Community extends Component {
             }).then(response => {
                 const threadIds = this.state.threadIds;
                 let newThreadObjects = this.state.threadObjects;
-                console.log("original thread object values", newThreadObjects)
+                // console.log("original thread object values", newThreadObjects)
                 threadIds.forEach(async threadId => {
-                    console.log("threadId", threadId);
+                    // console.log("threadId", threadId);
                     const response = await API.getThread(threadId);
-                    console.log("AWAIT RESPONSE", response)
+                    // console.log("AWAIT RESPONSE", response)
                     newThreadObjects.unshift(response.data);
                     this.setState({
                         threadObjects: newThreadObjects,
                     }, this.getReplies(id));
                 })
-            })
-
-        
+            })   
     }
 
     createThreadHandleChange = e => {
@@ -113,18 +106,6 @@ class Community extends Component {
         // console.log("newThreadObjectsArray", newThreadObjectsArray);
     }
 
-    createReplyHandleChange = e => {
-        // console.log("change");
-        const { name, value } = e.target;
-
-        let oldCreateReply = this.state.createReply;
-        oldCreateReply[name] = value;
-
-        this.setState({
-            createReply: oldCreateReply,
-        })
-    }
-
     createReplyHandleClick = e => {
         const { id } = e.target;
 
@@ -149,12 +130,14 @@ class Community extends Component {
     }
 
     render() {
+        console.log("this.state.user._id", this.state.user._id);
         return (
             <Container>
                 <Row className="my-4">
                     {/* {translate} */}
                     <UserSidebar user={this.state.user} />
                     <CommunityPanel
+                        userIsAdmin={this.state.community.creator === this.state.user._id}
                         headerImage={this.state.community.headerImage || ""}
                         title={this.state.community.communityName}
                         alerts={this.state.community.alerts}
