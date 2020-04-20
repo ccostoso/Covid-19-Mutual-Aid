@@ -4,6 +4,7 @@ import { UserPanelNav } from "../UserPanelNav";
 import { UserCommunities } from "../UserCommunities";
 
 export const UserPanel = props => {
+    console.log("USERPANEL PROPS", props)
     return (
         <Col size="md-10" className="border-left">
             <UserPanelNav />

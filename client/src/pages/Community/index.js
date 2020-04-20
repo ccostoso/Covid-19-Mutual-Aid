@@ -86,10 +86,10 @@ class Community extends Component {
     }
 
     render() {
-        console.log("this.state", this.state);
+        console.log("this.state", this.props.location.state);
         return (
             <Container>
-                {!this.props.location.state && <Redirect to="/" />}
+                {/* {!this.props.location.state && <Redirect to="/" />} */}
                 {this.state.reload && <Redirect to={
                         {pathname: `/community/${this.state.community.communityName}/board`},
                         {state: {
