@@ -5,6 +5,7 @@ import { CommunityPanelHeader } from "../CommunityPanelHeader";
 import { CommunityPanelNav } from "../CommunityPanelNav";
 import { NewsAndAlerts } from "../NewsAndAlerts";
 import CommunityBoard from "../CommunityBoard";
+import CommunitySettngs from "../CommunitySettings";
 
 class CommunityPanel extends Component {
     constructor(props) {
@@ -21,19 +22,6 @@ class CommunityPanel extends Component {
         })
     }
 
-    // console.log(threadObjects);
-    // title,
-    // active,
-    // alerts,
-    // about,
-    // threadObjects,
-    // createThread,
-    // createThreadHandleChange,
-    // createThreadHandleClick,
-    // createReply,
-    // createReplyHandleChange,
-    // createReplyHandleClick
-
     render() {
         console.log("COMMUNITY PANEL", this.props);
         return (
@@ -43,12 +31,18 @@ class CommunityPanel extends Component {
                     title={this.props.title}
                 />
                 <Router>
-                    <CommunityPanelNav userIsAdmin={!this.state.userIsAdmin} />
+                    <CommunityPanelNav 
+                        userIsAdmin={!this.state.userIsAdmin} 
+                        title={this.props.title}
+                    />
                     <Route path={`/community/${this.props.title}/board`} render={() => {
                         return (
                             <CommunityBoard
+                                userEmail={this.props.userEmail}
+                                userId={this.props.userId}
                                 communityTitle={this.props.title}
                                 threadObjects={this.props.threadObjects}
+                                // reload={this.props.reload}
                                 createThread={this.props.createThread}
                                 createThreadHandleChange={this.props.createThreadHandleChange}
                                 createThreadHandleClick={this.props.createThreadHandleClick}
@@ -64,19 +58,19 @@ class CommunityPanel extends Component {
                             <NewsAndAlerts
                                 alerts={this.props.alerts}
                                 about={this.props.about}
+                                about={this.props.description}
                             />
                         )
                     }
                     } />
-                    {/* <Route path={`/community/${this.props.title}/settings`} render={() => {
+                    <Route path={`/community/${this.props.title}/settings`} render={() => {
                         return (
-                            <NewsAndAlerts
-                                alerts={this.props.alerts}
-                                about={this.props.about}
+                            <CommunitySettngs
+                                title={this.props.title}
                             />
                         )
                     }
-                    } /> */}
+                    } />
                 </Router>
             </Col>
         )

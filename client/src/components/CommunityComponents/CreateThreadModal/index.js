@@ -31,14 +31,14 @@ export const CreateThreadModal = props => {
 
                             </Input>
                             Thread Author:
-                            <Input
+                            {/* <Input
                                 name="author"
                                 value={props.createThread.author}
                                 onChange={props.createThreadHandleChange}
                                 placeholder="Thread Author"
                             >
 
-                            </Input>
+                            </Input> */}
                             Message Body:
                             <TextArea
                                 name="body"
@@ -61,7 +61,7 @@ export const CreateThreadModal = props => {
 }
 
 export const CreateReplyModal = props => {
-    console.log(props);
+    // console.log(props);
     return (
         <section className="ml-auto">
             {/* // < !--Button trigger modal-- > */}
@@ -89,7 +89,7 @@ export const CreateReplyModal = props => {
                             >
 
                             </Input>
-                            Thread Author:
+                            {/* Thread Author:
                             <Input
                                 name="author"
                                 value={props.author}
@@ -97,7 +97,7 @@ export const CreateReplyModal = props => {
                                 placeholder="Thread Author"
                             >
 
-                            </Input>
+                            </Input> */}
                             Response Body:
                             <TextArea
                                 name="body"

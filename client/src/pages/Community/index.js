@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Container, Row } from "../../components/UniversalComponents/Grid";
-import { UserSidebar } from "../../components/UniversalComponents/UserSidebar";
+import UserSidebar from "../../components/UniversalComponents/UserSidebar";
 import CommunityPanel from "../../components/CommunityComponents/CommunityPanel";
 // import translate from '../../i18n/translate';
 import API from "../../utils/API";
+import { Redirect } from "react-router-dom";
 
 class Community extends Component {
     state = {
@@ -13,6 +14,7 @@ class Community extends Component {
         },
         community: {
             title: "Middletown Mutual Aid",
+            admins: [],
             memberCount: 45,
             position: "Administrator",
             id: 1,
@@ -29,9 +31,10 @@ class Community extends Component {
             body: "",
             community: this.props.match.params.id,
         },
+        reload: false,
     }
 
-    async componentWillMount() {
+    async componentDidMount() {
         const { id } = this.props.match.params;
         console.log("id", id);
         console.log("props.match", this.props.match.params);
@@ -43,20 +46,16 @@ class Community extends Component {
                     community: response.data,
                     threadIds: response.data.threads,
                 })
-            }).then(response => {
-                const threadIds = this.state.threadIds;
-                let newThreadObjects = this.state.threadObjects;
-                // console.log("original thread object values", newThreadObjects)
-                threadIds.forEach(async threadId => {
-                    // console.log("threadId", threadId);
-                    const response = await API.getThread(threadId);
-                    // console.log("AWAIT RESPONSE", response)
-                    newThreadObjects.unshift(response.data);
-                    this.setState({
-                        threadObjects: newThreadObjects,
-                    }, this.getReplies(id));
-                })
-            })   
+            }).then(async () => {
+                const getThreadsResponse = await API.getThreads(id);
+                this.setState({
+                    threadObjects: getThreadsResponse.data,
+                });
+            })
+        
+        this.props.location.state && this.setState({
+            user: this.props.location.state.user,
+        })
     }
 
     createThreadHandleChange = e => {
@@ -70,80 +69,48 @@ class Community extends Component {
         })
     }
 
-    createThreadHandleClick = e => {
+    createThreadHandleClick = async e => {
         e.preventDefault();
 
         const newThread = this.state.createThread;
-        newThread.community = this.props.match.params.id;
-        console.log(e.target);
-        console.log(e.target.title);
-        console.log(e.target.id);
+        newThread.community = this.state.community.communityName;
+        newThread.author = this.state.user._id;
         
-        API.createThread(newThread);
-    }
+        const response = await API.createThread(newThread)
+        console.log(response);
 
-    getReplies = communityId => {
-        let oldThreadObjectsArray = this.state.threadObjects;
-        console.log('oldThreadObjects', oldThreadObjectsArray);
-        console.log('oldThreadObjects length', oldThreadObjectsArray.length);
-        const newThreadObjectsArray = [];
-        oldThreadObjectsArray.map( threadObj => {
-            // console.log("threadObj", threadObj._id);
-             API.getReplies(threadObj._id)
-                .then(response => {
-                    // console.log("THREAD OBJ IN THEN", threadObj)
-                    // console.log("response LINE 138", response);
-                    // console.log("NEW UPDATED THREAD OBJ", {...threadObj, replyObjectsArray : response.data})
-                    return {...threadObj, replyObjectsArray : response.data}
-                }).then(res => {
-                    newThreadObjectsArray.push(res)
-                    this.setState({
-                        threadObjects: newThreadObjectsArray,
-                    });
-                })
-                console.log("FINAL STATE UPDATED", newThreadObjectsArray)
-        });
-        // console.log("newThreadObjectsArray", newThreadObjectsArray);
-    }
-
-    createReplyHandleClick = e => {
-        const { id } = e.target;
-
-        e.preventDefault();
-
-        const newReply = this.state.createReply;
-        newReply.parentThread = id;
-        // console.log(newReply);
-        // console.log(e.target);
-        // console.log(e.target.title);
-        // console.log(e.target.id);
-
-        API.createReply(newReply);
-
-        this.setState({
-            createReply: {
-                author: "",
-                body: "",
-                community: this.props.match.params.id,
-            }
+        console.log("does this mean we're reloading???");
+        response.status === 200 && this.setState({
+            reload: true,
         })
     }
 
     render() {
-        console.log("this.state.user._id", this.state.user._id);
+        console.log("this.state", this.props.location.state);
         return (
             <Container>
+                {/* {!this.props.location.state && <Redirect to="/" />} */}
+                {this.state.reload && <Redirect to={
+                        {pathname: `/community/${this.state.community.communityName}/board`},
+                        {state: {
+                            user: this.state.user}
+                        }
+                    } />}
                 <Row className="my-4">
                     {/* {translate} */}
                     <UserSidebar user={this.state.user} />
                     <CommunityPanel
+                        userEmail={this.state.user.email}
+                        userId={this.state.user._id}
                         userIsAdmin={this.state.community.creator === this.state.user._id}
                         headerImage={this.state.community.headerImage || ""}
                         title={this.state.community.communityName}
                         alerts={this.state.community.alerts}
+                        description={this.state.community.description}
                         about={this.state.community.about}
                         active={this.state.activePage}
                         threadObjects={this.state.threadObjects}
+                        // reload={this.state.reload}
                         createThreadHandleChange={this.createThreadHandleChange}
                         createThreadHandleClick={this.createThreadHandleClick}
                         createThread={this.state.createThread}

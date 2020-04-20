@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import { Container, Row, Col } from "../../components/UniversalComponents/Grid";
 import { Input, FormBtn } from "../../components/UniversalComponents/Form";
 import { Alert } from "../../components/UniversalComponents/Alert";
@@ -11,7 +12,8 @@ class Register extends Component {
         displayName: '',
         email: '',
         password: '',
-        jsonMessage: ''
+        jsonMessage: '',
+        user: '',
     }
 
     componentDidMount() {
@@ -26,7 +28,7 @@ class Register extends Component {
         })
     }
 
-    handleClick = e => {
+    handleClick = async e => {
         e.preventDefault();
 
         console.log(e);
@@ -37,14 +39,13 @@ class Register extends Component {
             password: this.state.password,
         }
 
-        API.signUp(newUser)
-            .then(res => {
-                if (!res.data.success) {
-                    this.setState({
-                        jsonMessage: res.data.message,
-                    })
-                }
-            });
+        const response = await API.signUp(newUser);
+        console.log(response);
+
+        response.status === 200 && this.setState({
+            user: response.data._id,
+        })
+        console.log(this.state.user);
     }
 
     render() {
@@ -101,7 +102,7 @@ class Register extends Component {
                         {this.state.jsonMessage && <Alert>
                             {this.state.jsonMessage}
                         </Alert>}
-                        
+                        {this.state.user && <Redirect to={`/home/${this.state.user}`}/>}
                     </Col>
                 </Row>
             </Container>

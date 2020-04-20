@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import { Container, Row, Col } from "../../UniversalComponents/Grid";
 import { Alert } from "../../UniversalComponents/Alert";
 import CommunityBoardPost from "../CommunityBoardPost";
@@ -21,6 +22,8 @@ export const CommunityBoard = props => {
                 </Col>
             </Row>
             {props.threadObjects.map(thread => <CommunityBoardPost
+                userEmail={props.userEmail}
+                userId={props.userId}
                 communityTitle={props.communityTitle}
                 createReply={props.createReply}
                 createReplyHandleChange={props.createReplyHandleChange}
@@ -28,6 +31,7 @@ export const CommunityBoard = props => {
                 thread={thread}
                 key={thread._id}
             />)}
+            {/* {props.reload && <Redirect to={`/community/${props.communityTitle}/board`} />} */}
         </Container>
     )
 }

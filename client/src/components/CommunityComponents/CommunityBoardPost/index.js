@@ -12,15 +12,19 @@ class CommunityBoardPost extends Component {
 
     state = {
         createReply: {
-            author: "",
+            author: this.props.userEmail,
             body: "",
             community: this.props.communityTitle,
             parentThread: this.props.thread._id,
-        }
+        },
+        replyObjects: [],
+    }
+
+    componentDidMount() {
+        this.getReplies(this.props.thread._id);
     }
 
     createReplyHandleChange = e => {
-        console.log(this.state.createReply.parentThread);
         const { name, value } = e.target;
 
         let oldCreateReply = this.state.createReply;
@@ -47,13 +51,24 @@ class CommunityBoardPost extends Component {
             }
         })
     }
+
+    handleDeleteClick = e => {
+        e.preventDefault();
+
+        const { value } = e.target;
+
+        API.deleteThread(value);
+    }
+
+    getReplies = async theadId => {
+        const response = await API.getReplies(theadId);
+
+        this.setState({
+            replyObjects: response.data,
+        })
+    }
     
     render() {
-        console.log("COMMUNITY BOARD POST PROPS", this.props)
-        const replies = this.props.thread["replyObjectsArray"];
-    
-        // console.log(this.state.createReply);
-
         return (
             <div className="card mb-4">
                 <div className="card-header">
@@ -61,13 +76,19 @@ class CommunityBoardPost extends Component {
                 </div>
                 <div className="card-body">{this.props.thread.body}</div>
                 <ul className="list-group list-group-flush">
-                    {replies && replies.map(reply => {
+                    {this.state.replyObjects ? this.state.replyObjects.map(reply => {
                         return <CommunityBoardPostReply 
                             reply={reply}
                             key={reply._id} 
                         />
-                    })}
-                    <li className="list-group-item d-flex p-1">
+                    }) : <div></div>}
+                    <li className="list-group-item d-flex justify-content-between p-1">
+                        {this.props.thread.author === this.props.userId && <button 
+                            className="btn btn-danger btn-sm"
+                            onClick={this.handleDeleteClick}
+                            value={this.props.thread._id}
+                        >
+                            Delete</button>}
                         <CreateReplyModal
                             author={this.state.createReply.author}
                             body={this.state.createReply.body}
