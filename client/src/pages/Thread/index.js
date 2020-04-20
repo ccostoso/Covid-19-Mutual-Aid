@@ -19,6 +19,9 @@ class Community extends Component {
             alerts: ["a", 2],
             about: "This is our page for Middletown Mutual Aid! Love you xoxo"
         },
+        thread: {
+            title: ""
+        },
         activePage: "NewsAndAlerts",
         threadIds: [],
         threadObjects: [],
