@@ -11,7 +11,7 @@ module.exports = {
     Community.findOne({ 'communityName': community })
     .then(communityMatch => {
 
-      return UserPassport.findOne({ 'email': author });
+      return UserPassport.findOne({ '_id': author });
     }).then(userMatch => {
         console.log("test???")
         console.log("USER MATCH", userMatch);
@@ -40,7 +40,7 @@ module.exports = {
       })
       .then(result => {
         console.log('PROMISE.ALL has resolved', result);
-        return;
+        return res.json(result);
       })
     .catch(err => console.log(err));
   },

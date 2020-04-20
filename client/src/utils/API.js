@@ -13,6 +13,9 @@ export default {
     signIn: function(user) {
         return axios.post("/api/account/login", user)
     },
+    logout: function(user) {
+        return axios.post("/api/account/logout", user)
+    },
     getUser: function(id) {
         console.log("API.js id", id);
         return axios.get("/api/account/user/" + id);
@@ -21,10 +24,17 @@ export default {
         console.log("New community is:", newCommunity);
         return axios.post("/api/community/create", newCommunity);
     },
-    getCommunity: function(id) {
+    getCommunity: function(communityName) {
+        console.log("Community name is:", communityName);
+        return axios.get("/api/community/getCommunity/" + communityName);
+    },
+    getCommunityById: function(id) {
         console.log("Community id is:", id);
-        console.log("!!!!!!!!!!I AM RUNNING!!!!!!!!!!");
-        return axios.get("/api/community/getCommunity/" + id);
+        return axios.get("/api/community/getCommunityById/" + id);
+    },
+    putCommunity: function(communityName, data) {
+        console.log("Community name is:", communityName);
+        return axios.put("/api/community/putCommunity/" + communityName, data);
     },
     createThread: function(newThread) {
         console.log("New thread is:", newThread);
@@ -38,6 +48,10 @@ export default {
         console.log("Community id is:", communityId);
         return axios.get("/api/thread/getThreads/" + communityId);
     },
+    deleteThread: function(threadId) {
+        console.log("Thread id to delete is:", threadId);
+        return axios.delete("/api/thread/delete/" + threadId);
+    },
     createReply: function(newReply) {
         console.log("New reply is:", newReply);
         return axios.post("/api/replies/create", newReply);
@@ -46,10 +60,4 @@ export default {
         console.log("For getReplies, thread id is:", threadId);
         return axios.get("/api/replies/getReplies/" + threadId);
     },
-    // putUser: function(id) {
-    //     return axios.put("/api/account/user/" + id);
-    // },
-    // deleteUser: function(id) {
-    //     return axios.delete("/api/account/user/" + id);
-    // }
 }

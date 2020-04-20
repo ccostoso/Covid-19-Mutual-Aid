@@ -1,39 +1,19 @@
 import React, { Component } from "react";
 import { Container, Row } from "../../components/UniversalComponents/Grid";
 import { UserPanel } from "../../components/HomeComponents/UserPanel";
-import { UserSidebar } from "../../components/UniversalComponents/UserSidebar";
+import UserSidebar from "../../components/UniversalComponents/UserSidebar";
 import API from "../../utils/API";
 
-
-
 class Home extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     state = {
         user: {
-            displayName: "Dem O. User",
-            email: "DemoUser",
-            communities: [
-                
-            ]
         },
         communities: [
-            {
-                title: "Middletown Mutual Aid",
-                memberCount: 45,
-                position: "Administrator",
-                id: 1
-            },
-            {
-                title: "Middlesex County Mutual Aid",
-                memberCount: 255,
-                position: "Member",
-                id: 2
-            },
-            {
-                title: "123 Fake Street Apt #45 Mutual Aid",
-                memberCount: 19,
-                position: "Moderator",
-                id: 3
-            }
+            
         ],
         createCommunity: {
             communityName: "",
@@ -42,16 +22,37 @@ class Home extends Component {
         },
     }
 
-    componentDidMount() {
-        const { id } = this.props.match.params;
-        console.log("id", id);
-        console.log("props.match", this.props.match.params);
+    async componentDidMount() {
+        this.setState({
+            user: this.props.user
+        });
+
+        console.log("CDM THIS PROPS", this.props)
+        const { userId } = this.props.user;
+        console.log("userId", userId);
+        // console.log("props.match", this.props.match.params);
         
-        API.getUser(id)
+        await API.getUser(userId)
             .then(res => {
                 console.log(res.data);
                 this.setState({
                     user: res.data
+                })
+            })
+            .then(res => {
+                console.log("hitting getUser res")
+                const userCommunities  = this.state.user.communities;
+                const communityObjects = [];
+                console.log([userCommunities]);
+                console.log(communityObjects);
+
+                userCommunities.forEach(async communityId => {
+                    const response = await API.getCommunityById(communityId);
+                    console.log("response for getCommunity", response);
+                    communityObjects.unshift(response.data);
+                    this.setState({
+                        communities: communityObjects
+                    })
                 })
             })
             .catch(err => console.log(err));
@@ -68,22 +69,57 @@ class Home extends Component {
         })
     }
 
-    createCommunityHandleClick = e => {
+    createCommunityHandleClick = async e => {
         e.preventDefault();
 
         let newCommunity = this.state.createCommunity;
-        newCommunity["creator"] = this.props.match.params.id;
+        newCommunity["creator"] = this.state.user._id;
         console.log(newCommunity);
 
-        API.createCommunity(newCommunity);
+        const createCommunityResponse = await API.createCommunity(newCommunity);
+
+        console.log("response", createCommunityResponse)
+        if (createCommunityResponse.status === 200) {
+            this.getUser(this.state.user._id); 
+        }
+    }
+
+    getUser = userId => {
+        console.log("am i even hitting this")
+        API.getUser(userId)
+            .then(res => {
+                console.log(res.data);
+                this.setState({
+                    user: res.data
+                })
+            })
+            .then(res => {
+                console.log("hitting getUser res")
+                const userCommunities  = this.state.user.communities;
+                const communityObjects = [];
+                console.log(communityObjects);
+
+                userCommunities.forEach(async communityId => {
+                    const response = await API.getCommunityById(communityId);
+                    console.log("response for getCommunity", response);
+                    communityObjects.unshift(response.data);
+                })
+
+                this.setState({
+                    communities: communityObjects
+                })
+            })
+            .catch(err => console.log(err));
     }
 
     render() {
+        console.log(this.state)
         return (
             <Container>
                 <Row className="my-4">
                     <UserSidebar user={this.state.user} />
                     <UserPanel 
+                        user={this.state.user}
                         communities={this.state.communities}  
                         createCommunityHandleChange={this.createCommunityHandleChange}
                         createCommunityHandleClick={this.createCommunityHandleClick}
