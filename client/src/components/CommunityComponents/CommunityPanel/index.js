@@ -38,8 +38,11 @@ class CommunityPanel extends Component {
                     <Route path={`/community/${this.props.title}/board`} render={() => {
                         return (
                             <CommunityBoard
+                                userEmail={this.props.userEmail}
+                                userId={this.props.userId}
                                 communityTitle={this.props.title}
                                 threadObjects={this.props.threadObjects}
+                                // reload={this.props.reload}
                                 createThread={this.props.createThread}
                                 createThreadHandleChange={this.props.createThreadHandleChange}
                                 createThreadHandleClick={this.props.createThreadHandleClick}
@@ -55,6 +58,7 @@ class CommunityPanel extends Component {
                             <NewsAndAlerts
                                 alerts={this.props.alerts}
                                 about={this.props.about}
+                                about={this.props.description}
                             />
                         )
                     }

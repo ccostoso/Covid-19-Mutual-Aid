@@ -19,6 +19,8 @@ module.exports = {
         'communityName': communityName,
         'creator': creator,
         'description': description,
+        'admins': [creator],
+        'users': [creator],
       });
       console.log("NEW COMMUNITY RESPONSE", newCommunity);
 

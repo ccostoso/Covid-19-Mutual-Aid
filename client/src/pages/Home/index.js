@@ -97,16 +97,16 @@ class Home extends Component {
                 console.log("hitting getUser res")
                 const userCommunities  = this.state.user.communities;
                 const communityObjects = [];
-                console.log([userCommunities]);
                 console.log(communityObjects);
 
                 userCommunities.forEach(async communityId => {
                     const response = await API.getCommunityById(communityId);
                     console.log("response for getCommunity", response);
                     communityObjects.unshift(response.data);
-                    this.setState({
-                        communities: communityObjects
-                    })
+                })
+
+                this.setState({
+                    communities: communityObjects
                 })
             })
             .catch(err => console.log(err));

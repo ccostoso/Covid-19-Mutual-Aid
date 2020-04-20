@@ -48,6 +48,10 @@ export default {
         console.log("Community id is:", communityId);
         return axios.get("/api/thread/getThreads/" + communityId);
     },
+    deleteThread: function(threadId) {
+        console.log("Thread id to delete is:", threadId);
+        return axios.delete("/api/thread/delete/" + threadId);
+    },
     createReply: function(newReply) {
         console.log("New reply is:", newReply);
         return axios.post("/api/replies/create", newReply);
@@ -56,10 +60,4 @@ export default {
         console.log("For getReplies, thread id is:", threadId);
         return axios.get("/api/replies/getReplies/" + threadId);
     },
-    // putUser: function(id) {
-    //     return axios.put("/api/account/user/" + id);
-    // },
-    // deleteUser: function(id) {
-    //     return axios.delete("/api/account/user/" + id);
-    // }
 }

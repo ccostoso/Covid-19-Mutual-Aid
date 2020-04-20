@@ -39,7 +39,7 @@ module.exports = {
             })
             .then(result => {
                 console.log('PROMISE.ALL has resolved', result);
-                return;
+                return res.json(result);
             })
             .catch(err => console.log(err));
     },
