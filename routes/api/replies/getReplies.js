@@ -13,7 +13,7 @@ router.get('/:parentThreadId', (req, res, next) => {
 	Reply.find({ parentThread: parentThreadId })
 		.then(response => {
 			console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-			console.log("Reply.findAll response", response);
+			console.log("Reply.find response", response);
 			return res.json(response);
 		}).catch(err => {
 			console.log("error:", err);

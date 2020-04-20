@@ -20,6 +20,10 @@ export default {
         console.log("API.js id", id);
         return axios.get("/api/account/user/" + id);
     },
+    putUser: function(id, data) {
+        console.log("User id is:", id);
+        return axios.put("/api/acount/user/" + id, data);
+    },
     createCommunity: function(newCommunity) {
         console.log("New community is:", newCommunity);
         return axios.post("/api/community/create", newCommunity);
@@ -32,9 +36,17 @@ export default {
         console.log("Community id is:", id);
         return axios.get("/api/community/getCommunityById/" + id);
     },
+    getCommunities: function() {
+        console.log("Getting communities...");
+        return axios.get("/api/community/getCommunities");
+    },
     putCommunity: function(communityName, data) {
-        console.log("Community name is:", communityName);
+        console.log("PUT Community name is:", communityName);
         return axios.put("/api/community/putCommunity/" + communityName, data);
+    },
+    putCommunityPending: function(communityName, data) {
+        console.log("PUT PENDING Community name is:", communityName);
+        return axios.put("/api/community/putCommunityPending/" + communityName, data);
     },
     createThread: function(newThread) {
         console.log("New thread is:", newThread);

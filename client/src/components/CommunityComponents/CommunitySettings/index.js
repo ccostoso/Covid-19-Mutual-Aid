@@ -13,9 +13,12 @@ class CommunitySettings extends Component {
     }
 
     state = {
+        communityName: this.props.title,
+        community: {},
         description: "",
         headerImage: "",
         newAdministrator: "",
+        pendingUsers: [],
     }
 
     handleChange = e => {
@@ -34,15 +37,20 @@ class CommunitySettings extends Component {
         API.putCommunity(this.props.title, update);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        const getCommunityResponse = await API.getCommunity(this.props.title);
+        console.log("getCommunityResponse", getCommunityResponse);
 
+        this.setState({
+            community: getCommunityResponse.data,
+        })
     }
 
     render() {
         return (
             <Container fluid className="p-0">
-                <Row fluid>
-                    <Col className="p-4" style={{ width: "100%" }}>
+                <Row>
+                    <Col size="md-6" className="px-4">
                         <h4>Community Description</h4>
                         <p>Set a description for your community.</p>
                         <Input
@@ -52,11 +60,9 @@ class CommunitySettings extends Component {
                         >
 
                         </Input>
+
                     </Col>
-                </Row>
-                <hr />
-                <Row fluid>
-                    <Col size="xs-12" className="p-4">
+                    <Col size="md-6" className="px-4">
                         <h4>Header Image</h4>
                         <p>Set a header image for your community.</p>
                         <Input
@@ -70,7 +76,7 @@ class CommunitySettings extends Component {
                 </Row>
                 <hr />
                 <Row fluid>
-                    <Col size="xs-12" className="p-4">
+                    <Col className="px-2">
                         <h4>New Administrator</h4>
                         <p>Assign another user to be an administrator.</p>
                         <small>Enter their e-mail here:</small>
@@ -91,6 +97,23 @@ class CommunitySettings extends Component {
                 >
                     Submit Changes
                 </FormBtn>
+                <hr />
+                <Row fluid>
+                    <Col className="px-4">
+                        <h4>Pending Users:</h4>
+                        Allow these users to enter?
+                        <ul>
+                            {this.state.pendingUsers.map(pendingUser => {
+                                return (<li>
+                                    <div>
+                                        {pendingUser.displayName}
+                                    </div>
+                                </li>)
+                            })}
+                            
+                        </ul>
+                    </Col>
+                </Row>
             </Container>
         )
     }

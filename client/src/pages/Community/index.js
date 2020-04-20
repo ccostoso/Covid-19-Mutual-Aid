@@ -79,9 +79,8 @@ class Community extends Component {
         const response = await API.createThread(newThread)
         console.log(response);
 
-        console.log("does this mean we're reloading???");
-        response.status === 200 && this.setState({
-            reload: true,
+        this.setState({
+            threadObjects: response.data,
         })
     }
 
@@ -89,7 +88,6 @@ class Community extends Component {
         console.log("this.state", this.props.location.state);
         return (
             <Container>
-                {/* {!this.props.location.state && <Redirect to="/" />} */}
                 {this.state.reload && <Redirect to={
                         {pathname: `/community/${this.state.community.communityName}/board`},
                         {state: {
