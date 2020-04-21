@@ -65,14 +65,6 @@ class Register extends Component {
                                 label={translate("Display Name")}
                             />
                             <Input 
-                                value={this.state.age}
-                                onChange={this.handleChange}
-                                name="age"
-                                placeholder="required"
-                                type="number"
-                                label={translate("Age")}
-                            />
-                            <Input 
                                 value={this.state.email}
                                 onChange={this.handleChange}
                                 name="email"
@@ -87,6 +79,14 @@ class Register extends Component {
                                 placeholder="required"
                                 type="password"
                                 label={translate("Password")}
+                            />
+                            <Input 
+                                value={this.state.age}
+                                onChange={this.handleChange}
+                                name="age"
+                                placeholder="required"
+                                type="number"
+                                label={translate("Age")}
                             />
                             <FormBtn
                                 btntype="outline-success"
