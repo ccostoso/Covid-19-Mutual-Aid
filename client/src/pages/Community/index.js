@@ -20,7 +20,8 @@ class Community extends Component {
             id: 1,
             headerImage: "https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/weather/cloud/cumulus-cloud.jpg/",
             alerts: ["a", 2],
-            about: "This is our page for Middletown Mutual Aid! Love you xoxo"
+            about: "This is our page for Middletown Mutual Aid! Love you xoxo",
+            members: [],
         },
         activePage: "MessageBoards",
         threadIds: [],
@@ -101,6 +102,7 @@ class Community extends Component {
                         userEmail={this.state.user.email}
                         userId={this.state.user._id}
                         userIsAdmin={this.state.community.creator === this.state.user._id}
+                        userIsMember={this.state.community.members.includes(this.state.user._id)}
                         headerImage={this.state.community.headerImage || ""}
                         title={this.state.community.communityName}
                         alerts={this.state.community.alerts}

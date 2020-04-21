@@ -23,7 +23,7 @@ const communitySchema = new Schema({
       ref: "Thread",
     }
   ],
-  users: [
+  members: [
     {
       type: Schema.Types.ObjectId,
       ref: "UserPassport",

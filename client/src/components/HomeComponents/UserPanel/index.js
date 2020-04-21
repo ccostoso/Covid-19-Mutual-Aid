@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Col } from "../../UniversalComponents/Grid";
 import { UserPanelNav } from "../UserPanelNav";
-import { UserCommunities } from "../UserCommunities";
+import UserCommunities from "../UserCommunities";
 
 export const UserPanel = props => {
     console.log("USERPANEL PROPS", props)

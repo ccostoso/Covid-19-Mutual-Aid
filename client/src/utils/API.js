@@ -44,9 +44,21 @@ export default {
         console.log("PUT Community name is:", communityName);
         return axios.put("/api/community/putCommunity/" + communityName, data);
     },
-    putCommunityPending: function(communityName, data) {
+    getPendingCommunity: function(communityName) {
         console.log("PUT PENDING Community name is:", communityName);
-        return axios.put("/api/community/putCommunityPending/" + communityName, data);
+        return axios.get("/api/community/getPendingCommunity/" + communityName);
+    },
+    putPendingPullFromPendingCommunity: function(communityName, data) {
+        console.log("PUT PENDING PULL FROM PENDING (Deny Entry Request) Community name is:", communityName);
+        return axios.put("/api/community/putPendingPullFromPendingCommunity/" + communityName, data);
+    },
+    putPendingToUserCommunity: function(communityName, data) {
+        console.log("PUT PENDING TO USER (Accept Entry Request) Community name is:", communityName);
+        return axios.put("/api/community/putPendingToUserCommunity/" + communityName, data);
+    },
+    putNonUserToPendingCommunity: function(communityName, data) {
+        console.log("PUT NON USER TO PENDING (Request Entry) Community name is:", communityName);
+        return axios.put("/api/community/putNonUserToPendingCommunity/" + communityName, data);
     },
     createThread: function(newThread) {
         console.log("New thread is:", newThread);

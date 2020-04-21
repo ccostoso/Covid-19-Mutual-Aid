@@ -1,33 +1,108 @@
-import React from "react";
+import React, { Component } from "react";
 import { Row } from "../../UniversalComponents/Grid";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import translate from '../../../i18n/translate';
 import { CreateCommunityModal } from "../CreateCommunityModal";
 import { UserCommunityListCard } from "../UserCommunityListCard";
+import UserFindCommunities from "../UserFindCommunities";
+import UserMyCommunities from "../UserMyCommunities";
+import API from "../../../utils/API";
 
-export const UserCommunities = props => {
-    console.log("USER COMMUNITIES DISPLAY PROPS", props);
-    return (
-        <main>
-            <section className="d-flex justify-content-between">
+class UserCommunities extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    state = {
+        tenLatestCommunities: [],
+    }
+
+    async componentDidMount() {
+        const response = await API.getCommunities();
+        console.log("!!!!!!!!!!!!!!!!!!!!!!");
+        console.log(response);
+
+        this.setState({
+            tenLatestCommunities: response.data,
+        })
+    }
+
+    render() {
+        console.log("USER COMMUNITIES DISPLAY PROPS", this.props);
+        return (
+            <main>
+                {/* <section className="d-flex justify-content-between"> */}
                 <h4>{translate("My Communities")}</h4>
                 {/* <button className="btn btn-sm btn-info">Create Community</button> */}
-                <CreateCommunityModal {...props} />
-            </section>
 
-
-            <hr />
-            <Row>
-                {props.communities && props.communities.map(community => {
-                    return (
-                        <UserCommunityListCard
-                            user={props.user}
-                            community={community}
-                            key={community._id}
+                {/* </section> */}
+                <hr />
+                <section className="row">
+                    <div className="col-md-4">
+                        <Link
+                            to={
+                                {
+                                    pathname: `/home/${this.props.user._id}/`,
+                                    state: {
+                                        user: this.props.user,
+                                        communities: this.props.communities,
+                                    }
+                                }
+                            }
+                            className="btn btn-secondary"
+                        >
+                            My Communities
+                        </Link>
+                    </div>
+                    <div className="col-md-4">
+                        <Link
+                            to={
+                                {
+                                    pathname: `/home/${this.props.user._id}/find`,
+                                    state: {
+                                        user: this.props.user,
+                                    }
+                                }
+                            }
+                            className="btn btn-secondary"
+                        >
+                            Find Communities
+                        </Link>
+                    </div>
+                    <div className="col-md-4">
+                        <CreateCommunityModal {...this.props} />
+                    </div>
+                </section>
+                <hr />
+                <Router>
+                    <Switch>
+                        <Route
+                            path={`/home/${this.props.user._id}/`}
+                            render={() => {
+                                return (
+                                    <UserMyCommunities
+                                        user={this.props.user}
+                                        communities={this.props.communities}
+                                    />
+                                )
+                            }}
                         />
-                    )
-                })}
-            </Row>
-        </main>
-    )
+                        <Route
+                            path={`/home/${this.props.user._id}/find/`}
+                            render={() => {
+                                return (
+                                    <UserFindCommunities
+                                        user={this.props.user}
+                                    />
+                                )
+                            }}
+                        />
+                    </Switch>
+                </Router>
+            </main>
+        )
+    }
+
 };
+
+export default UserCommunities;

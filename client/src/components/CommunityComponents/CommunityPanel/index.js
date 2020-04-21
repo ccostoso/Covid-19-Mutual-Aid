@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Col } from "../../UniversalComponents/Grid";
 import { CommunityPanelHeader } from "../CommunityPanelHeader";
 import { CommunityPanelNav } from "../CommunityPanelNav";
-import { NewsAndAlerts } from "../NewsAndAlerts";
+import NewsAndAlerts from "../NewsAndAlerts";
 import CommunityBoard from "../CommunityBoard";
 import CommunitySettngs from "../CommunitySettings";
+import API from "../../../utils/API.js";
 
 class CommunityPanel extends Component {
     constructor(props) {
@@ -14,11 +15,13 @@ class CommunityPanel extends Component {
 
     state = {
         userIsAdmin: false,
+        userIsMember: false,
     }
 
     componentDidMount() {
         this.setState({
-            userIsAdmin: !this.props.userIsAdmin
+            userIsAdmin: this.props.userIsAdmin,
+            userIsMember: this.props.userIsMember,
         })
     }
 
@@ -32,7 +35,7 @@ class CommunityPanel extends Component {
                 />
                 <Router>
                     <CommunityPanelNav 
-                        userIsAdmin={!this.state.userIsAdmin} 
+                        userIsAdmin={this.state.userIsAdmin} 
                         title={this.props.title}
                     />
                     <Route path={`/community/${this.props.title}/board`} render={() => {
@@ -56,9 +59,12 @@ class CommunityPanel extends Component {
                     <Route path={`/community/${this.props.title}/news`} render={() => {
                         return (
                             <NewsAndAlerts
+                                title={this.props.title}
                                 alerts={this.props.alerts}
-                                about={this.props.about}
+                                userId={this.props.userId}
+                                // about={this.props.about}
                                 about={this.props.description}
+                                userJoined={this.state.userIsAdmin || this.state.userIsMember}
                             />
                         )
                     }

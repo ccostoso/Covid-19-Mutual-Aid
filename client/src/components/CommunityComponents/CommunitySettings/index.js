@@ -37,12 +37,33 @@ class CommunitySettings extends Component {
         API.putCommunity(this.props.title, update);
     }
 
+    handlePendingDenyEntry = e => {
+        e.preventDefault();
+
+        const { value: pendingUserId } = e.target;
+        const data = { pendingUser: pendingUserId};
+
+        API.putPendingPullFromPendingCommunity(this.state.communityName, data);
+    }
+
+    handlePendingAcceptRequest = e => {
+        e.preventDefault();
+
+        const { value: pendingUserId } = e.target;
+        const data = { pendingUser: pendingUserId};
+
+        API.putPendingToUserCommunity(this.state.communityName, data);
+    }
+
     async componentDidMount() {
         const getCommunityResponse = await API.getCommunity(this.props.title);
+        const putCommunityPending = await API.getPendingCommunity(this.props.title);
         console.log("getCommunityResponse", getCommunityResponse);
+        console.log("getPendingCommunity", putCommunityPending);
 
         this.setState({
             community: getCommunityResponse.data,
+            pendingUsers: putCommunityPending.data,
         })
     }
 
@@ -102,11 +123,27 @@ class CommunitySettings extends Component {
                     <Col className="px-4">
                         <h4>Pending Users:</h4>
                         Allow these users to enter?
-                        <ul>
+                        <ul className="list-group">
                             {this.state.pendingUsers.map(pendingUser => {
-                                return (<li>
-                                    <div>
+                                return (<li className="list-group-item d-flex justify-content-between"
+                                    key={pendingUser._id}
+                                >
+                                    <div className="my-auto">
                                         {pendingUser.displayName}
+                                    </div>
+                                    <div>
+                                        <button className="btn btn-sm btn-danger mr-4" 
+                                            value={pendingUser._id}
+                                            onClick={this.handlePendingDenyEntry}
+                                        >
+                                                Deny
+                                            </button>
+                                        <button className="btn btn-sm btn-success" 
+                                            value={pendingUser._id}
+                                            onClick={this.handlePendingAcceptRequest}
+                                        >
+                                                Allow
+                                            </button>
                                     </div>
                                 </li>)
                             })}
