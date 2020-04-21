@@ -22,7 +22,15 @@ export default {
     },
     putUser: function(id, data) {
         console.log("User id is:", id);
-        return axios.put("/api/acount/user/" + id, data);
+        return axios.put("/api/account/user/" + id, data);
+    },
+    createSkill: function(skill) {
+        console.log("User id for put is:", skill);
+        return axios.put("/api/skill/create/", skill);
+    },
+    createNeed: function(need) {
+        console.log("User id for put is:", need);
+        return axios.put("/api/need/create/", need);
     },
     createCommunity: function(newCommunity) {
         console.log("New community is:", newCommunity);
