@@ -6,11 +6,11 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Community from "./pages/Community";
 import Settings from "./pages/Settings";
-import Profile from "./pages/Profile";
 import { I18nProvider, LOCALES } from './i18n';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import './App.css';
 import API from "./utils/API";
+
 
 // A helper function to generate a special StyledComponent that handles global styles.
 // Returns a StyledComponent that does not accept children. 
@@ -77,6 +77,7 @@ class App extends Component {
     })
   };
 
+
   handleChange = e => {
     const { name, value } = e.target;
 
@@ -102,8 +103,7 @@ class App extends Component {
       user: {
         ...this.state.user,
         userId: response.data._id,
-      },
-      isLoggedIn: true,
+      }
     })
   }
 
@@ -133,14 +133,7 @@ class App extends Component {
                 }} 
               />
               <Route path="/community/:id" component={Community} />
-              <Route path="/settings/:id" render={() => <Settings setLanguage={this.handleSetLanguage} setBrightness={this.handleSetBrightness} setFontSize={this.handleSetFontSize} />} />
-              <Route path="/profile/:id" render={() => {
-                return (
-                  <Profile 
-                    profileUser={this.state.user}
-                  />
-                )
-              }}/>
+              <Route path="/settings" component={() => <Settings setLanguage={this.handleSetLanguage} setBrightness={this.handleSetBrightness} setFontSize={this.handleSetFontSize} />} />
             </Router>
           </>
         </ThemeProvider>

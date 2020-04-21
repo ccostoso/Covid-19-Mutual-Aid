@@ -13,6 +13,10 @@ const userSchema = new Schema({
     type: String,
     required: [true, 'Must provide email address.'],
   },
+  avatar: {
+    type: String,
+    required: false,
+  },
   password: {
     type: String,
     required: [true, 'Must provide password.'],

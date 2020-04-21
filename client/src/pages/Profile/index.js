@@ -5,6 +5,7 @@ import { Input, FormBtn } from "../../components/UniversalComponents/Form";
 import API from "../../utils/API";
 import { Jumbotron } from "../../components/UniversalComponents/Jumbotron";
 import UserSidebar from "../../components/UniversalComponents/UserSidebar";
+import ProfilePicture from "../../i18n/profilepicture/profilePic";
 
 class Profile extends Component {
     constructor(props) {
@@ -25,6 +26,9 @@ class Profile extends Component {
         createNeed: {
             name: '',
             haver: this.props.profileUser.userId || "",
+        },
+        createAvatar: {
+            src: null
         }
     }
 
@@ -75,6 +79,15 @@ class Profile extends Component {
 
 
     }
+
+    handleSetProfilePicture = event => {
+        event.preventDefault()
+        const src = 'https://vectorified.com/images/no-profile-picture-icon-13.png';
+    
+        this.setState({
+          src: URL.createObjectURL(event.target.files[0])
+        })
+      }
 
     render() {
         console.log("PROFILE PROPS", this.props);
@@ -156,6 +169,23 @@ class Profile extends Component {
                                     }
                                 </ul>
                             </Col>
+                            <Col size="auto">
+                                <h4>Upload Avatar:</h4>
+                                {this.state.createAvatar.src}
+                                <ul className="list-group">
+                                    {
+                                        this.state.createAvatar.src && this.state.createAvatar.src.pull(src => {
+                                            return (
+                                                <div>
+                                                {/* <input type="file" onChange={this.handleSetProfilePicture}/>
+                                                <img src={this.state.src}/> */}
+                                                <ProfilePicture />
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </ul>
+                            </Col>
                         </Row>
                     </Col>
                 </Row>
@@ -165,3 +195,17 @@ class Profile extends Component {
 }
 
 export default Profile;
+
+
+{/* <div>
+<p className='profilePicture'>{translate("Profile Picture")}</p>
+    <Avatar
+        width={390}
+        height={295}
+        onCrop={this.onCrop}
+        onClose={this.onClose}
+        onBeforeFileLoad={this.onBeforeFileLoad}
+        src={this.state.src}
+    />
+    <img src={this.state.preview} alt="Preview" />
+</div> */}
