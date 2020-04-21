@@ -26,9 +26,9 @@ class NewsAndAlerts extends Component {
         const putResponse = await API.putNonUserToPendingCommunity(this.props.title, data);
         console.log(putResponse);
 
-        putResponse.status === 200 && this.setState({
-            userJoined: !this.state.userJoined,
-        })
+        // putResponse.status === 200 && this.setState({
+        //     userJoined: !this.state.userJoined,
+        // })
     }
 
     componentDidMount() {

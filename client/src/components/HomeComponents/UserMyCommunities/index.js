@@ -17,7 +17,7 @@ class UserMyCommunities extends Component {
     render() {
         return (
             <div className="row-fluid">
-                <h4>MY COMMUNITIES</h4>
+                <h4>My Communities</h4>
                 <br />
                 <div className="row">
                     {this.props.communities && this.props.communities.map(community => {
