@@ -24,6 +24,10 @@ export default {
         console.log("User id is:", id);
         return axios.put("/api/account/user/" + id, data);
     },
+    putUserAvatar: function(id, data) {
+        console.log("User id is:", id);
+        return axios.put("/api/account/avatar/" + id, data);
+    },
     createSkill: function(skill) {
         console.log("User id for put is:", skill);
         return axios.put("/api/skill/create/", skill);
