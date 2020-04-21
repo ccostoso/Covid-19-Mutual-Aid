@@ -34,6 +34,12 @@ const communitySchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "UserPassport",
     }
+  ],
+  admins: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "UserPassport",
+    }
   ]
 });
 

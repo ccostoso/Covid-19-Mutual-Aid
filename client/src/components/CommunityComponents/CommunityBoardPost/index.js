@@ -68,6 +68,22 @@ class CommunityBoardPost extends Component {
             replyObjects: response.data,
         })
     }
+
+    handleDeleteClick = e => {
+        e.preventDefault();
+
+        const { value } = e.target;
+
+        API.deleteThread(value);
+    }
+
+    getReplies = async theadId => {
+        const response = await API.getReplies(theadId);
+
+        this.setState({
+            replyObjects: response.data,
+        })
+    }
     
     render() {
         return (
