@@ -5,7 +5,7 @@ export const CreateCommunityModal = props => {
     return (
         <section>
             {/* // < !--Button trigger modal-- > */}
-            <button type="button" className="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Create a New Community
             </button>
 

@@ -14,7 +14,7 @@ export const UserCommunityListCard = props => {
                     {/* <p>{props.community.position}</p */}
                     <Link to={
                         {
-                            pathname: `/community/${props.community.communityName}`,
+                            pathname: `/community/${props.community.communityName}/news`,
                             state: {
                                 user: props.user
                             }

@@ -4,4 +4,7 @@ module.exports = {
   // UserSession: require("./usersession"),
   User: require("./userpassport"),
   Thread: require("./thread"),
+  Reply: require("./reply"),
+  Skill: require("./skill"),
+  Need: require("./need"),
 };

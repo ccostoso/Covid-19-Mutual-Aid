@@ -10,7 +10,7 @@ router.get('/:communityName', (req, res, next) => {
 	console.log("req.params.threadId", req.params.communityName);
 	const communityName = req.params.communityName;
 
-	Thread.find({ community: communityName }).sort({ date: -1 })
+	Thread.find({ community: communityName }).limit(10).sort({ date: -1 })
 		.then(response => {
 			console.log("Community.findOne response", response);
 			return res.json(response);
