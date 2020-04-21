@@ -5,7 +5,7 @@ import { CommunityPanelHeader } from "../CommunityPanelHeader";
 import { CommunityPanelNav } from "../CommunityPanelNav";
 import NewsAndAlerts from "../NewsAndAlerts";
 import CommunityBoard from "../CommunityBoard";
-import CommunitySettngs from "../CommunitySettings";
+import CommunitySettings from "../CommunitySettings";
 import API from "../../../utils/API.js";
 
 class CommunityPanel extends Component {
@@ -71,7 +71,7 @@ class CommunityPanel extends Component {
                     } />
                     <Route path={`/community/${this.props.title}/settings`} render={() => {
                         return (
-                            <CommunitySettngs
+                            <CommunitySettings
                                 title={this.props.title}
                             />
                         )

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "../../components/UniversalComponents/Grid";
+import { Input, FormBtn } from "../../components/UniversalComponents/Form";
 import API from "../../utils/API";
 import { Jumbotron } from "../../components/UniversalComponents/Jumbotron";
+import UserSidebar from "../../components/UniversalComponents/UserSidebar";
 
 class Profile extends Component {
     constructor(props) {
@@ -15,10 +17,15 @@ class Profile extends Component {
             skills: [],
             needs: [],
             communities: [1, 2, 3],
+        },
+        createSkill: {
+            name: '',
+            haver: this.props.profileUser.userId || "",
+        },
+        createNeed: {
+            name: '',
+            haver: this.props.profileUser.userId || "",
         }
-        // profileUser: this.props.location.state.user,
-        // profileViewer: this.props.location.state.user,
-        // sameProfile: this.props.profileUser._id === this.props.profileViewer,
     }
 
     async componentDidMount() {
@@ -31,67 +38,125 @@ class Profile extends Component {
         });
     }
 
+    handleAddSkillChange = e => {
+        const value = e.target.value;
+
+        this.setState({
+            createSkill: {
+                ...this.state.createSkill,
+                name: value,
+            }
+        })
+    }
+
+    handleAddNeedChange = e => {
+        const value = e.target.value;
+
+        this.setState({
+            createNeed: {
+                ...this.state.createNeed,
+                name: value,
+            }
+        })
+    }
+
+    handleAddSkillClick = e => {
+        e.preventDefault();
+
+        API.createSkill(this.state.createSkill);
+
+
+    }
+
+    handleAddNeedClick = e => {
+        e.preventDefault();
+
+        API.createSkill(this.state.createNeed);
+
+
+    }
+
     render() {
         console.log("PROFILE PROPS", this.props);
         console.log("THIS STATE profile User", this.state.profileUser);
         return (
-            <Container>
-                <Row fluid>
-                    <Jumbotron
-                        fluid
-                        styles={
-                            {
-                                height: "12rem",
-                                backgroundImage: "url('https://cdn.solace.com/wp-content/uploads/2019/01/bg-clouds.jpg')"
-                            }
-                        }
-                        className="d-flex justify-content-end align-items-end p-0 rounded"
-                    >
-                        <span className="display-4 ml-auto mt-auto p-0">{this.state.profileUser.displayName}</span>
-                    </Jumbotron>
-                </Row>
-                <hr />
-                <Row fluid>
-                    <Col size="md-6">
-                        <h4>Skills</h4>
-                        <ul className="list-group list-group-flush">
-                            {this.state.profileUser.skills && this.state.profileUser.skills.forEach(skill => {
-                                return (
-                                    <li className="list-group-item p-1">
+            <Container className="mt-4">
+                <Row>
+                    <UserSidebar
+                        user={this.state.profileUser}
+                    />
+                    <Col size="md-9">
 
-                                    </li>
-                                )
-                            })}
-                        </ul>
-                    </Col>
-                    <Col size="md-6">
-                        <h4>Needs</h4>
-                        <ul className="list-group list-group-flush">
-                            {this.state.profileUser.needs && this.state.profileUser.needs.forEach(need => {
-                                return (
-                                    <li className="list-group-item p-1">
+                            <Jumbotron
+                                fluid
+                                styles={
+                                    {
+                                        height: "12rem",
+                                        backgroundImage: "url('https://cdn.solace.com/wp-content/uploads/2019/01/bg-clouds.jpg')"
+                                    }
+                                }
+                                className="d-flex justify-content-end align-items-end p-0 rounded"
+                            >
+                                <span className="display-4 ml-auto mt-auto p-0">{this.state.profileUser.displayName}</span>
+                            </Jumbotron>
 
-                                    </li>
-                                )
-                            })}
-                        </ul>
-                    </Col>
-                </Row>
-                <Row fluid>
-                    <Col size="auto">
-                        <h4>Member of:</h4>
-                        {this.state.profileUser.communities.length}
-                        <ul className="list-group list-group-flush">
-                            {
-                                this.state.profileUser.communities && this.state.profileUser.communities.map(community => {
-                                    return (
-                                        <li className="list-group-item p-1">
-                                            {community}
-                                        </li>
-                                    )
-                                })
-                            }
-                        </ul>
+                        <hr />
+                        <Row fluid>
+                            <Col size="md-6">
+                                <h4>Skills</h4>
+                                <ul className="list-group list-group-flush">
+                                    {this.state.profileUser.skills && this.state.profileUser.skills.forEach(skill => {
+                                        return (
+                                            <li className="list-group-item p-1">
+
+                                            </li>
+                                        )
+                                    })}
+                                </ul>
+                                <Input
+                                    name="newSkill"
+                                    value={this.state.createSkill.name}
+                                    onChange={this.handleAddSkillChange}
+                                >
+                                </Input>
+                                
+                            </Col>
+                            <Col size="md-6">
+                                <h4>Needs</h4>
+                                <ul className="list-group list-group-flush">
+                                    {this.state.profileUser.needs && this.state.profileUser.needs.forEach(need => {
+                                        return (
+                                            <li className="list-group-item p-1">
+
+                                            </li>
+                                        )
+                                    })}
+                                </ul>
+                                <Input
+                                    name="newNeed"
+                                    value={this.state.createNeed.name}
+                                    onChange={this.handleAddNeedChange}
+                                >
+                                </Input>
+                            </Col>
+                        </Row>
+                        <Row fluid>
+                            <Col size="auto">
+                                <h4>Member of:</h4>
+                                {this.state.profileUser.communities.length}
+                                <ul className="list-group">
+                                    {
+                                        this.state.profileUser.communities && this.state.profileUser.communities.map(community => {
+                                            return (
+                                                <li className="list-group-item p-1">
+                                                    {community}
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                </ul>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             </Container>

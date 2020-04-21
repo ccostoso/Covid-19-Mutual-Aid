@@ -102,7 +102,8 @@ class App extends Component {
       user: {
         ...this.state.user,
         userId: response.data._id,
-      }
+      },
+      isLoggedIn: true,
     })
   }
 
