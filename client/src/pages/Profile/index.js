@@ -174,7 +174,7 @@ class Profile extends Component {
                                 {this.state.createAvatar.src}
                                 <ul className="list-group">
                                     {
-                                        this.state.createAvatar.src && this.state.createAvatar.src.pull(src => {
+                                        this.state.createAvatar.src && this.state.createAvatar.src.forEach(src => {
                                             return (
                                                 <div>
                                                 {/* <input type="file" onChange={this.handleSetProfilePicture}/>
