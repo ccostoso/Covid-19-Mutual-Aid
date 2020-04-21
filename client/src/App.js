@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Community from "./pages/Community";
 import Settings from "./pages/Settings";
+import Profile from "./pages/Profile";
 import { I18nProvider, LOCALES } from './i18n';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import './App.css';
@@ -131,7 +132,14 @@ class App extends Component {
                 }} 
               />
               <Route path="/community/:id" component={Community} />
-              <Route path="/settings" component={() => <Settings setLanguage={this.handleSetLanguage} setBrightness={this.handleSetBrightness} setFontSize={this.handleSetFontSize} />} />
+              <Route path="/settings/:id" render={() => <Settings setLanguage={this.handleSetLanguage} setBrightness={this.handleSetBrightness} setFontSize={this.handleSetFontSize} />} />
+              <Route path="/profile/:id" render={() => {
+                return (
+                  <Profile 
+                    profileUser={this.state.user}
+                  />
+                )
+              }}/>
             </Router>
           </>
         </ThemeProvider>

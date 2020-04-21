@@ -11,18 +11,25 @@ const communitySchema = new Schema({
     required: true,
     default: 1,
   },
-  membership: {
-    type: [String],
-    required: true,
-    default: [],
-  },
+  pending: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "UserPassport",
+    }
+  ],
   threads: [
     {
       type: Schema.Types.ObjectId,
       ref: "Thread",
     }
   ],
-  users: [
+  members: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "UserPassport",
+    }
+  ],
+  admins: [
     {
       type: Schema.Types.ObjectId,
       ref: "UserPassport",

@@ -39,7 +39,11 @@ module.exports = {
             })
             .then(result => {
                 console.log('PROMISE.ALL has resolved', result);
-                return res.json(result);
+                return Reply.find({ parentThread: parentThread });
+            })
+            .then(updatedThread => {
+                console.log("returning updated thread:", updatedThread);
+                return res.json(updatedThread);
             })
             .catch(err => console.log(err));
     },

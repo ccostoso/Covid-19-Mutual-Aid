@@ -35,12 +35,12 @@ class CommunityBoardPost extends Component {
         })
     }
 
-    createReplyHandleClick = e => {
+    createReplyHandleClick = async e => {
         e.preventDefault();
 
         const newReply = this.state.createReply;
 
-        API.createReply(newReply);
+        const response = await API.createReply(newReply);
 
         this.setState({
             createReply: {
@@ -48,7 +48,24 @@ class CommunityBoardPost extends Component {
                 body: "",
                 community: this.props.communityTitle,
                 parentThread: this.props.thread._id
-            }
+            },
+            replyObjects: response.data,
+        })
+    }
+
+    handleDeleteClick = e => {
+        e.preventDefault();
+
+        const { value } = e.target;
+
+        API.deleteThread(value);
+    }
+
+    getReplies = async theadId => {
+        const response = await API.getReplies(theadId);
+
+        this.setState({
+            replyObjects: response.data,
         })
     }
 
