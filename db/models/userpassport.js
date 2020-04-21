@@ -31,6 +31,12 @@ const userSchema = new Schema({
       ref: "Community",
     }
   ],
+  pending: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Community",
+    }
+  ],
   threads: [
     {
       type: Schema.Types.ObjectId,
