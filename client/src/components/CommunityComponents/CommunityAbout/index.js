@@ -8,7 +8,7 @@ export const CommunityAbout = ({ about, userJoined, joinCommunityHandleClick }) 
                 {about}
                 <br />
                 {
-                    userJoined &&
+                    userJoined ? <div></div> :
                     <button className="btn btn-success btn-sm" onClick={joinCommunityHandleClick}>
                         Join this group!
                     </button>
