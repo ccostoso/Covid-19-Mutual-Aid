@@ -37,8 +37,12 @@ class Community extends Component {
 
     async componentDidMount() {
         const { id } = this.props.match.params;
-        console.log("id", id);
-        console.log("props.match", this.props.match.params);
+        // console.log("id", id);
+        // console.log("props.match", this.props.match.params);
+
+        this.props.location.state && this.setState({
+            user: this.props.location.state.user,
+        })
 
         await API.getCommunity(id)
             .then(response => {
@@ -51,12 +55,11 @@ class Community extends Component {
                 const getThreadsResponse = await API.getThreads(id);
                 this.setState({
                     threadObjects: getThreadsResponse.data,
+                    userIsAdmin: this.state.community.creator === this.state.user._id ? true : false,
+                    userIsMember: this.state.community.members.includes(this.state.user._id) ? true : false,
+                    userIsPending: this.state.community.pending.includes(this.state.user._id) ? true : false,
                 });
             })
-        
-        this.props.location.state && this.setState({
-            user: this.props.location.state.user,
-        })
     }
 
     createThreadHandleChange = e => {
@@ -86,7 +89,8 @@ class Community extends Component {
     }
 
     render() {
-        console.log("this.state", this.props.location.state);
+        // console.log("this.state", this.state);
+        // console.log("COMMUNITY!!!!!!!!!!!!", this.state.community.creator === this.state.user._id)
         return (
             <Container>
                 {this.state.reload && <Redirect to={
@@ -101,8 +105,11 @@ class Community extends Component {
                     <CommunityPanel
                         userEmail={this.state.user.email}
                         userId={this.state.user._id}
-                        userIsAdmin={this.state.community.creator === this.state.user._id}
-                        userIsMember={this.state.community.members.includes(this.state.user._id)}
+                        // userIsAdmin={this.state.community.creator === this.state.user._id}
+                        // userIsMember={this.state.community.members.includes(this.state.user._id)}
+                        userIsAdmin={this.state.userIsAdmin}
+                        userIsMember={this.state.userIsMember}
+                        userIsPending={this.state.userIsPending}
                         headerImage={this.state.community.headerImage || ""}
                         title={this.state.community.communityName}
                         alerts={this.state.community.alerts}

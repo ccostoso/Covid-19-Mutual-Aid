@@ -23,39 +23,51 @@ class Home extends Component {
     }
 
     async componentDidMount() {
-        this.setState({
-            user: this.props.user
-        });
+        // this.setState({
+        //     user: this.props.user
+        // });
 
-        console.log("CDM THIS PROPS", this.props)
-        const { userId } = this.props.user;
-        console.log("userId", userId);
-        // console.log("props.match", this.props.match.params);
+        // console.log("CDM THIS PROPS", this.props)
+        // const { userId } = this.props.user;
+        // console.log("userId", userId);
+        // // console.log("props.match", this.props.match.params);
         
-        await API.getUser(userId)
-            .then(res => {
-                console.log(res.data);
-                this.setState({
-                    user: res.data
-                })
-            })
-            .then(res => {
-                console.log("hitting getUser res")
-                const userCommunities  = this.state.user.communities;
-                const communityObjects = [];
-                console.log([userCommunities]);
-                console.log(communityObjects);
+        const getUserResponse = await API.getUser(this.props.user.userId);
 
-                userCommunities.forEach(async communityId => {
-                    const response = await API.getCommunityById(communityId);
-                    console.log("response for getCommunity", response);
-                    communityObjects.unshift(response.data);
-                    this.setState({
-                        communities: communityObjects
-                    })
-                })
-            })
-            .catch(err => console.log(err));
+        getUserResponse.status === 200 && this.setState({
+                user: getUserResponse.data,
+            });
+
+        const getUserCommunities = await API.getCommunities(this.props.user.userId);
+
+        getUserCommunities.status === 200 && this.setState({
+            communities: getUserCommunities.data,
+        })
+
+        // await API.getUser(userId)
+        //     .then(res => {
+        //         console.log(res.data);
+        //         this.setState({
+        //             user: res.data
+        //         })
+        //     })
+        //     .then(res => {
+        //         console.log("hitting getUser res")
+        //         const userCommunities  = this.state.user.communities;
+        //         const communityObjects = [];
+        //         console.log([userCommunities]);
+        //         console.log(communityObjects);
+
+        //         userCommunities.forEach(async communityId => {
+        //             const response = await API.getCommunityById(communityId);
+        //             console.log("response for getCommunity", response);
+        //             communityObjects.unshift(response.data);
+        //             this.setState({
+        //                 communities: communityObjects
+        //             })
+        //         })
+        //     })
+        //     .catch(err => console.log(err));
     }
 
     createCommunityHandleChange = e => {

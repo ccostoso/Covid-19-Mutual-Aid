@@ -56,6 +56,10 @@ export default {
         console.log("Getting communities...");
         return axios.get("/api/community/getCommunities");
     },
+    getCommunitiesByUser: function(userId) {
+        console.log("Getting communities for userId:", userId);
+        return axios.get("/api/community/getCommunities/" + userId);
+    },
     putCommunity: function(communityName, data) {
         console.log("PUT Community name is:", communityName);
         return axios.put("/api/community/putCommunity/" + communityName, data);

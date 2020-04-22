@@ -12,7 +12,8 @@ class NewsAndAlerts extends Component {
     }
 
     state = {
-        
+        userJoined: this.props.userJoined,
+        userIsPending: this.props.userIsPending,
     }
 
     joinCommunityHandleClick = async e => {
@@ -33,7 +34,7 @@ class NewsAndAlerts extends Component {
 
     componentDidMount() {
         this.setState({
-            userJoined: this.props.userJoined,
+            
         })
     }
 
@@ -43,6 +44,7 @@ class NewsAndAlerts extends Component {
                 <CommunityAbout 
                     about={this.props.about} 
                     userJoined={this.props.userJoined}
+                    userIsPending={this.props.userIsPending}
                     joinCommunityHandleClick={this.joinCommunityHandleClick}
                 />
                 <Row>
