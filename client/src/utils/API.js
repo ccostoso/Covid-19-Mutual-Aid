@@ -32,6 +32,14 @@ export default {
         console.log("Community id is:", id);
         return axios.get("/api/need/getNeedssByCommunity/" + id);
     },
+    getSkillsByUser: function(id) {
+        console.log("User id is:", id);
+        return axios.get("/api/skill/getSkillsByUser/" + id);
+    },
+    getNeedsByUser: function(id) {
+        console.log("User id is:", id);
+        return axios.get("/api/need/getNeedsByUser/" + id);
+    },
     createSkill: function(skill) {
         console.log("User id for put is:", skill);
         return axios.post("/api/skill/create/", skill);
@@ -58,7 +66,7 @@ export default {
     },
     getCommunitiesByUser: function(userId) {
         console.log("Getting communities for userId:", userId);
-        return axios.get("/api/community/getCommunities/" + userId);
+        return axios.get("/api/community/getCommunitiesByUser/" + userId);
     },
     putCommunity: function(communityName, data) {
         console.log("PUT Community name is:", communityName);

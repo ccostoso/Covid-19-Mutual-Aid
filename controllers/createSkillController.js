@@ -36,9 +36,10 @@ module.exports = {
                                         }
                                     })
                             ])
-                            .then(updatedResult => {
-                                return res.json(updatedResult);
-                            })
+                                .then(updatedResult => {
+                                    console.log("PROMISE.ALL RESULT", updatedResult);
+                                    return res.json(updatedResult);
+                                })
                         }
 
                         const newSkill = new Skill({
@@ -47,18 +48,25 @@ module.exports = {
                         })
 
                         return newSkill.save();
-                        }).then(newSkillResult => {
-                            console.log("NEW SKILL", newSkillResult);
-                            UserPassport.findOneAndUpdate({ _id: returnedUserMatch._id },
-                                {
-                                    $push: {
-                                        skills: newSkillResult._id,
-                                    }
-                                })
-                                .then(updatedUser => {
-                                    res.json(updatedUser);
-                                })
-                        })
+                    }).then(newSkillResult => {
+                        console.log("NEW SKILL", newSkillResult);
+                        UserPassport.findOneAndUpdate({ _id: returnedUserMatch._id },
+                            {
+                                $push: {
+                                    skills: newSkillResult._id,
+                                }
+                            })
+                            .then(updatedUser => {
+                                UserPassport.findOne({ _id: updatedUser._id })
+                                    .then(foundUser => {
+                                        console.log("FOUND USER:", foundUser);
+                                        return Skill.find({ havers: foundUser._id });
+                                    }).then(foundSkills => {
+                                        console.log("FOUND SKILLS:", foundSkills);
+                                        return res.json(foundSkills);
+                                    })
+                            })
+                    })
             })
     }
 };

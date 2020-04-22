@@ -25,7 +25,9 @@ class Profile extends Component {
         createNeed: {
             name: '',
             haver: this.props.profileUser.userId || "",
-        }
+        },
+        skillObjects: [],
+        needObjects: [],
     }
 
     async componentDidMount() {
@@ -36,6 +38,22 @@ class Profile extends Component {
         userResponse.status === 200 && this.setState({
             profileUser: userResponse.data,
         });
+
+        const skillsResponse = await API.getSkillsByUser(this.props.profileUser.userId);
+        console.log("Skills response is:", skillsResponse);
+
+        skillsResponse.status === 200 && this.setState({
+            skillObjects: skillsResponse.data,
+        })
+
+        const needsResponse = await API.getNeedsByUser(this.props.profileUser.userId);
+        console.log("Needs response is:", needsResponse);
+
+        needsResponse.status === 200 && this.setState({
+            needObjects: needsResponse.data,
+        })
+
+        // const needsResponse =         
     }
 
     handleAddSkillChange = e => {
@@ -70,10 +88,7 @@ class Profile extends Component {
         console.log("!!!!!!!!!!!!!!!!!");
 
         response.status === 200 && this.setState({
-            profileUser: {
-                ...this.state.profileUser,
-                skills: response.data.skills,
-            }
+            skillObjects: response.data,
         })
     }
 
@@ -87,10 +102,7 @@ class Profile extends Component {
         console.log("!!!!!!!!!!!!!!!!!");
 
         response.status === 200 && this.setState({
-            profileUser: {
-                ...this.state.profileUser,
-                needs: response.data.needs,
-            }
+            needObjects: response.data,
         })
     }
 
@@ -119,14 +131,17 @@ class Profile extends Component {
                             </Jumbotron>
 
                         <hr />
-                        <Row fluid>
+                        <Row>
                             <Col size="md-6">
                                 <h4>Skills</h4>
                                 <ul className="list-group">
-                                    {this.state.profileUser.skills && this.state.profileUser.skills.map(skill => {
+                                    {this.state.skillObjects && this.state.skillObjects.map(skill => {
                                         return (
-                                            <li className="list-group-item p-1">
-                                                {JSON.stringify(skill)}
+                                            <li 
+                                                className="list-group-item p-1"
+                                                key={skill._id}
+                                            >
+                                                {JSON.stringify(skill.name)}
                                             </li>
                                         )
                                     })}
@@ -147,10 +162,13 @@ class Profile extends Component {
                             <Col size="md-6">
                                 <h4>Needs</h4>
                                 <ul className="list-group">
-                                    {this.state.profileUser.needs && this.state.profileUser.needs.map(need => {
+                                    {this.state.needObjects && this.state.needObjects.map(need => {
                                         return (
-                                            <li className="list-group-item p-1">
-                                                {JSON.stringify(need)};
+                                            <li 
+                                                className="list-group-item p-1"
+                                                key={need._id}
+                                            >
+                                                {JSON.stringify(need.name)};
                                             </li>
                                         )
                                     })}
@@ -168,7 +186,7 @@ class Profile extends Component {
                                 </FormBtn>
                             </Col>
                         </Row>
-                        <Row fluid>
+                        {/* <Row fluid>
                             <Col size="auto">
                                 <h4>Member of:</h4>
                                 {this.state.profileUser.communities.length}
@@ -184,7 +202,7 @@ class Profile extends Component {
                                     }
                                 </ul>
                             </Col>
-                        </Row>
+                        </Row> */}
                     </Col>
                 </Row>
             </Container>

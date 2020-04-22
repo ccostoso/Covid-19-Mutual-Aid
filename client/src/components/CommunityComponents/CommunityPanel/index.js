@@ -49,6 +49,7 @@ class CommunityPanel extends Component {
                     <Route path={`/community/${this.props.title}/board`} render={() => {
                         return (
                             <CommunityBoard
+                                userJoined={this.props.userIsAdmin || this.props.userIsMember}
                                 userEmail={this.props.userEmail}
                                 userId={this.props.userId}
                                 communityTitle={this.props.title}

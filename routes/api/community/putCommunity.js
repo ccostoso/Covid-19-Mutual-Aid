@@ -36,7 +36,7 @@ router.put('/:communityName', (req, res, next) => {
                 $set: { description: description, headerImage: headerImage },
             }, { new: true })
                 .then(updatedCommunity => {
-                    console.log("Community.findOne response", response);
+                    console.log("Community.findOne response", updatedCommunity);
                     res.json(updatedCommunity);
                 })
                 .catch(err => {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, useParams, useRouteMatch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { Nav } from "./components/UniversalComponents/Nav";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -30,21 +30,31 @@ nav {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      locale: LOCALES.ENGLISH,
-      theme: {
-        mode: 'light',
-        size: 'normal'
-      },
-      user: {
-        email: '',
-        password: '',
-        jsonMessage: '',
-        userId: "",
-      },
-      isLoggedIn: false,
-    }
   }
+
+  state = {
+    locale: LOCALES.ENGLISH,
+    theme: {
+      mode: 'light',
+      size: 'normal'
+    },
+    user: {
+      displayName: '',
+      email: '',
+      password: '',
+      jsonMessage: '',
+      userId: "",
+    },
+    // registerUser: {
+    //   displayName: '',
+    //   email: '',
+    //   password: '',
+    //   jsonMessage: '',
+    //   userId: '',
+    // },
+    isLoggedIn: false,
+  }
+
 
   //triggers the selection of languages to be rendered throughout the app
   handleSetLanguage = event => {
@@ -106,17 +116,58 @@ class App extends Component {
       cookies.set("userId", response.data._id)
 
       this.setState({
-          user: {
-            ...this.state.user,
-            userId: cookies.get("userId"),
-          },
-        })
+        user: {
+          ...this.state.user,
+          userId: cookies.get("userId"),
+        },
+      })
     }
+  }
+
+  handleRegisterChange = e => {
+    const { name, value } = e.target;
+    console.log(name)
+    console.log(value)
+
+    this.setState({
+      user: {
+        ...this.state.user,
+        [name]: value
+      }
+    })
+    console.log("LOOOOOOOOOOOOOOOOOK HERE")
+    console.log(this.state.user);
+  }
+
+  handleRegisterClick = async e => {
+    e.preventDefault();
+
+    console.log(e);
+
+    const newUser = {
+      displayName: this.state.user.displayName,
+      email: this.state.user.email,
+      password: this.state.user.password,
+    }
+
+    const response = await API.signUp(newUser);
+    console.log(response);
+
+    response.status === 200 && this.setState({
+      user: {
+        ...this.state.user,
+        userId: response.data._id,
+        registered: true,
+      },
+    })
+    console.log(this.state.user);
   }
 
   //"ThemeProvider" A helper component for theming. Injects the theme into all styled components 
   // anywhere beneath it in the component tree, via the context API.
   render() {
+    // console.log("~~~!!!!!!!!!!!!!!!!~~~")
+    // console.log(this.state.userId);
     return (
       <I18nProvider locale={this.state.locale}>
         <ThemeProvider theme={this.state.theme}>
@@ -124,30 +175,37 @@ class App extends Component {
             <GlobalStyle />
             <Router>
               <Nav />
+              
               <Route exact path="/" render={() => {
-                  return <Login
-                    user={this.state.user}
-                    handleChange={this.handleChange}
-                    handleClick={this.handleClick}
-                  />
-                }
+                return <Login
+                  user={this.state.user}
+                  handleChange={this.handleChange}
+                  handleClick={this.handleClick}
+                />
+              }
               } />
-              <Route exact path="/register" component={Register} />
+              <Route exact path="/register" render={() => {
+                return <Register
+                  user={this.state.user}
+                  handleRegisterChange={this.handleRegisterChange}
+                  handleRegisterClick={this.handleRegisterClick}
+                />
+              }} />
               <Route path="/home/:id" render={() => {
-                  return <Home 
-                    user={this.state.user}
-                  />
-                }} 
+                return <Home
+                  user={this.state.user}
+                />
+              }}
               />
               <Route path="/community/:id" component={Community} />
-              <Route path="/settings/:id" render={() => <Settings setLanguage={this.handleSetLanguage} setBrightness={this.handleSetBrightness} setFontSize={this.handleSetFontSize} />} />
+              <Route path="/settings/" render={() => <Settings setLanguage={this.handleSetLanguage} setBrightness={this.handleSetBrightness} setFontSize={this.handleSetFontSize} />} />
               <Route path="/profile/:id" render={() => {
                 return (
-                  <Profile 
+                  <Profile
                     profileUser={this.state.user}
                   />
                 )
-              }}/>
+              }} />
             </Router>
           </>
         </ThemeProvider>
