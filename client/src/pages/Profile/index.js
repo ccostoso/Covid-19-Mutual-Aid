@@ -5,7 +5,7 @@ import { Input, FormBtn } from "../../components/UniversalComponents/Form";
 import API from "../../utils/API";
 import { Jumbotron } from "../../components/UniversalComponents/Jumbotron";
 import UserSidebar from "../../components/UniversalComponents/UserSidebar";
-import ProfilePicture from "../../i18n/profilepicture/profilePic";
+// import ProfilePicture from "../../i18n/profilepicture/profilePic";
 
 class Profile extends Component {
     constructor(props) {
@@ -27,9 +27,9 @@ class Profile extends Component {
             name: '',
             haver: this.props.profileUser.userId || "",
         },
-        createAvatar: {
-            src: null
-        }
+        // createAvatar: {
+        //     src: null
+        // }
     }
 
     async componentDidMount() {
@@ -80,14 +80,14 @@ class Profile extends Component {
 
     }
 
-    handleSetProfilePicture = event => {
-        event.preventDefault()
-        const src = 'https://vectorified.com/images/no-profile-picture-icon-13.png';
+    // handleSetProfilePicture = event => {
+    //     event.preventDefault()
+    //     const src = 'https://vectorified.com/images/no-profile-picture-icon-13.png';
     
-        this.setState({
-          src: URL.createObjectURL(event.target.files[0])
-        })
-      }
+    //     this.setState({
+    //       src: URL.createObjectURL(event.target.files[0])
+    //     })
+    //   }
 
     render() {
         console.log("PROFILE PROPS", this.props);
@@ -169,23 +169,23 @@ class Profile extends Component {
                                     }
                                 </ul>
                             </Col>
-                            <Col size="auto">
+                            {/* <Col size="auto">
                                 <h4>Upload Avatar:</h4>
                                 {this.state.createAvatar.src}
                                 <ul className="list-group">
                                     {
                                         this.state.createAvatar.src && this.state.createAvatar.src.forEach(src => {
                                             return (
-                                                <div>
+                                                <div> */}
                                                 {/* <input type="file" onChange={this.handleSetProfilePicture}/>
                                                 <img src={this.state.src}/> */}
-                                                <ProfilePicture />
-                                                </div>
+                                                {/* <ProfilePicture /> */}
+                                                {/* </div>
                                             )
                                         })
                                     }
-                                </ul>
-                            </Col>
+                                </ul> */}
+                            {/* </Col> */}
                         </Row>
                     </Col>
                 </Row>
