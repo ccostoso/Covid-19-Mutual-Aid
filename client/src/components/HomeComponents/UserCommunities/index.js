@@ -38,8 +38,8 @@ class UserCommunities extends Component {
                 {/* </section> */}
                 {/* <hr /> */}
                 <section className="row">
-                    <div className="col-md-4">
-                        {/* <Link
+                    <div className="col-md-4 d-flex justify-content-center">
+                        <Link
                             to={
                                 {
                                     pathname: `/home/${this.props.user._id}/`,
@@ -54,7 +54,7 @@ class UserCommunities extends Component {
                             My Communities
                         </Link>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-4 d-flex justify-content-center">
                         <Link
                             to={
                                 {
@@ -64,31 +64,31 @@ class UserCommunities extends Component {
                                     }
                                 }
                             }
-                            className="btn btn-secondary"
+                            className="btn btn-secondary mx-auto"
                         >
                             Find Communities
-                        </Link> */}
+                        </Link>
                     </div>
                     <div className="col-md-4">
                         <CreateCommunityModal {...this.props} />
                     </div>
                 </section>
                 <hr />
-                {/* <Router> 
-                    {/* <Switch> */}
-                        {/* <Route
-                            path={`/home/${this.props.user._id}/`}
+                {/* <Router>  */}
+                    <Switch>
+                        <Route
+                            exact path={`/home/:userId/`}
                             render={() => {
-                                return ( */}
+                                return (
                                     <UserMyCommunities
                                         user={this.props.user}
                                         communities={this.props.communities}
-                            //         />
-                            //     )
-                            // }}
+                                    />
+                                )
+                            }}
                         />
-                        {/* <Route
-                            path={`/home/${this.props.user._id}/find/`}
+                        <Route
+                            path={`/home/:userId/find/`}
                             render={() => {
                                 return (
                                     <UserFindCommunities
@@ -96,8 +96,8 @@ class UserCommunities extends Component {
                                     />
                                 )
                             }}
-                        /> */}
-                    {/* </Switch> */}
+                        />
+                    </Switch>
                 {/* </Router> */}
             </main>
         )

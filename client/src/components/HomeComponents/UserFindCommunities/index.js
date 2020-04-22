@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Container, Row, Col } from "../../UniversalComponents/Grid";
+import UserFindCommunitiesListCard from "../UserFindCommunitiesListCard";
 import API from "../../../utils/API";
 
 class UserFindCommunities extends Router {
@@ -26,31 +27,35 @@ class UserFindCommunities extends Router {
     render() {
         return (
             <Row fluid>
-                <h4>ALL COMMUNITIES</h4>
+                <h4>Find a New Community</h4>
                 <br />
                 <ul className="list-group">
                     {this.state.tenLatestCommunities.map(community => {
                         return (
+                            <UserFindCommunitiesListCard 
+                                community={community}
+                                user={this.props.user}
+                            />
 
-                            <li
-                                className="list-group-item d-flex justify-content-between"
-                                key={community._id}
-                            >
-                                <div>{community.communityName}</div>
-                                <Link
-                                    className="btn btn-success btn-sm"
-                                    to={
-                                        {
-                                            pathname: `/community/${community.communityName}`,
-                                            state: {
-                                                user: this.props.user
-                                            }
-                                        }
-                                    }
-                                >
+                            // <li
+                            //     className="list-group-item d-flex justify-content-between"
+                            //     key={community._id}
+                            // >
+                            //     <div>{community.communityName}</div>
+                            //     <Link
+                            //         className="btn btn-success btn-sm"
+                            //         to={
+                            //             {
+                            //                 pathname: `/community/${community.communityName}`,
+                            //                 state: {
+                            //                     user: this.props.user
+                            //                 }
+                            //             }
+                            //         }
+                            //     >
 
-                                </Link>
-                            </li>
+                            //     </Link>
+                            // </li>
 
                         )
                     })}

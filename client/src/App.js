@@ -11,6 +11,7 @@ import { I18nProvider, LOCALES } from './i18n';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import './App.css';
 import API from "./utils/API";
+import Cookies from "universal-cookie";
 
 // A helper function to generate a special StyledComponent that handles global styles.
 // Returns a StyledComponent that does not accept children. 
@@ -98,13 +99,19 @@ class App extends Component {
 
     const response = await API.signIn(user)
 
-    response.status === 200 && this.setState({
-      user: {
-        ...this.state.user,
-        userId: response.data._id,
-      },
-      isLoggedIn: true,
-    })
+    // response.status === 200 && 
+
+    if (response.status === 200) {
+      const cookies = new Cookies();
+      cookies.set("userId", response.data._id)
+
+      this.setState({
+          user: {
+            ...this.state.user,
+            userId: cookies.get("userId"),
+          },
+        })
+    }
   }
 
   //"ThemeProvider" A helper component for theming. Injects the theme into all styled components 

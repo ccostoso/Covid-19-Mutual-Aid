@@ -60,20 +60,38 @@ class Profile extends Component {
         })
     }
 
-    handleAddSkillClick = e => {
+    handleAddSkillClick = async e => {
         e.preventDefault();
 
-        API.createSkill(this.state.createSkill);
+        const response = await API.createSkill(this.state.createSkill);
+        
+        console.log("!!!!!!!!!!!!!!!!!");
+        console.log("add skill response", response);
+        console.log("!!!!!!!!!!!!!!!!!");
 
-
+        response.status === 200 && this.setState({
+            profileUser: {
+                ...this.state.profileUser,
+                skills: response.data.skills,
+            }
+        })
     }
 
-    handleAddNeedClick = e => {
+    handleAddNeedClick = async e => {
         e.preventDefault();
 
-        API.createSkill(this.state.createNeed);
+        const response = await API.createNeed(this.state.createNeed);
 
+        console.log("!!!!!!!!!!!!!!!!!");
+        console.log("add need response", response);
+        console.log("!!!!!!!!!!!!!!!!!");
 
+        response.status === 200 && this.setState({
+            profileUser: {
+                ...this.state.profileUser,
+                needs: response.data.needs,
+            }
+        })
     }
 
     render() {
@@ -104,11 +122,11 @@ class Profile extends Component {
                         <Row fluid>
                             <Col size="md-6">
                                 <h4>Skills</h4>
-                                <ul className="list-group list-group-flush">
-                                    {this.state.profileUser.skills && this.state.profileUser.skills.forEach(skill => {
+                                <ul className="list-group">
+                                    {this.state.profileUser.skills && this.state.profileUser.skills.map(skill => {
                                         return (
                                             <li className="list-group-item p-1">
-
+                                                {JSON.stringify(skill)}
                                             </li>
                                         )
                                     })}
@@ -119,15 +137,20 @@ class Profile extends Component {
                                     onChange={this.handleAddSkillChange}
                                 >
                                 </Input>
+                                <FormBtn
+                                    onClick={this.handleAddSkillClick}
+                                >
+                                    Add new skill!
+                                </FormBtn>
                                 
                             </Col>
                             <Col size="md-6">
                                 <h4>Needs</h4>
-                                <ul className="list-group list-group-flush">
-                                    {this.state.profileUser.needs && this.state.profileUser.needs.forEach(need => {
+                                <ul className="list-group">
+                                    {this.state.profileUser.needs && this.state.profileUser.needs.map(need => {
                                         return (
                                             <li className="list-group-item p-1">
-
+                                                {JSON.stringify(need)};
                                             </li>
                                         )
                                     })}
@@ -138,6 +161,11 @@ class Profile extends Component {
                                     onChange={this.handleAddNeedChange}
                                 >
                                 </Input>
+                                <FormBtn
+                                    onClick={this.handleAddNeedClick}
+                                >
+                                    Add new need!
+                                </FormBtn>
                             </Col>
                         </Row>
                         <Row fluid>
