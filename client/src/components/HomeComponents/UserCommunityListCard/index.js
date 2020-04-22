@@ -10,7 +10,7 @@ export const UserCommunityListCard = props => {
                     {props.community.communityName}
                 </header>
                 <div className="card-body">
-                    <p>{props.community.memberCount}</p>
+                    <p>{props.community.description}</p>
                     {/* <p>{props.community.position}</p */}
                     <Link to={
                         {

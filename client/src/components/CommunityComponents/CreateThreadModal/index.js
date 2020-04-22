@@ -30,7 +30,7 @@ export const CreateThreadModal = props => {
                             >
 
                             </Input>
-                            Thread Author:
+                            {/* Thread Author: */}
                             {/* <Input
                                 name="author"
                                 value={props.createThread.author}

@@ -12,6 +12,12 @@ router.get('/:id', (req, res, next) => {
 
 	UserPassport.findOne({ _id: id })
 		.then(response => {
+			if (!response) {
+				return res.json({
+					error: "No user found."
+				})
+			}
+
 			console.log("UserPassport.findOne response", response);
 			return res.json(response);
 		}).catch(err => {
