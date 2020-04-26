@@ -12,7 +12,7 @@ router.use("/login", logInRoutes);
 router.use("/logout", logOutRoutes);
 router.use("/register", registerRoutes);
 router.use("/user", userRoutes);
-router.use('/avatar', putAvatarRoutes);
+// router.use('/avatar', putAvatarRoutes);
 
 // Export to ../index.js
 module.exports = router;

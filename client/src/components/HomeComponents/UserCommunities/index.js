@@ -67,7 +67,7 @@ class UserCommunities extends Component {
                             className="btn btn-secondary mx-auto"
                         >
                             Find Communities
-                        </Link> */}
+                        </Link>
                     </div>
                     <div className="col-md-4">
                         <CreateCommunityModal {...this.props} />
