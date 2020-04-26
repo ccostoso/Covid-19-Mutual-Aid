@@ -3,10 +3,10 @@ import { Input, FormBtn } from "../../UniversalComponents/Form";
 
 export const CreateCommunityModal = props => {
     return (
-        <section>
+        <section className="d-flex justify-content-center">
             {/* // < !--Button trigger modal-- > */}
             <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Create a New Community
+                Create a Community
             </button>
 
             {/* // <!--Modal --> */}

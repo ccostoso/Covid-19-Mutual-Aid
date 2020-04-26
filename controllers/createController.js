@@ -20,14 +20,15 @@ module.exports = {
         'creator': creator,
         'description': description,
         'admins': [creator],
-        'users': [creator],
+        'members': [creator],
       });
       console.log("NEW COMMUNITY RESPONSE", newCommunity);
 
       const response = await newCommunity.save();
 
       Promise.all([
-        UserPassport.findOneAndUpdate({ _id: response.creator }, { $push: { communities: response._id } }, { new: true })
+        UserPassport.findOneAndUpdate({ _id: response.creator }, { $push: { communities: response._id } }, { new: true }),
+        Community.find({ _id: response._id }),
       ])
       .then(result => {
         console.log('PROMISE.ALL has resolved', result);

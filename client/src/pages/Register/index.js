@@ -9,44 +9,8 @@ import translate from '../../i18n/translate';
 // import nodemailer from 'nodemailer';
 
 class Register extends Component {
-    state = {
-        displayName: '',
-        email: '',
-        password: '',
-        jsonMessage: '',
-        user: '',
-    }
-
-    componentDidMount() {
-
-    }
-
-    handleChange = e => {
-        const { name, value } = e.target;
-
-        this.setState({
-            [name]: value
-        })
-    }
-
-    handleClick = async e => {
-        e.preventDefault();
-
-        console.log(e);
-
-        const newUser = {
-            displayName: this.state.displayName,
-            email: this.state.email,
-            password: this.state.password,
-        }
-
-        const response = await API.signUp(newUser);
-        console.log(response);
-
-        response.status === 200 && this.setState({
-            user: response.data._id,
-        })
-        console.log(this.state.user);
+    constructor(props) {
+        super(props);
     }
 
     // handleEmailConfirmation = async e => {
@@ -64,6 +28,7 @@ class Register extends Component {
     
 
     render() {
+        console.log("REGISTER PROPS", this.props);
         return (
             <Container fluid>
                 <Row className="justify-content-center my-4">
@@ -73,31 +38,23 @@ class Register extends Component {
                                 <strong>{translate("Register")}</strong>
                             </p>
                             <Input 
-                                value={this.state.displayName}
-                                onChange={this.handleChange}
+                                // value={this.props.registerUser.displayName}
+                                onChange={this.props.handleRegisterChange}
                                 name="displayName"
                                 placeholder="required"
                                 label={translate("Display Name")}
                             />
                             <Input 
-                                value={this.state.age}
-                                onChange={this.handleChange}
-                                name="age"
-                                placeholder="required"
-                                type="number"
-                                label={translate("Age")}
-                            />
-                            <Input 
-                                value={this.state.email}
-                                onChange={this.handleChange}
+                                // value={this.props.registerUser.email}
+                                onChange={this.props.handleRegisterChange}
                                 name="email"
                                 placeholder="required"
                                 type="email"
                                 label={translate("Email")}
                             />
                             <Input 
-                                value={this.state.password}
-                                onChange={this.handleChange}
+                                // value={this.props.registerUser.password}
+                                onChange={this.props.handleRegisterChange}
                                 name="password"
                                 placeholder="required"
                                 type="password"
@@ -106,7 +63,7 @@ class Register extends Component {
                             <FormBtn
                                 btntype="outline-success"
                                 btnsize="sm"
-                                onClick={this.handleClick}
+                                onClick={this.props.handleRegisterClick}
                             >
                                 {translate("Register")}
                             </FormBtn>
@@ -114,10 +71,10 @@ class Register extends Component {
                                 <small>{translate("We won't share your personal information with anyone.")}</small>
                             </p>
                         </form>
-                        {this.state.jsonMessage && <Alert>
-                            {this.state.jsonMessage}
-                        </Alert>}
-                        {this.state.user && <Redirect to={`/home/${this.state.user}`}/>}
+                        {/* {this.props.registerUser.jsonMessage && <Alert>
+                            {this.props.registerUser.jsonMessage}
+                        </Alert>} */}
+                        {this.props.user.registered && <Redirect to={`/home/${this.props.user.userId}`}/>}
                     </Col>
                 </Row>
             </Container>

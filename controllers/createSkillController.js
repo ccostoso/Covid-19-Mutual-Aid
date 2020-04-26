@@ -5,10 +5,10 @@ const UserPassport = require("../db/models/userpassport");
 module.exports = {
     create: function (req, res) {
         console.log("req.body for new reply", req.body);
-        const { userId, name } = req.body;
+        const { haver, name } = req.body;
 
         // ADD VALIDATION
-        UserPassport.findOne({ '_id': userId })
+        UserPassport.findOne({ '_id': haver })
             .then(userMatch => {
                 console.log("USER MATCH", userMatch);
                 if (!userMatch) {
@@ -36,28 +36,37 @@ module.exports = {
                                         }
                                     })
                             ])
-                            .then(updatedResult => {
-                                return res.json(updatedResult);
-                            })
+                                .then(updatedResult => {
+                                    console.log("PROMISE.ALL RESULT", updatedResult);
+                                    return res.json(updatedResult);
+                                })
                         }
 
                         const newSkill = new Skill({
-                            'name': parentThread,
+                            'name': name,
                             'havers': [returnedUserMatch._id]
                         })
 
                         return newSkill.save();
-                        }).then(newSkillResult => {
-                            UserPassport.findOneAndUpdate({ _id: returnedUserMatch._id },
-                                {
-                                    $push: {
-                                        skills: newSkillResult._id,
-                                    }
-                                })
-                                .then(updatedUser => {
-                                    res.json(updatedUser);
-                                })
-                        })
+                    }).then(newSkillResult => {
+                        console.log("NEW SKILL", newSkillResult);
+                        UserPassport.findOneAndUpdate({ _id: returnedUserMatch._id },
+                            {
+                                $push: {
+                                    skills: newSkillResult._id,
+                                }
+                            })
+                            .then(updatedUser => {
+                                UserPassport.findOne({ _id: updatedUser._id })
+                                    .then(foundUser => {
+                                        console.log("FOUND USER:", foundUser);
+                                        return Skill.find({ havers: foundUser._id });
+                                    }).then(foundSkills => {
+                                        console.log("FOUND SKILLS:", foundSkills);
+                                        return res.json(foundSkills);
+                                    })
+                            })
+                    })
             })
     }
 };

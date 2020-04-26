@@ -24,17 +24,29 @@ export default {
         console.log("User id is:", id);
         return axios.put("/api/account/user/" + id, data);
     },
-    putUserAvatar: function(id, data) {
+    getSkillsByCommunity: function(id) {
+        console.log("Community id is:", id);
+        return axios.get("/api/skill/getSkillsByCommunity/" + id);
+    },
+    getNeedsByCommunity: function(id) {
+        console.log("Community id is:", id);
+        return axios.get("/api/need/getNeedssByCommunity/" + id);
+    },
+    getSkillsByUser: function(id) {
         console.log("User id is:", id);
-        return axios.put("/api/account/avatar/" + id, data);
+        return axios.get("/api/skill/getSkillsByUser/" + id);
+    },
+    getNeedsByUser: function(id) {
+        console.log("User id is:", id);
+        return axios.get("/api/need/getNeedsByUser/" + id);
     },
     createSkill: function(skill) {
         console.log("User id for put is:", skill);
-        return axios.put("/api/skill/create/", skill);
+        return axios.post("/api/skill/create/", skill);
     },
     createNeed: function(need) {
         console.log("User id for put is:", need);
-        return axios.put("/api/need/create/", need);
+        return axios.post("/api/need/create/", need);
     },
     createCommunity: function(newCommunity) {
         console.log("New community is:", newCommunity);
@@ -51,6 +63,10 @@ export default {
     getCommunities: function() {
         console.log("Getting communities...");
         return axios.get("/api/community/getCommunities");
+    },
+    getCommunitiesByUser: function(userId) {
+        console.log("Getting communities for userId:", userId);
+        return axios.get("/api/community/getCommunitiesByUser/" + userId);
     },
     putCommunity: function(communityName, data) {
         console.log("PUT Community name is:", communityName);

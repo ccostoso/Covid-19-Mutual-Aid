@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "../../UniversalComponents/Grid";
 import { Input, FormBtn } from "../../UniversalComponents/Form"
-import { Alert } from "../../UniversalComponents/Alert";
-import { CommunityAbout } from "../CommunityAbout";
-import { CommunityNews } from "../CommunityNews";
-import translate from '../../../i18n/translate';
+// import { Alert } from "../../UniversalComponents/Alert";
+// import { CommunityAbout } from "../CommunityAbout";
+// import { CommunityNews } from "../CommunityNews";
+// import translate from '../../../i18n/translate';
 import API from "../../../utils/API";
 
 class CommunitySettings extends Component {

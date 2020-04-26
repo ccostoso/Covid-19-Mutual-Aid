@@ -5,7 +5,6 @@ import { Input, FormBtn } from "../../components/UniversalComponents/Form";
 import API from "../../utils/API";
 import { Jumbotron } from "../../components/UniversalComponents/Jumbotron";
 import UserSidebar from "../../components/UniversalComponents/UserSidebar";
-// import ProfilePicture from "../../i18n/profilepicture/profilePic";
 
 class Profile extends Component {
     constructor(props) {
@@ -27,9 +26,8 @@ class Profile extends Component {
             name: '',
             haver: this.props.profileUser.userId || "",
         },
-        // createAvatar: {
-        //     src: null
-        // }
+        skillObjects: [],
+        needObjects: [],
     }
 
     async componentDidMount() {
@@ -40,6 +38,72 @@ class Profile extends Component {
         userResponse.status === 200 && this.setState({
             profileUser: userResponse.data,
         });
+
+        const skillsResponse = await API.getSkillsByUser(this.props.profileUser.userId);
+        console.log("Skills response is:", skillsResponse);
+
+        skillsResponse.status === 200 && this.setState({
+            skillObjects: skillsResponse.data,
+        })
+
+        const needsResponse = await API.getNeedsByUser(this.props.profileUser.userId);
+        console.log("Needs response is:", needsResponse);
+
+        needsResponse.status === 200 && this.setState({
+            needObjects: needsResponse.data,
+        })
+
+        // const needsResponse =         
+    }
+
+    handleAddSkillChange = e => {
+        const value = e.target.value;
+
+        this.setState({
+            createSkill: {
+                ...this.state.createSkill,
+                name: value,
+            }
+        })
+    }
+
+    handleAddNeedChange = e => {
+        const value = e.target.value;
+
+        this.setState({
+            createNeed: {
+                ...this.state.createNeed,
+                name: value,
+            }
+        })
+    }
+
+    handleAddSkillClick = async e => {
+        e.preventDefault();
+
+        const response = await API.createSkill(this.state.createSkill);
+        
+        console.log("!!!!!!!!!!!!!!!!!");
+        console.log("add skill response", response);
+        console.log("!!!!!!!!!!!!!!!!!");
+
+        response.status === 200 && this.setState({
+            skillObjects: response.data,
+        })
+    }
+
+    handleAddNeedClick = async e => {
+        e.preventDefault();
+
+        const response = await API.createNeed(this.state.createNeed);
+
+        console.log("!!!!!!!!!!!!!!!!!");
+        console.log("add need response", response);
+        console.log("!!!!!!!!!!!!!!!!!");
+
+        response.status === 200 && this.setState({
+            needObjects: response.data,
+        })
     }
 
     handleAddSkillChange = e => {
@@ -114,14 +178,17 @@ class Profile extends Component {
                             </Jumbotron>
 
                         <hr />
-                        <Row fluid>
+                        <Row>
                             <Col size="md-6">
                                 <h4>Skills</h4>
-                                <ul className="list-group list-group-flush">
-                                    {this.state.profileUser.skills && this.state.profileUser.skills.forEach(skill => {
+                                <ul className="list-group">
+                                    {this.state.skillObjects && this.state.skillObjects.map(skill => {
                                         return (
-                                            <li className="list-group-item p-1">
-
+                                            <li 
+                                                className="list-group-item p-1"
+                                                key={skill._id}
+                                            >
+                                                {JSON.stringify(skill.name)}
                                             </li>
                                         )
                                     })}
@@ -132,15 +199,23 @@ class Profile extends Component {
                                     onChange={this.handleAddSkillChange}
                                 >
                                 </Input>
+                                <FormBtn
+                                    onClick={this.handleAddSkillClick}
+                                >
+                                    Add new skill!
+                                </FormBtn>
                                 
                             </Col>
                             <Col size="md-6">
                                 <h4>Needs</h4>
-                                <ul className="list-group list-group-flush">
-                                    {this.state.profileUser.needs && this.state.profileUser.needs.forEach(need => {
+                                <ul className="list-group">
+                                    {this.state.needObjects && this.state.needObjects.map(need => {
                                         return (
-                                            <li className="list-group-item p-1">
-
+                                            <li 
+                                                className="list-group-item p-1"
+                                                key={need._id}
+                                            >
+                                                {JSON.stringify(need.name)};
                                             </li>
                                         )
                                     })}
@@ -151,9 +226,14 @@ class Profile extends Component {
                                     onChange={this.handleAddNeedChange}
                                 >
                                 </Input>
+                                <FormBtn
+                                    onClick={this.handleAddNeedClick}
+                                >
+                                    Add new need!
+                                </FormBtn>
                             </Col>
                         </Row>
-                        <Row fluid>
+                        {/* <Row fluid>
                             <Col size="auto">
                                 <h4>Member of:</h4>
                                 {this.state.profileUser.communities.length}
@@ -169,24 +249,7 @@ class Profile extends Component {
                                     }
                                 </ul>
                             </Col>
-                            {/* <Col size="auto">
-                                <h4>Upload Avatar:</h4>
-                                {this.state.createAvatar.src}
-                                <ul className="list-group">
-                                    {
-                                        this.state.createAvatar.src && this.state.createAvatar.src.forEach(src => {
-                                            return (
-                                                <div> */}
-                                                {/* <input type="file" onChange={this.handleSetProfilePicture}/>
-                                                <img src={this.state.src}/> */}
-                                                {/* <ProfilePicture /> */}
-                                                {/* </div>
-                                            )
-                                        })
-                                    }
-                                </ul> */}
-                            {/* </Col> */}
-                        </Row>
+                        </Row> */}
                     </Col>
                 </Row>
             </Container>
