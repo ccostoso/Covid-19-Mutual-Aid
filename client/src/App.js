@@ -13,6 +13,7 @@ import './App.css';
 import API from "./utils/API";
 import Cookies from "universal-cookie";
 
+
 // A helper function to generate a special StyledComponent that handles global styles.
 // Returns a StyledComponent that does not accept children. 
 // Place it at the top of your React tree and the global styles will be injected when the component is "rendered". 
@@ -87,6 +88,7 @@ class App extends Component {
       }
     })
   };
+
 
   handleChange = e => {
     const { name, value } = e.target;

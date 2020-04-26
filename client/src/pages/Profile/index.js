@@ -106,6 +106,53 @@ class Profile extends Component {
         })
     }
 
+    handleAddSkillChange = e => {
+        const value = e.target.value;
+
+        this.setState({
+            createSkill: {
+                ...this.state.createSkill,
+                name: value,
+            }
+        })
+    }
+
+    handleAddNeedChange = e => {
+        const value = e.target.value;
+
+        this.setState({
+            createNeed: {
+                ...this.state.createNeed,
+                name: value,
+            }
+        })
+    }
+
+    handleAddSkillClick = e => {
+        e.preventDefault();
+
+        API.createSkill(this.state.createSkill);
+
+
+    }
+
+    handleAddNeedClick = e => {
+        e.preventDefault();
+
+        API.createSkill(this.state.createNeed);
+
+
+    }
+
+    // handleSetProfilePicture = event => {
+    //     event.preventDefault()
+    //     const src = 'https://vectorified.com/images/no-profile-picture-icon-13.png';
+    
+    //     this.setState({
+    //       src: URL.createObjectURL(event.target.files[0])
+    //     })
+    //   }
+
     render() {
         console.log("PROFILE PROPS", this.props);
         console.log("THIS STATE profile User", this.state.profileUser);
@@ -211,3 +258,17 @@ class Profile extends Component {
 }
 
 export default Profile;
+
+
+{/* <div>
+<p className='profilePicture'>{translate("Profile Picture")}</p>
+    <Avatar
+        width={390}
+        height={295}
+        onCrop={this.onCrop}
+        onClose={this.onClose}
+        onBeforeFileLoad={this.onBeforeFileLoad}
+        src={this.state.src}
+    />
+    <img src={this.state.preview} alt="Preview" />
+</div> */}

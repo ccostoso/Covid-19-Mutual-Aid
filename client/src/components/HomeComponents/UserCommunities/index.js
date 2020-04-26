@@ -67,15 +67,16 @@ class UserCommunities extends Component {
                             className="btn btn-secondary mx-auto"
                         >
                             Find Communities
-                        </Link>
+                        </Link> */}
                     </div>
                     <div className="col-md-4">
                         <CreateCommunityModal {...this.props} />
                     </div>
                 </section>
                 <hr />
-                {/* <Router>  */}
+                <Router> 
                     <Switch>
+                        
                         <Route
                             exact path={`/home/:userId/`}
                             render={() => {
@@ -97,8 +98,9 @@ class UserCommunities extends Component {
                                 )
                             }}
                         />
+                        
                     </Switch>
-                {/* </Router> */}
+                </Router>
             </main>
         )
     }

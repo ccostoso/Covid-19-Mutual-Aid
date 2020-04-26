@@ -6,11 +6,26 @@ import { Alert } from "../../components/UniversalComponents/Alert";
 import API from "../../utils/API";
 // import { Link } from "react-router-dom";
 import translate from '../../i18n/translate';
+// import nodemailer from 'nodemailer';
 
 class Register extends Component {
     constructor(props) {
         super(props);
     }
+
+    // handleEmailConfirmation = async e => {
+    //     e.preventDefault();
+
+    //     const transport = nodemailer.createTransport({
+    //         host: "smtp.mailtrap.io",
+    //         port: 2525,
+    //         auth: {
+    //           email: this.state.email,
+    //           password: this.state.password
+    //         }
+    //       });
+    // }
+    
 
     render() {
         console.log("REGISTER PROPS", this.props);
