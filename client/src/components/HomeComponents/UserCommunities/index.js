@@ -74,9 +74,8 @@ class UserCommunities extends Component {
                     </div>
                 </section>
                 <hr />
-                <Router> 
+                {/* <Router>  */}
                     <Switch>
-                        
                         <Route
                             exact path={`/home/:userId/`}
                             render={() => {
@@ -98,9 +97,8 @@ class UserCommunities extends Component {
                                 )
                             }}
                         />
-                        
                     </Switch>
-                </Router>
+                {/* </Router> */}
             </main>
         )
     }
