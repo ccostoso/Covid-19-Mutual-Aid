@@ -4,8 +4,10 @@ This app is targeted towards the audience that we are all a part of now. MutuAid
 ## What is this?
 This is a an app that gears towards people during the epdimic situation Covid-19, people can post in the communities they are in if they need help or if they have the ability to help those in need. 
 
-## The screenshots
+## What does it look like?
+Here's a peek of our app in action.
 
+![MutuAid App running](readme/MutuAid.gif)
 
 ## How to use
 * NPM INSTALL
