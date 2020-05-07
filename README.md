@@ -14,3 +14,11 @@ Here's a peek of our app in action.
 * NPM START
 
 ## Technologies Utilized
+* MongoDB
+* Express
+* React
+* Node
+* Passport.js
+* bcrypt
+* styled-components npm
+* react-intl npm
